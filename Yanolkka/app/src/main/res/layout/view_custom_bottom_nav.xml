@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="4dp"
+    android:background="@color/colorBackground"
+    android:weightSum="5">
+
+    <LinearLayout
+        android:id="@+id/ll_nav_home"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/iv_nav_home"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/tab_home_accent"/>
+        <TextView
+            android:id="@+id/tv_nav_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/textNormal"
+            android:textSize="12sp"
+            android:text="@string/home"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_nav_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/iv_nav_location"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/tab_location"/>
+        <TextView
+            android:id="@+id/tv_nav_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="12sp"
+            android:textColor="@color/textSmooth"
+            android:text="@string/location"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_nav_nearby"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/iv_nav_nearby"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/tab_nearby"/>
+        <TextView
+            android:id="@+id/tv_nav_nearby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="12sp"
+            android:textColor="@color/textSmooth"
+            android:text="@string/nearby"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_nav_like"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/iv_nav_like"
+            android:layout_width="38dp"
+            android:layout_height="24dp"
+            android:src="@drawable/tab_like"/>
+        <TextView
+            android:id="@+id/tv_nav_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="12sp"
+            android:textColor="@color/textSmooth"
+            android:text="@string/home"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_nav_my_page"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/iv_nav_my_page"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/tab_my_page"/>
+        <TextView
+            android:id="@+id/tv_nav_my_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="12sp"
+            android:textColor="@color/textSmooth"
+            android:text="@string/my_page"/>
+    </LinearLayout>
+</LinearLayout>

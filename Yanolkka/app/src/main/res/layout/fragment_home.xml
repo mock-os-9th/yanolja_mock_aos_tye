@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    tools:context=".src.main.fragments.HomeFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:layout_width="128dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/logo"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_search"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/board_borders"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="어디로 놀러갈까요?"
+                        android:textSize="16sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_centerVertical="true"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_search"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:columnCount="1"
+                android:layout_marginVertical="16dp"
+                android:layout_marginHorizontal="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp"
+                    android:weightSum="5">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_motel"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp" />
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="모텔"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_hotel"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp" />
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="호텔"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_prem_hotel"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp"
+                                android:src="@drawable/icon_notice_new"/>
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="프리미엄호텔"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_resort"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp" />
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="리조트/콘도"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_pool"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="22dp"
+                                android:src="@drawable/icon_notice_bargain"/>
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="팬션/풀빌라"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp"
+                    android:weightSum="5">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_camping"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp" />
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="글램핑/캠핑"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_guesthouse"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp" />
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="게스트하우스"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_flight"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp" />
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="항공권"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_rental"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp" />
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="렌터카"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_ktx"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp" />
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="KTX"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp"
+                    android:weightSum="5">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_leisure"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp" />
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="레저/티켓"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_ski"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="22dp"
+                                android:src="@drawable/icon_notice_bargain"/>
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="스키시즌권"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_kids"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp"
+                                android:src="@drawable/icon_notice_new"/>
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="아이야놀자"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_quality"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp" />
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="품질인증숙소"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:src="@drawable/icon_foreign"
+                                android:layout_alignParentBottom="true"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp" />
+                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="12sp"
+                            android:text="해외숙소"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </GridLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:background="@drawable/board_borders_white"
+                android:weightSum="4">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginVertical="4dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textNormal"
+                        android:textSize="12sp"
+                        android:text="선착순쿠폰"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorBorderSearchBox"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginVertical="4dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textNormal"
+                        android:textSize="12sp"
+                        android:text="무한쿠폰룸"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorBorderSearchBox"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginVertical="4dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textNormal"
+                        android:textSize="12sp"
+                        android:text="돈버는놀력"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorBorderSearchBox"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginVertical="4dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textNormal"
+                        android:textSize="12sp"
+                        android:text="썸머VIP"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
