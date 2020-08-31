@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context=".src.main.fragments.LocationFragment">
+    tools:context=".src.activities.main.fragments.LocationFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

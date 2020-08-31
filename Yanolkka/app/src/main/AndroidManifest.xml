@@ -13,14 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".src.search.motel.SearchMotelActivity"></activity>
-        <activity android:name=".src.signup.SignUpActivity" />
-        <activity android:name=".src.reservation.ReservationActivity" />
-        <activity android:name=".src.room.info.RoomInfoActivity" />
-        <activity android:name=".src.src.result.SearchResultActivity" />
-        <activity android:name=".src.search.SearchActivity" />
-        <activity android:name=".src.signin.SignInActivity" />
-        <activity android:name=".src.main.MainActivity">
+        <activity android:name=".src.activities.search.motel.SearchMotelActivity"></activity>
+        <activity android:name=".src.activities.sign_up.SignUpActivity" />
+        <activity android:name=".src.activities.reservation.ReservationActivity" />
+        <activity android:name=".src.activities.room_info.RoomInfoActivity" />
+        <activity android:name=".src.activities.search_result.SearchResultActivity" />
+        <activity android:name=".src.activities.search.SearchActivity" />
+        <activity android:name=".src.activities.sign_in.SignInActivity" />
+        <activity android:name=".src.activities.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

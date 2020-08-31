@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.signup.SignUpActivity;
-import com.example.yanolkka.src.signin.SignInActivity;
+import com.example.yanolkka.src.activities.sign_up.SignUpActivity;
+import com.example.yanolkka.src.activities.sign_in.SignInActivity;
 
 public class GoSignInView extends LinearLayout implements View.OnClickListener {
 

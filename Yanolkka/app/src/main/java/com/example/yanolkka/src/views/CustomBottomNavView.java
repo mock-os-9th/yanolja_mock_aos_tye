@@ -126,5 +126,6 @@ public class CustomBottomNavView extends LinearLayout implements View.OnClickLis
         TextView tvOnBack = (TextView)findViewById(R.id.tv_nav_home);
         tvOnBack.setTextColor(getResources().getColor(R.color.textNormal));
         listener.turnPage(0);
+        itemId = R.id.ll_nav_home;
     }
 }

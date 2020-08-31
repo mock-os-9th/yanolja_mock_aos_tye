@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".src.signup.fragments.SignUp2Fragment">
+    tools:context=".src.activities.sign_up.fragments.SignUp2Fragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

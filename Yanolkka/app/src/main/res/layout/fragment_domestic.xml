@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context=".src.main.fragments.like.fragments.DomesticFragment">
+    tools:context=".src.activities.main.fragments.like.fragments.DomesticFragment">
 
     <LinearLayout
         android:id="@+id/ll_like_domestic_options"

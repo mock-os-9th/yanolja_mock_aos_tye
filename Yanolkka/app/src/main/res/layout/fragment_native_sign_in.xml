@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="32dp"
-    tools:context=".src.signin.fragments.NativeSignInFragment">
+    tools:context=".src.activities.sign_in.fragments.NativeSignInFragment">
 
     <EditText
         android:id="@+id/et_sign_in_native_id_email"

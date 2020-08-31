@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".src.search.hotel.SearchHotelActivity">
+    tools:context=".src.activities.search.hotel.SearchHotelActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
