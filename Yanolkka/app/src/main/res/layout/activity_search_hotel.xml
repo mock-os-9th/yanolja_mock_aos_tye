@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1"
-    tools:context=".src.search.SearchActivity">
+    tools:context=".src.search.hotel.SearchHotelActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,7 +13,7 @@
         android:padding="16dp">
 
         <ImageView
-            android:id="@+id/iv_search_back"
+            android:id="@+id/iv_sign_in_back"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_centerVertical="true"
@@ -25,33 +24,27 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_centerVertical="true"
-            android:text="@string/search"
+            android:text="Category"
             android:textColor="@color/textNormal"
-            android:layout_toEndOf="@+id/iv_search_back"
+            android:layout_toEndOf="@+id/iv_sign_in_back"
             android:textSize="20sp"
             android:textStyle="bold"/>
     </RelativeLayout>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_search"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        app:tabTextAppearance="@style/tab_text"
-        app:tabGravity="start"
-        android:layout_marginHorizontal="16dp"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/textNormal"
-        app:tabIndicatorColor="@color/textNormal"
-        app:tabIndicatorFullWidth="true"
-        app:tabIndicatorHeight="2dp"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorBorderSearchBox"/>
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-    <FrameLayout
-        android:id="@+id/fl_search_fragments"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
 </LinearLayout>

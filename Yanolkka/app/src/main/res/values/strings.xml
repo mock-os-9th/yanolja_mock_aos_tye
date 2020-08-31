@@ -21,14 +21,14 @@
     <string name="viewLikeAfterSignIn">로그인 후\n찜목록을 확인해주세요.</string>
     <string name="signIn">로그인</string>
     <string name="signUp">회원가입</string>
-    
+
     <string name="nativeSignIn">야놀자 로그인</string>
     <string name="comfortableSignIn">간편 로그인</string>
     <string name="idOrEmail">아이디 또는 이메일</string>
     <string name="password">비밀번호</string>
     <string name="findPassword">비밀번호 찾기</string>
     <string name="signUpYanolja">야놀자 회원가입</string>
-    
+
     <string name="signInAd">지금 가입만 해도 즉시 사용 가능한 쿠폰팩지급! 차이 결제시 무조건 중복 할인</string>
     <string name="ComfortableSignInNotice">간편 로그인을 위해서는 야놀자 계정으로 가입 후,\n계정 연동이 필요합니다.</string>
 
@@ -52,4 +52,20 @@
     <string name="mandatory">필수</string>
     <string name="choice">선택</string>
     <string name="next">다음</string>
+
+    <string name="motel">모텔</string>
+    <string name="chooseRegion">지역선택</string>
+    <string name="hotelResort">호텔/리조트</string>
+    
+    <string name="sampleAccommodationName">호텔 크레센도 서울</string>
+    <string name="review">후기</string>
+    <string name="forOneNight">1박 기준</string>
+
+    <string name="similarWithRecentlyViewed">최근 본 상품의 연관상품</string>
+    <string name="seeAll">전체 보기</string>
+
+    <string name="search">검색</string>
+    <string name="leisureAndTicket">레저/티켓</string>
+
+    <string name="searchDomesticEditTextHint">지역, 지하철역, 숙소명으로 찾아보세요!</string>
 </resources>
