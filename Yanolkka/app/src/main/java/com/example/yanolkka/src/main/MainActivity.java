@@ -2,7 +2,6 @@ package com.example.yanolkka.src.main;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -43,41 +42,36 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
 
     @Override
     public void turnPage(int i) {
+        int layoutId = R.id.fl_fragments;
         switch (i){
             case 0:
                 if (homeFragment == null)
                     homeFragment = HomeFragment.newInstance();
-                replaceFragment(homeFragment);
+                replaceFragment(fragmentManager, homeFragment, layoutId);
                 break;
             case 1:
                 if (locationFragment == null)
                     locationFragment = LocationFragment.newInstance();
-                replaceFragment(locationFragment);
+                replaceFragment(fragmentManager, locationFragment, layoutId);
                 break;
             case 2:
                 if (nearbyFragment == null)
                     nearbyFragment = NearbyFragment.newInstance();
-                replaceFragment(nearbyFragment);
+                replaceFragment(fragmentManager, nearbyFragment, layoutId);
                 break;
             case 3:
                 if (likeFragment == null)
                     likeFragment = LikeFragment.newInstance();
-                replaceFragment(likeFragment);
+                replaceFragment(fragmentManager, likeFragment, layoutId);
                 break;
             case 4:
                 if (myPageFragment == null)
                     myPageFragment = MyPageFragment.newInstance();
-                replaceFragment(myPageFragment);
+                replaceFragment(fragmentManager, myPageFragment, layoutId);
                 break;
         }
 
         currentPage = i;
-    }
-
-//    Fragment 바꾸기
-    public void replaceFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fl_fragments, fragment).commit();
     }
 
 //    HomeFragment가 안보일 때 누르면 HomeFragment로 이동

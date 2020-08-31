@@ -29,7 +29,7 @@
         app:tabGravity="start"
         android:layout_marginHorizontal="16dp"
         app:tabMode="scrollable"
-        app:tabTextColor="@color/textNormal"
+        app:tabSelectedTextColor="@color/textNormal"
         app:tabIndicatorColor="@color/textNormal"
         app:tabIndicatorFullWidth="false"
         app:tabIndicatorHeight="2dp"/>
@@ -39,7 +39,7 @@
         android:background="@color/colorBorderSearchBox"/>
 
     <FrameLayout
-        android:id="@+id/fl_like_fragment"
+        android:id="@+id/fl_like_fragments"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">

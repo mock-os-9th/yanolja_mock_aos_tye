@@ -3,12 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".src.main.fragments.like.fragments.OverseasFragment">
+    tools:context=".src.main.fragments.like.fragments.DomesticLeisureFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.example.yanolkka.src.views.GoSignInView
+        android:id="@+id/gsiv_like_overseas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/overseas" />
+        android:visibility="gone"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+    </LinearLayout>
 </FrameLayout>

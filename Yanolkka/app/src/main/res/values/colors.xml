@@ -7,6 +7,15 @@
     <color name="colorBackground">#ffffff</color>
     <color name="textNormal">#1A1A1A</color>
     <color name="textSmooth">#BBBBBB</color>
+    <color name="textBlue">#195DC6</color>
+    <color name="gray">#777777</color>
+    <color name="lightGray">#F2F2F2</color>
     <color name="colorSearchBox">#F8F8F8</color>
     <color name="colorBorderSearchBox">#E6E6E6</color>
+
+    <color name="colorButton">#DE2E5F</color>
+    <color name="colorButtonGray">#DDDDDD</color>
+
+    <color name="colorNaver">#1DC800</color>
+    <color name="colorPayco">#E72A2E</color>
 </resources>

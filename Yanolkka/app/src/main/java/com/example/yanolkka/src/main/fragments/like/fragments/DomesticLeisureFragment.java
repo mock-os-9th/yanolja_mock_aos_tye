@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.yanolkka.R;
+import com.example.yanolkka.src.views.GoSignInView;
 
 public class DomesticLeisureFragment extends Fragment {
+
+    private boolean signedIn = false;
 
     public DomesticLeisureFragment() {
     }
@@ -26,7 +29,12 @@ public class DomesticLeisureFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_domestic_leisure, container, false);
+        View view = inflater.inflate(R.layout.fragment_domestic_leisure, container, false);
+
+        GoSignInView goSignInView = view.findViewById(R.id.gsiv_like_domestic_leisure);
+        if (!signedIn)
+            goSignInView.setVisibility(View.VISIBLE);
+
+        return view;
     }
 }

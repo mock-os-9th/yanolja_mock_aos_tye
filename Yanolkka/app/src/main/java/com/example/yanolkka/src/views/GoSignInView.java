@@ -1,28 +1,19 @@
 package com.example.yanolkka.src.views;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Resources;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.yanolkka.R;
+import com.example.yanolkka.src.signup.SignUpActivity;
+import com.example.yanolkka.src.signin.SignInActivity;
 
 public class GoSignInView extends LinearLayout implements View.OnClickListener {
 
-    public EventListener listener;
-
-    public void setEventListener(EventListener l){listener = l;}
-
-    public interface EventListener{
-        void turnPage(int i);
-    }
-
-    private int itemId = R.id.ll_nav_home;
+    private Context mContext;
 
     public GoSignInView(Context context) {
         super(context);
@@ -40,91 +31,28 @@ public class GoSignInView extends LinearLayout implements View.OnClickListener {
     }
 
     private void init(Context context){
-        LayoutInflater.from(context).inflate(R.layout.view_custom_bottom_nav, this, true);
+        mContext = context;
 
-        findViewById(R.id.ll_nav_home).setOnClickListener(this);
-        findViewById(R.id.ll_nav_location).setOnClickListener(this);
-        findViewById(R.id.ll_nav_nearby).setOnClickListener(this);
-        findViewById(R.id.ll_nav_like).setOnClickListener(this);
-        findViewById(R.id.ll_nav_my_page).setOnClickListener(this);
+        LayoutInflater.from(mContext).inflate(R.layout.view_go_sign_in, this, true);
+
+        findViewById(R.id.rl_btn_go_sign_in).setOnClickListener(this);
+        findViewById(R.id.rl_btn_go_sign_up).setOnClickListener(this);
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onClick(View view) {
-        int chosenId = view.getId();
-
-        if (itemId != chosenId){
-            clearAccents();
-            ImageView ivChosen;
-            TextView tvChosen;
-            int accentColor = getResources().getColor(R.color.textNormal);
-            switch (chosenId){
-                case R.id.ll_nav_home:
-                    ivChosen = (ImageView)findViewById(R.id.iv_nav_home);
-                    ivChosen.setImageDrawable(getResources().getDrawable(R.drawable.tab_home_accent));
-                    tvChosen = (TextView)findViewById(R.id.tv_nav_home);
-                    tvChosen.setTextColor(accentColor);
-                    listener.turnPage(0);
-                    break;
-                case R.id.ll_nav_location:
-                    ivChosen = (ImageView)findViewById(R.id.iv_nav_location);
-                    ivChosen.setImageDrawable(getResources().getDrawable(R.drawable.tab_location_accent));
-                    tvChosen = (TextView)findViewById(R.id.tv_nav_location);
-                    tvChosen.setTextColor(accentColor);
-                    listener.turnPage(1);
-                    break;
-                case R.id.ll_nav_nearby:
-                    ivChosen = (ImageView)findViewById(R.id.iv_nav_nearby);
-                    ivChosen.setImageDrawable(getResources().getDrawable(R.drawable.tab_nearby_accent));
-                    tvChosen = (TextView)findViewById(R.id.tv_nav_nearby);
-                    tvChosen.setTextColor(accentColor);
-                    listener.turnPage(2);
-                    break;
-                case R.id.ll_nav_like:
-                    ivChosen = (ImageView)findViewById(R.id.iv_nav_like);
-                    ivChosen.setImageDrawable(getResources().getDrawable(R.drawable.tab_like_accent));
-                    tvChosen = (TextView)findViewById(R.id.tv_nav_like);
-                    tvChosen.setTextColor(accentColor);
-                    listener.turnPage(3);
-                    break;
-                case R.id.ll_nav_my_page:
-                    ivChosen = (ImageView)findViewById(R.id.iv_nav_my_page);
-                    ivChosen.setImageDrawable(getResources().getDrawable(R.drawable.tab_my_page_accent));
-                    tvChosen = (TextView)findViewById(R.id.tv_nav_my_page);
-                    tvChosen.setTextColor(accentColor);
-                    listener.turnPage(4);
-                    break;
-            }
-            invalidate();
-            itemId = chosenId;
+        switch (view.getId()){
+            case R.id.rl_btn_go_sign_in:
+                goActivity(SignInActivity.class);
+                break;
+            case R.id.rl_btn_go_sign_up:
+                goActivity(SignUpActivity.class);
+                break;
         }
     }
 
-    private void clearAccents(){
-        Resources resources = getResources();
-        ((ImageView)findViewById(R.id.iv_nav_home)).setImageDrawable(resources.getDrawable(R.drawable.tab_home));
-        ((ImageView)findViewById(R.id.iv_nav_location)).setImageDrawable(resources.getDrawable(R.drawable.tab_location));
-        ((ImageView)findViewById(R.id.iv_nav_nearby)).setImageDrawable(resources.getDrawable(R.drawable.tab_nearby));
-        ((ImageView)findViewById(R.id.iv_nav_like)).setImageDrawable(resources.getDrawable(R.drawable.tab_like));
-        ((ImageView)findViewById(R.id.iv_nav_my_page)).setImageDrawable(resources.getDrawable(R.drawable.tab_my_page));
-
-        int normalTextColor = resources.getColor(R.color.textSmooth);
-        ((TextView)findViewById(R.id.tv_nav_home)).setTextColor(normalTextColor);
-        ((TextView)findViewById(R.id.tv_nav_location)).setTextColor(normalTextColor);
-        ((TextView)findViewById(R.id.tv_nav_nearby)).setTextColor(normalTextColor);
-        ((TextView)findViewById(R.id.tv_nav_like)).setTextColor(normalTextColor);
-        ((TextView)findViewById(R.id.tv_nav_my_page)).setTextColor(normalTextColor);
-
-        invalidate();
-    }
-
-    public void onBackKey(){
-        clearAccents();
-        ImageView ivOnBack = (ImageView)findViewById(R.id.iv_nav_home);
-        ivOnBack.setImageDrawable(getResources().getDrawable(R.drawable.tab_home_accent));
-        TextView tvOnBack = (TextView)findViewById(R.id.tv_nav_home);
-        tvOnBack.setTextColor(getResources().getColor(R.color.textNormal));
-        listener.turnPage(0);
+    private void goActivity(Class c){
+        Intent intent = new Intent(mContext, c);
+        mContext.startActivity(intent);
     }
 }
