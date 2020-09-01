@@ -17,7 +17,7 @@ import android.widget.ScrollView;
 import com.example.yanolkka.R;
 import com.example.yanolkka.src.objects.Accommodation;
 import com.example.yanolkka.src.activities.search.SearchActivity;
-import com.example.yanolkka.src.views.SimpleAccommodationAdapter;
+import com.example.yanolkka.src.adapters.SimpleAccommodationAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -52,7 +52,9 @@ public class HomeFragment extends Fragment {
                     null, 170000, 0.65f);
 
             accommodation.setRating(4.5f);
-            accommodation.setReviews(916);
+            accommodation.setReviews(922);
+            accommodation.setHourCheckIn(15);
+            accommodation.setMinuteCheckIn(0);
 
             accommodations.add(accommodation);
         }

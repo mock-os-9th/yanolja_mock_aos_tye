@@ -1,18 +1,50 @@
 package com.example.yanolkka.src.objects;
 
 public class Accommodation {
+    static char type = 'h';
     private String name;
     private String imageUri;
     private float rating;
     private int reviews;
     private int originalPrice;
     private float discount;
+    private int hourCheckIn;
+    private int minuteCheckIn;
+    private int stars;
 
     public Accommodation(String name, String imageUri, int originalPrice, float discount) {
         this.name = name;
         this.imageUri = imageUri;
         this.originalPrice = originalPrice;
         this.discount = discount;
+    }
+
+    public static char getType() {
+        return type;
+    }
+
+    public int getHourCheckIn() {
+        return hourCheckIn;
+    }
+
+    public void setHourCheckIn(int hourCheckIn) {
+        this.hourCheckIn = hourCheckIn;
+    }
+
+    public int getMinuteCheckIn() {
+        return minuteCheckIn;
+    }
+
+    public void setMinuteCheckIn(int minuteCheckIn) {
+        this.minuteCheckIn = minuteCheckIn;
+    }
+
+    public int getStars() {
+        return stars;
+    }
+
+    public void setStars(int stars) {
+        this.stars = stars;
     }
 
     public String getName() {

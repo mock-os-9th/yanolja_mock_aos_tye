@@ -10,15 +10,15 @@ import androidx.fragment.app.Fragment;
 import com.example.yanolkka.R;
 import com.example.yanolkka.src.views.GoSignInView;
 
-public class DomesticFragment extends Fragment {
+public class LikeDomesticFragment extends Fragment {
 
     private boolean signedIn = false;
 
-    public DomesticFragment() {
+    public LikeDomesticFragment() {
     }
 
-    public static DomesticFragment newInstance() {
-        return new DomesticFragment();
+    public static LikeDomesticFragment newInstance() {
+        return new LikeDomesticFragment();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class DomesticFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_domestic, container, false);
+        View view = inflater.inflate(R.layout.fragment_like_domestic, container, false);
 
         GoSignInView goSignInView = view.findViewById(R.id.gsiv_like_domestic);
         if (!signedIn)

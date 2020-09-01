@@ -22,6 +22,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="14sp"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
             android:hint="@string/searchDomesticEditTextHint"
             android:background="@android:color/transparent"/>
 

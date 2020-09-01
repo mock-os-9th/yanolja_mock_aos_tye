@@ -20,4 +20,8 @@
     <color name="colorPayco">#E72A2E</color>
 
     <color name="lightPink">#FDE9EB</color>
+
+    <color name="blackTransparent">#88000000</color>
+
+    <color name="colorStars">#FDBE01</color>
 </resources>

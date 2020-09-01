@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yanolkka.R;
 import com.example.yanolkka.src.BaseActivity;
+import com.example.yanolkka.src.YetFragment;
 import com.example.yanolkka.src.activities.search.fragments.SearchDomesticFragment;
 import com.example.yanolkka.src.activities.search.fragments.SearchLeisureFragment;
 import com.example.yanolkka.src.activities.search.fragments.SearchOverseasFragment;
@@ -49,10 +50,8 @@ public class SearchActivity extends BaseActivity implements TabLayout.OnTabSelec
                 replaceFragment(fragmentManager, SearchDomesticFragment.newInstance(), layoutId);
                 break;
             case 1:
-                replaceFragment(fragmentManager, SearchOverseasFragment.newInstance(), layoutId);
-                break;
             case 2:
-                replaceFragment(fragmentManager, SearchLeisureFragment.newInstance(), layoutId);
+                replaceFragment(fragmentManager, YetFragment.newInstance(), layoutId);
                 break;
         }
     }

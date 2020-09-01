@@ -1,6 +1,8 @@
 package com.example.yanolkka.src.activities.search.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.yanolkka.R;
+import com.example.yanolkka.src.activities.search_result.SearchResultActivity;
 
 import java.util.Calendar;
 
@@ -60,6 +63,19 @@ public class SearchDomesticFragment extends Fragment implements View.OnClickList
         tvLength.setOnClickListener(this);
         tvPerson.setOnClickListener(this);
         ivBtnSearch.setOnClickListener(this);
+
+        etSearch.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if(keyEvent.getAction() == KeyEvent.ACTION_DOWN && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER){
+                    String searchingStr = etSearch.getText().toString();
+                    Intent intent = new Intent(getContext(), SearchResultActivity.class);
+                    intent.putExtra("searchingStr", searchingStr);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
 
         return view;
     }

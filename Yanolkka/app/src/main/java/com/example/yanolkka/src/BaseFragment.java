@@ -1,10 +1,10 @@
 package com.example.yanolkka.src;
 
+import android.content.Intent;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import com.example.yanolkka.R;
 
 public class BaseFragment extends Fragment {
 
@@ -12,5 +12,10 @@ public class BaseFragment extends Fragment {
     public void replaceFragment(FragmentManager manager, Fragment fragment, int layoutId) {
         FragmentTransaction fragmentTransaction = manager.beginTransaction();
         fragmentTransaction.replace(layoutId, fragment).commit();
+    }
+
+    //미개발 기능/페이지
+    public void goYetActivity(){
+        startActivity(new Intent(getContext(), YetActivity.class));
     }
 }

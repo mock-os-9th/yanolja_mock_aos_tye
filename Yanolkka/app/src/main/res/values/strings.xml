@@ -56,10 +56,23 @@
     <string name="motel">모텔</string>
     <string name="chooseRegion">지역선택</string>
     <string name="hotelResort">호텔/리조트</string>
+    <string name="pensionVilla">펜션/풀빌라</string>
+    <string name="guesthouse">게스트하우스</string>
     
+    <string name="infiniteCouponRoom">#무한쿠폰룸</string>
+    <string name="franchise">#프렌차이즈</string>
+    <string name="newRemodeled">#신축/리모델링</string>
+    <string name="superDealHotel">#초특가호텔</string>
+    <string name="partyRoom">#파티룸</string>
+    <string name="spaPension">#스파펜션</string>
+
     <string name="sampleAccommodationName">호텔 크레센도 서울</string>
+    <string name="sampleMotelName">역삼 맨하탄</string>
     <string name="review">후기</string>
     <string name="forOneNight">1박 기준</string>
+
+    <string name="motelRental">대실</string>
+    <string name="stayNight">숙박</string>
 
     <string name="similarWithRecentlyViewed">최근 본 상품의 연관상품</string>
     <string name="seeAll">전체 보기</string>
@@ -68,4 +81,14 @@
     <string name="leisureAndTicket">레저/티켓</string>
 
     <string name="searchDomesticEditTextHint">지역, 지하철역, 숙소명으로 찾아보세요!</string>
+
+    <string name="availableWithCoupon">쿠폰 할인 가능한 숙소</string>
+
+    <string name="numberOfResults">개의 검색결과</string>
+
+    <string name="yet">미개발된 기능(페이지)입니다</string>
+
+    <string name="eventSample">대실 예약 Early-Bird 혜택 이벤트! 배그 가능한 pc 지원</string>
+
+    <string name="priceGuarantee">최저가보장</string>
 </resources>

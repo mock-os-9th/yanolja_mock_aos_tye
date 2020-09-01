@@ -35,10 +35,13 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/ic_baseline_star_24"/>
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleSmall"
+            android:numStars="1"
+            android:rating="1"
+            android:theme="@style/CustomRatingBar"/>
 
         <TextView
             android:id="@+id/tv_item_simple_accommodation_rating"

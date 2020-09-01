@@ -2,6 +2,7 @@ package com.example.yanolkka.src;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -48,6 +49,11 @@ public class BaseActivity extends AppCompatActivity {
     public void replaceFragment(FragmentManager manager, Fragment fragment, int layoutId) {
         FragmentTransaction fragmentTransaction = manager.beginTransaction();
         fragmentTransaction.replace(layoutId, fragment).commit();
+    }
+
+    //미개발 기능/페이지
+    public void goYetActivity(){
+        startActivity(new Intent(this, YetActivity.class));
     }
 
     @Override
