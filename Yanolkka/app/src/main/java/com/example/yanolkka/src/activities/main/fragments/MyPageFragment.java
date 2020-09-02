@@ -8,10 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
-
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.BaseFragment;
+import com.example.yanolkka.src.common.fragments.BaseFragment;
 import com.example.yanolkka.src.activities.main.MainActivity;
 
 import static com.example.yanolkka.src.ApplicationClass.sSharedPreferences;

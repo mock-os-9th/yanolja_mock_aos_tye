@@ -10,13 +10,12 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.yanolkka.R;
 import com.example.yanolkka.src.activities.sign_up.SignUpActivity;
-
-import java.util.Objects;
 
 public class SignUp2Fragment extends Fragment implements View.OnClickListener {
     
@@ -99,10 +98,18 @@ public class SignUp2Fragment extends Fragment implements View.OnClickListener {
             case R.id.rl_btn_sign_up_2_next:
                 SignUpActivity signUpActivity = (SignUpActivity)getActivity();
 
-                signUpActivity.email = etEmail.getText().toString();
-                signUpActivity.pw = etPw.getText().toString();
+                String email = etEmail.getText().toString();
+                String pw = etPw.getText().toString();
+                String pwCheck = etPwCheck.getText().toString();
 
-                signUpActivity.addFragment(getFragmentManager(), SignUp3Fragment.newInstance(), R.id.fl_sign_up_fragments);
+                if (pw.equals(pwCheck)){
+                    signUpActivity.email = email;
+                    signUpActivity.pw = pw;
+
+                    signUpActivity.addFragment(getFragmentManager(), SignUp3Fragment.newInstance(), R.id.fl_sign_up_fragments);
+                }else{
+                    Toast.makeText(signUpActivity, "입력하신 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }

@@ -3,7 +3,7 @@ package com.example.yanolkka.src.activities.calendar;
 import android.os.Bundle;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.BaseActivity;
+import com.example.yanolkka.src.common.activities.BaseActivity;
 
 public class CalendarActivity extends BaseActivity {
 

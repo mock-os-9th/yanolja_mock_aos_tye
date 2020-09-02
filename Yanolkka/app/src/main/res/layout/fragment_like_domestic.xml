@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context=".src.activities.main.fragments.like.fragments.LikeDomesticFragment">
+    tools:context=".src.activities.main.fragments.LikeDomesticFragment">
 
     <LinearLayout
         android:id="@+id/ll_like_domestic_options"
@@ -74,7 +74,7 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <com.example.yanolkka.src.views.GoSignInView
+        <com.example.yanolkka.src.common.views.GoSignInView
             android:id="@+id/gsiv_like_domestic"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

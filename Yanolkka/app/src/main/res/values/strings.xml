@@ -107,6 +107,7 @@
 
     <string name="reset">초기화</string>
 
+    <string name="networkError">네트워크 연결이 원활하지 않습니다.</string>
     <string name="tokenSuccess">토큰 발급 성공</string>
 
     <string name="chooseDate">날짜 선택</string>

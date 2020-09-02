@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorBackground"
-    tools:context=".src.activities.sign_up.fragments.SignUp3Fragment">
+    android:background="@color/colorBackground">
 
     <RelativeLayout
         android:layout_width="match_parent"

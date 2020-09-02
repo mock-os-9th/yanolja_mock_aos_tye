@@ -1,43 +1,28 @@
 package com.example.yanolkka.src.activities.sign_in.fragments;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.BaseFragment;
-import com.example.yanolkka.src.activities.sign_in.interfaces.SignInRetrofitInterface;
+import com.example.yanolkka.src.common.fragments.BaseFragment;
+import com.example.yanolkka.src.activities.sign_in.SignInActivity;
 import com.example.yanolkka.src.activities.sign_in.models.SignIn;
-import com.example.yanolkka.src.activities.sign_in.models.SignInResult;
 import com.example.yanolkka.src.activities.sign_up.SignUpActivity;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-
-import static com.example.yanolkka.src.ApplicationClass.getRetrofit;
-import static com.example.yanolkka.src.ApplicationClass.sSharedPreferences;
 
 public class NativeSignInFragment extends BaseFragment implements View.OnClickListener {
 
     private EditText etEmail, etPassword;
     private RelativeLayout rlBtnSignIn, rlBtnSignUp;
     private TextView tvFindPw;
-
-    private Retrofit retrofit = getRetrofit();
-    private SignInRetrofitInterface userClient = retrofit.create(SignInRetrofitInterface.class);
 
     public NativeSignInFragment() {
     }
@@ -120,38 +105,6 @@ public class NativeSignInFragment extends BaseFragment implements View.OnClickLi
                 +"\nstartDate : "+signIn.getStartDate()
                 +"\nendDate : "+signIn.getEndDate());
 
-        Call<SignInResult> call = userClient.signIn(signIn);
-
-        call.enqueue(new Callback<SignInResult>() {
-            @Override
-            public void onResponse(Call<SignInResult> call, Response<SignInResult> response) {
-                if (response.isSuccessful()){
-                    SignInResult signInResult = response.body();
-                    Log.d("TAGTAG", "response : " +
-                            "\nuser jwt : "+ signInResult.getJwt()
-                            +"\nisSuccess : "+ signInResult.isSuccess()
-                            +"\ncode : "+ signInResult.getCode()
-                            +"\nmessage : "+ signInResult.getMessage());
-                    Toast.makeText(getContext(), signInResult.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    if (signInResult.getCode() == 100){
-                        SharedPreferences.Editor editor = sSharedPreferences.edit();
-                        editor.putString("userJwt", signInResult.getJwt());
-                        editor.putBoolean("isAnonymous", false);
-                        editor.apply();
-
-                        //로그인 창 닫기
-                        getActivity().finish();
-                    }
-                }else{
-                    Toast.makeText(getContext(), "sign in failure", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SignInResult> call, Throwable t) {
-                Toast.makeText(getContext(), "sign in error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        ((SignInActivity)getActivity()).signIn(signIn);
     }
 }

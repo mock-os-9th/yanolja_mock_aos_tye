@@ -5,10 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
-
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.BaseFragment;
+import com.example.yanolkka.src.common.fragments.BaseFragment;
 
 public class ComfortableSignInFragment extends BaseFragment implements View.OnClickListener {
 

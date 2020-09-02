@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.BaseFragment;
+import com.example.yanolkka.src.common.fragments.BaseFragment;
 import com.example.yanolkka.src.activities.sign_up.SignUpActivity;
 
 import java.util.Objects;

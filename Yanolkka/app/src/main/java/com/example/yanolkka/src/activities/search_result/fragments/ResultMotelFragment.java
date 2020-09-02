@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.adapters.ExpandedAccommodationAdapter;
-import com.example.yanolkka.src.objects.Accommodation;
-import com.example.yanolkka.src.objects.Motel;
+import com.example.yanolkka.src.common.adapters.ExpandedAccommodationAdapter;
+import com.example.yanolkka.src.common.objects.Accommodation;
+import com.example.yanolkka.src.common.objects.Motel;
 
 import java.util.ArrayList;
 import java.util.List;

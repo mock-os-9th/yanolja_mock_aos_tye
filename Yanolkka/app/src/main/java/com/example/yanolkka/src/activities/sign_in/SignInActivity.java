@@ -7,12 +7,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.BaseActivity;
+import com.example.yanolkka.src.common.activities.BaseActivity;
 import com.example.yanolkka.src.activities.sign_in.fragments.ComfortableSignInFragment;
 import com.example.yanolkka.src.activities.sign_in.fragments.NativeSignInFragment;
+import com.example.yanolkka.src.activities.sign_in.interfaces.SignInActivityView;
+import com.example.yanolkka.src.activities.sign_in.models.SignIn;
 import com.google.android.material.tabs.TabLayout;
 
-public class SignInActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
+public class SignInActivity extends BaseActivity implements TabLayout.OnTabSelectedListener
+        , SignInActivityView {
 
     private FragmentManager fragmentManager;
 
@@ -60,5 +63,28 @@ public class SignInActivity extends BaseActivity implements TabLayout.OnTabSelec
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+//    로그인
+    public void signIn(SignIn signIn) {
+        showProgressDialog();
+
+        final SignInService signInService = new SignInService(this);
+        signInService.signIn(signIn);
+    }
+
+//    로그인 성공
+    @Override
+    public void validateSuccess(String text) {
+        hideProgressDialog();
+        showCustomToast(text);
+        finish();
+    }
+
+//    로그인 실패
+    @Override
+    public void validateFailure(String message) {
+        hideProgressDialog();
+        showCustomToast(message == null || message.isEmpty() ? getString(R.string.networkError) : message);
     }
 }

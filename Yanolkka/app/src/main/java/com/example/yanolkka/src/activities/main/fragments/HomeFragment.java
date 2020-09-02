@@ -3,7 +3,6 @@ package com.example.yanolkka.src.activities.main.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,15 +14,16 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.objects.Accommodation;
+import com.example.yanolkka.src.common.fragments.BaseFragment;
+import com.example.yanolkka.src.common.objects.Accommodation;
 import com.example.yanolkka.src.activities.search.SearchActivity;
-import com.example.yanolkka.src.adapters.SimpleAccommodationAdapter;
+import com.example.yanolkka.src.common.adapters.SimpleAccommodationAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
 
     private RelativeLayout rlBtnGoSearch;
     private RecyclerView rvHomeSimpleAccommodations;
@@ -104,5 +104,9 @@ public class HomeFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void notYet(View view){
+        goYetActivity();
     }
 }

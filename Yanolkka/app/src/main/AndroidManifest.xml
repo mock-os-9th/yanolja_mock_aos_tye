@@ -17,10 +17,10 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".src.activities.calendar.CalendarActivity"/>
-        <activity android:name=".src.YetActivity" />
-        <activity android:name=".src.activities.search.motel.SearchMotelActivity" />
+        <activity android:name=".src.common.activities.YetActivity" />
+        <activity android:name=".src.activities.motel.SearchMotelActivity" />
         <activity android:name=".src.activities.sign_up.SignUpActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".src.activities.reservation.ReservationActivity" />
         <activity android:name=".src.activities.room_info.RoomInfoActivity" />
         <activity android:name=".src.activities.search_result.SearchResultActivity" />

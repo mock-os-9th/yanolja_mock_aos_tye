@@ -9,17 +9,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.BaseActivity;
-import com.example.yanolkka.src.YetFragment;
+import com.example.yanolkka.src.common.activities.BaseActivity;
+import com.example.yanolkka.src.common.fragments.YetFragment;
 import com.example.yanolkka.src.activities.main.fragments.HomeFragment;
-import com.example.yanolkka.src.activities.main.fragments.like.LikeFragment;
-import com.example.yanolkka.src.activities.main.fragments.location.LocationFragment;
+import com.example.yanolkka.src.activities.main.fragments.LikeFragment;
+import com.example.yanolkka.src.activities.main.fragments.LocationFragment;
 import com.example.yanolkka.src.activities.main.fragments.MyPageFragment;
 import com.example.yanolkka.src.activities.main.fragments.NearbyFragment;
 import com.example.yanolkka.src.activities.sign_in.interfaces.SignInRetrofitInterface;
 import com.example.yanolkka.src.activities.sign_in.models.SignIn;
 import com.example.yanolkka.src.activities.sign_in.models.SignInResult;
-import com.example.yanolkka.src.views.CustomBottomNavView;
+import com.example.yanolkka.src.common.views.CustomBottomNavView;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -1,15 +1,15 @@
-package com.example.yanolkka.src.activities.room_info;
+package com.example.yanolkka.src.activities.hotel;
 
 import android.os.Bundle;
 
 import com.example.yanolkka.R;
 import com.example.yanolkka.src.common.activities.BaseActivity;
 
-public class RoomInfoActivity extends BaseActivity {
+public class SearchHotelActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room_info);
+        setContentView(R.layout.activity_search_motel);
     }
 }

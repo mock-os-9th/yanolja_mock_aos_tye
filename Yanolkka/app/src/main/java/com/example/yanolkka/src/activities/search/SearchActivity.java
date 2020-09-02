@@ -7,11 +7,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.BaseActivity;
-import com.example.yanolkka.src.YetFragment;
+import com.example.yanolkka.src.common.activities.BaseActivity;
+import com.example.yanolkka.src.common.fragments.YetFragment;
 import com.example.yanolkka.src.activities.search.fragments.SearchDomesticFragment;
-import com.example.yanolkka.src.activities.search.fragments.SearchLeisureFragment;
-import com.example.yanolkka.src.activities.search.fragments.SearchOverseasFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class SearchActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
