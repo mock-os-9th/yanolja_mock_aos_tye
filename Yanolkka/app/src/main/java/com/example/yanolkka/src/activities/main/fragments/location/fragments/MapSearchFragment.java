@@ -1,4 +1,4 @@
-package com.example.yanolkka.src.activities.main.fragments;
+package com.example.yanolkka.src.activities.main.fragments.location.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,13 +9,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.yanolkka.R;
 
-public class LocationFragment extends Fragment {
+public class MapSearchFragment extends Fragment {
 
-    public LocationFragment() {
+    public MapSearchFragment() {
     }
 
-    public static LocationFragment newInstance() {
-        return new LocationFragment();
+    public static MapSearchFragment newInstance() {
+        return new MapSearchFragment();
     }
 
     @Override
@@ -27,6 +27,6 @@ public class LocationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_location, container, false);
+        return inflater.inflate(R.layout.fragment_my_page, container, false);
     }
 }

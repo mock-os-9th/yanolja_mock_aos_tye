@@ -25,9 +25,19 @@
     <string name="nativeSignIn">야놀자 로그인</string>
     <string name="comfortableSignIn">간편 로그인</string>
     <string name="idOrEmail">아이디 또는 이메일</string>
+    <string name="email">이메일</string>
     <string name="password">비밀번호</string>
+    <string name="pwConcrete">비밀번호-영문+숫지+특문 8~20자</string>
+    <string name="pwCheck">비밀번호 확인</string>
     <string name="findPassword">비밀번호 찾기</string>
     <string name="signUpYanolja">야놀자 회원가입</string>
+    <string name="selfAuth">본인인증</string>
+    <string name="phoneNum">휴대폰 번호</string>
+    <string name="sendAuthCode">인증번호 발송</string>
+    <string name="inputAuthCode">인증번호 입력</string>
+    <string name="noticeAuthCode">※ 인증번호 발송은 카카오 알림톡을 통해 발송 됩니다.\n야놀자 카카오 알림톡을 차단하셨는지 꼭 확인해주세요.\n카카오톡 미이용 고객은 SMS로 대체 발송됩니다.</string>
+    <string name="finishSignUp">회원가입 완료</string>
+    <string name="signUpComment">이제, 휴대폰 등록만 하면 회원가입 완료!</string>
 
     <string name="signInAd">지금 가입만 해도 즉시 사용 가능한 쿠폰팩지급! 차이 결제시 무조건 중복 할인</string>
     <string name="ComfortableSignInNotice">간편 로그인을 위해서는 야놀자 계정으로 가입 후,\n계정 연동이 필요합니다.</string>
@@ -49,6 +59,8 @@
     <string name="agreeRetainDetails">* 미동의 시 1년 미접속 회원 탈퇴 전환</string>
     <string name="agreeMore">* 선택 항목에 동의하지 않으셔도 계속 가입을 진행하실 수 있습니다.</string>
 
+    <string name="signUpInfo">회원 정보</string>
+
     <string name="mandatory">필수</string>
     <string name="choice">선택</string>
     <string name="next">다음</string>
@@ -58,7 +70,7 @@
     <string name="hotelResort">호텔/리조트</string>
     <string name="pensionVilla">펜션/풀빌라</string>
     <string name="guesthouse">게스트하우스</string>
-    
+
     <string name="infiniteCouponRoom">#무한쿠폰룸</string>
     <string name="franchise">#프렌차이즈</string>
     <string name="newRemodeled">#신축/리모델링</string>
@@ -91,4 +103,16 @@
     <string name="eventSample">대실 예약 Early-Bird 혜택 이벤트! 배그 가능한 pc 지원</string>
 
     <string name="priceGuarantee">최저가보장</string>
+
+    <string name="reset">초기화</string>
+
+    <string name="chooseDate">날짜 선택</string>
+    <string name="askChooseDate">날짜를 선택해주세요</string>
+    <string name="sun">일</string>
+    <string name="mon">월</string>
+    <string name="tue">화</string>
+    <string name="wed">수</string>
+    <string name="thu">목</string>
+    <string name="fri">금</string>
+    <string name="sat">토</string>
 </resources>

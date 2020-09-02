@@ -8,8 +8,9 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.yanolkka.R;
+import com.example.yanolkka.src.BaseFragment;
 
-public class ComfortableSignInFragment extends Fragment {
+public class ComfortableSignInFragment extends BaseFragment implements View.OnClickListener {
 
     public ComfortableSignInFragment() {
     }
@@ -26,7 +27,17 @@ public class ComfortableSignInFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_comfortable_sign_in, container, false);
+        View view = inflater.inflate(R.layout.fragment_comfortable_sign_in, container, false);
+
+        view.findViewById(R.id.rl_btn_comfortable_sign_in_phone_num).setOnClickListener(this);
+        view.findViewById(R.id.rl_btn_comfortable_sign_in_naver).setOnClickListener(this);
+        view.findViewById(R.id.rl_btn_comfortable_sign_in_payco).setOnClickListener(this);
+
+        return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        goYetActivity();
     }
 }

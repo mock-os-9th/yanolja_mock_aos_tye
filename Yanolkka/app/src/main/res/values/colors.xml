@@ -8,6 +8,7 @@
     <color name="textNormal">#1A1A1A</color>
     <color name="textSmooth">#BBBBBB</color>
     <color name="textBlue">#195DC6</color>
+    <color name="textRed">#FF0000</color>
     <color name="gray">#777777</color>
     <color name="lightGray">#F2F2F2</color>
     <color name="colorSearchBox">#F8F8F8</color>

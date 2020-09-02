@@ -1,18 +1,33 @@
 package com.example.yanolkka.src.activities.main;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yanolkka.R;
 import com.example.yanolkka.src.BaseActivity;
+import com.example.yanolkka.src.YetFragment;
 import com.example.yanolkka.src.activities.main.fragments.HomeFragment;
 import com.example.yanolkka.src.activities.main.fragments.like.LikeFragment;
-import com.example.yanolkka.src.activities.main.fragments.LocationFragment;
+import com.example.yanolkka.src.activities.main.fragments.location.LocationFragment;
 import com.example.yanolkka.src.activities.main.fragments.MyPageFragment;
 import com.example.yanolkka.src.activities.main.fragments.NearbyFragment;
+import com.example.yanolkka.src.activities.sign_in.interfaces.SignInRetrofitInterface;
+import com.example.yanolkka.src.activities.sign_in.models.SignIn;
+import com.example.yanolkka.src.activities.sign_in.models.SignInResult;
 import com.example.yanolkka.src.views.CustomBottomNavView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import static com.example.yanolkka.src.ApplicationClass.getRetrofit;
+import static com.example.yanolkka.src.ApplicationClass.sSharedPreferences;
 
 public class MainActivity extends BaseActivity implements CustomBottomNavView.EventListener {
 
@@ -27,6 +42,9 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
 
     private int currentPage;
 
+    private Retrofit retrofit = getRetrofit();
+    private SignInRetrofitInterface userClient = retrofit.create(SignInRetrofitInterface.class);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +56,50 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.fl_fragments, HomeFragment.newInstance()).commit();
+
+        //비회원 토큰 발급
+        if(sSharedPreferences.getString("userJwt", null) == null){
+            getAnonymousUser();
+        }
+    }
+
+    private void getAnonymousUser() {
+        SignIn signIn = new SignIn(null, null);
+        Log.d("TAGTAG", "\nsignIn : \nid : "+signIn.getId()
+                +"\npw : "+signIn.getPw()
+                +"\nadult : " +signIn.getAdult()
+                +"\nchild : "+signIn.getChild()
+                +"\nstartDate : "+signIn.getStartDate()
+                +"\nendDate : "+signIn.getEndDate());
+
+        Call<SignInResult> call = userClient.signIn(signIn);
+
+        call.enqueue(new Callback<SignInResult>() {
+            @Override
+            public void onResponse(Call<SignInResult> call, Response<SignInResult> response) {
+                if (response.isSuccessful()){
+                    SignInResult signInResult = response.body();
+                    Log.d("TAGTAG", "response : " +
+                            "\nuser jwt : "+ signInResult.getJwt()
+                            +"\nisSuccess : "+ signInResult.isSuccess()
+                            +"\ncode : "+ signInResult.getCode()
+                            +"\nmessage : "+ signInResult.getMessage());
+
+                    SharedPreferences.Editor editor = sSharedPreferences.edit();
+                    editor.putString("userJwt", signInResult.getJwt());
+                    editor.putBoolean("isAnonymous", true);
+                    editor.apply();
+
+                }else{
+                    Toast.makeText(MainActivity.this, "sign in failure", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SignInResult> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "sign in error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -55,9 +117,10 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
                 replaceFragment(fragmentManager, locationFragment, layoutId);
                 break;
             case 2:
-                if (nearbyFragment == null)
-                    nearbyFragment = NearbyFragment.newInstance();
-                replaceFragment(fragmentManager, nearbyFragment, layoutId);
+//                if (nearbyFragment == null)
+//                    nearbyFragment = NearbyFragment.newInstance();
+//                replaceFragment(fragmentManager, nearbyFragment, layoutId);
+                replaceFragment(fragmentManager, YetFragment.newInstance(), layoutId);
                 break;
             case 3:
                 if (likeFragment == null)
@@ -65,9 +128,10 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
                 replaceFragment(fragmentManager, likeFragment, layoutId);
                 break;
             case 4:
-                if (myPageFragment == null)
-                    myPageFragment = MyPageFragment.newInstance();
-                replaceFragment(fragmentManager, myPageFragment, layoutId);
+//                if (myPageFragment == null)
+//                    myPageFragment = MyPageFragment.newInstance();
+//                replaceFragment(fragmentManager, myPageFragment, layoutId);
+                replaceFragment(fragmentManager, YetFragment.newInstance(), layoutId);
                 break;
         }
 

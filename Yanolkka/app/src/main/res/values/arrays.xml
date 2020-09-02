@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="cities">
+        <item>서울</item>
+        <item>경기</item>
+        <item>인천</item>
+        <item>강원</item>
+        <item>제주</item>
+        <item>대전</item>
+        <item>충북</item>
+        <item>충남/세종</item>
+        <item>부산</item>
+        <item>울산</item>
+        <item>경남</item>
+        <item>대구</item>
+        <item>경북</item>
+        <item>광주</item>
+        <item>전남</item>
+        <item>전주/전북</item>
+    </string-array>
+
+    <string-array name="regions_서울">
+        <item>강남/역삼/삼성/논현</item>
+        <item>서초/신사/방배</item>
+        <item>잠실/신천(잠실새내)</item>
+        <item>영등포/여의도</item>
+        <item>신림/서울대/사당/동작</item>
+        <item>천호/길동/둔촌</item>
+        <item>화곡/까치산/양천/목동</item>
+        <item>구로/금천/오류/신도림</item>
+        <item>신촌/홍대/합정</item>
+        <item>연신내/불광/응암</item>
+        <item>종로/대학로</item>
+        <item>성신여대/성북/월곡</item>
+        <item>이태원/용산/서울역/명동/회현</item>
+        <item>동대문/동묘/신당/충무로/약수</item>
+        <item>회기/고려대/청량리/신설동</item>
+        <item>장안동/답십리</item>
+        <item>건대/군자/구의</item>
+        <item>왕십리/성수/금호</item>
+        <item>수유/미아</item>
+        <item>상봉/중랑/면목</item>
+        <item>태릉/노원/도봉/창동</item>
+    </string-array>
+
+    <string-array name="regions_경기">
+        <item>수원 인계/권선/영통</item>
+        <item>수원역/구운/장안/세류</item>
+        <item>얀양/평촌/인덕원/과천</item>
+        <item>성남/분당/위례</item>
+        <item>용인</item>
+        <item>동탄/화성/오산/병점</item>
+        <item>하남/광주/여주/인천</item>
+        <item>안산</item>
+        <item>군포/의왕/금성/산본</item>
+        <item>시흥</item>
+        <item>광명</item>
+        <item>평택/송탄/안성</item>
+        <item>부천</item>
+        <item>일산/고양</item>
+        <item>파주</item>
+        <item>김포</item>
+        <item>의정부</item>
+        <item>구리</item>
+        <item>남양주</item>
+        <item>포천</item>
+    </string-array>
+</resources>

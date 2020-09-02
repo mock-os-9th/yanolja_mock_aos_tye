@@ -51,6 +51,11 @@ public class BaseActivity extends AppCompatActivity {
         fragmentTransaction.replace(layoutId, fragment).commit();
     }
 
+    public void addFragment(FragmentManager manager, Fragment fragment, int layoutId){
+        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+        fragmentTransaction.add(layoutId, fragment).commit();
+    }
+
     //미개발 기능/페이지
     public void goYetActivity(){
         startActivity(new Intent(this, YetActivity.class));
