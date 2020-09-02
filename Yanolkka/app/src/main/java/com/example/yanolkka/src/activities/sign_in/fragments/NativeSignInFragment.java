@@ -1,7 +1,10 @@
 package com.example.yanolkka.src.activities.sign_in.fragments;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -17,6 +20,7 @@ import com.example.yanolkka.src.BaseFragment;
 import com.example.yanolkka.src.activities.sign_in.interfaces.SignInRetrofitInterface;
 import com.example.yanolkka.src.activities.sign_in.models.SignIn;
 import com.example.yanolkka.src.activities.sign_in.models.SignInResult;
+import com.example.yanolkka.src.activities.sign_up.SignUpActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -58,21 +62,30 @@ public class NativeSignInFragment extends BaseFragment implements View.OnClickLi
         rlBtnSignUp = view.findViewById(R.id.rl_btn_native_go_sign_up);
         tvFindPw = view.findViewById(R.id.tv_sign_in_native_find_pw);
 
-        etPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        etPassword.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN
-                        && !etEmail.getText().toString().isEmpty() && !etPassword.getText().toString().isEmpty()){
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (!etEmail.getText().toString().isEmpty() && !etPassword.getText().toString().isEmpty()){
                     rlBtnSignIn.setBackground(getContext().getResources().getDrawable(R.drawable.button_rect_accent));
-                    rlBtnSignIn.setClickable(true);
+                    rlBtnSignIn.setEnabled(true);
                 }else{
                     rlBtnSignIn.setBackground(getContext().getResources().getDrawable(R.drawable.button_rect_gray));
-                    rlBtnSignIn.setClickable(false);
+                    rlBtnSignIn.setEnabled(false);
                 }
-                return false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 
+        rlBtnSignIn.setEnabled(false);
         rlBtnSignIn.setOnClickListener(this);
         rlBtnSignUp.setOnClickListener(this);
         tvFindPw.setOnClickListener(this);
@@ -87,6 +100,8 @@ public class NativeSignInFragment extends BaseFragment implements View.OnClickLi
                 requestSignIn();
                 break;
             case R.id.rl_btn_native_go_sign_up:
+                startActivity(new Intent(getContext(), SignUpActivity.class));
+                break;
             case R.id.tv_sign_in_native_find_pw:
                 goYetActivity();
                 break;
@@ -117,15 +132,17 @@ public class NativeSignInFragment extends BaseFragment implements View.OnClickLi
                             +"\nisSuccess : "+ signInResult.isSuccess()
                             +"\ncode : "+ signInResult.getCode()
                             +"\nmessage : "+ signInResult.getMessage());
-                    Toast.makeText(getContext(), "Success! : "+ signInResult.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), signInResult.getMessage(), Toast.LENGTH_SHORT).show();
 
-                    SharedPreferences.Editor editor = sSharedPreferences.edit();
-                    editor.putString("userJwt", signInResult.getJwt());
-                    editor.putBoolean("isAnonymous", false);
-                    editor.apply();
+                    if (signInResult.getCode() == 100){
+                        SharedPreferences.Editor editor = sSharedPreferences.edit();
+                        editor.putString("userJwt", signInResult.getJwt());
+                        editor.putBoolean("isAnonymous", false);
+                        editor.apply();
 
-                    //로그인 창 닫기
-                    getActivity().finish();
+                        //로그인 창 닫기
+                        getActivity().finish();
+                    }
                 }else{
                     Toast.makeText(getContext(), "sign in failure", Toast.LENGTH_SHORT).show();
                 }

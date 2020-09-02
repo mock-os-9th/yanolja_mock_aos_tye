@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_centerVertical="true"
-            android:text="@string/signUp"
+            android:text="@string/signIn"
             android:textColor="@color/textNormal"
             android:layout_toEndOf="@+id/iv_sign_in_back"
             android:textSize="20sp"

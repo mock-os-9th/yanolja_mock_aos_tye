@@ -56,6 +56,11 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.fl_fragments, HomeFragment.newInstance()).commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         //비회원 토큰 발급
         if(sSharedPreferences.getString("userJwt", null) == null){
@@ -128,10 +133,9 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
                 replaceFragment(fragmentManager, likeFragment, layoutId);
                 break;
             case 4:
-//                if (myPageFragment == null)
-//                    myPageFragment = MyPageFragment.newInstance();
-//                replaceFragment(fragmentManager, myPageFragment, layoutId);
-                replaceFragment(fragmentManager, YetFragment.newInstance(), layoutId);
+                if (myPageFragment == null)
+                    myPageFragment = MyPageFragment.newInstance();
+                replaceFragment(fragmentManager, myPageFragment, layoutId);
                 break;
         }
 

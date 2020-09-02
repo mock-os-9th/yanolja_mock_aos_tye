@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanolkka.R;
+import com.example.yanolkka.src.BaseActivity;
 import com.example.yanolkka.src.objects.Accommodation;
 import com.example.yanolkka.src.objects.Motel;
 
@@ -33,7 +34,7 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
         public TextView tvName, tvRating, tvReviews, tvDiscount, tvOriginalPrice, tvPrice, tvStars
                 , tvRentalDiscount, tvRentalOriginalPrice, tvRentalPrice, tvCheckIn, tvRentalLength;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(final Context context, @NonNull View itemView) {
             super(itemView);
             ivAccommodation = itemView.findViewById(R.id.iv_item_expanded_accommodation);
             llRental = itemView.findViewById(R.id.ll_item_expanded_motel);
@@ -51,6 +52,13 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
             tvCheckIn = itemView.findViewById(R.id.tv_item_expanded_accommodation_check_in);
             tvRentalLength = itemView.findViewById(R.id.tv_item_expanded_accommodation_rental_length);
             tvStars = itemView.findViewById(R.id.tv_item_expanded_hotel_stars);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((BaseActivity)context).goYetActivity();
+                }
+            });
         }
     }
 
@@ -80,14 +88,14 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
         View v;
 
         if (viewType == 1){
-            v = LayoutInflater.from(parent.getContext())
+            v = LayoutInflater.from(mContext)
                     .inflate(R.layout.result_size, parent, false);
             return new TopViewHolder(v);
         }else{
-            v = viewType == 2 ? LayoutInflater.from(parent.getContext())
+            v = viewType == 2 ? LayoutInflater.from(mContext)
                     .inflate(R.layout.item_expanded_accomodation, parent, false) :
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.item_expanded_accomodation_below, parent, false);
-            return new MyViewHolder(v);
+                    LayoutInflater.from(mContext).inflate(R.layout.item_expanded_accomodation_below, parent, false);
+            return new MyViewHolder(mContext, v);
         }
     }
 

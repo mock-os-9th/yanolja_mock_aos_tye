@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import com.example.yanolkka.R;
 import com.example.yanolkka.src.views.GoSignInView;
 
+import static com.example.yanolkka.src.ApplicationClass.sSharedPreferences;
+
 public class LikeDomesticLeisureFragment extends Fragment {
 
     private boolean signedIn = false;
@@ -32,6 +34,7 @@ public class LikeDomesticLeisureFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_like_domestic_leisure, container, false);
 
         GoSignInView goSignInView = view.findViewById(R.id.gsiv_like_domestic_leisure);
+        signedIn = !sSharedPreferences.getBoolean("isAnonymous", false);
         if (!signedIn)
             goSignInView.setVisibility(View.VISIBLE);
 

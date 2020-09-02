@@ -37,8 +37,8 @@ public class ContentsPagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return ResultHotelFragment.newInstance();
 
-            case 2:
-                return ResultPensionFragment.newInstance();
+//            case 2:
+//                return ResultPensionFragment.newInstance();
 
             default:
                 return YetFragment.newInstance();

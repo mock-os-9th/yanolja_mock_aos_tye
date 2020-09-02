@@ -36,11 +36,10 @@
     <RelativeLayout
         android:id="@+id/rl_btn_native_sign_in"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="46dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/button_rect_gray"
         android:paddingVertical="12dp"
-        android:clickable="false"
         app:layout_constraintTop_toBottomOf="@+id/et_sign_in_native_password"
         tools:layout_editor_absoluteX="16dp">
 
@@ -48,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/signUp"
+            android:text="@string/signIn"
             android:textColor="@color/colorBackground"
             android:textSize="16sp"
             android:textStyle="bold" />

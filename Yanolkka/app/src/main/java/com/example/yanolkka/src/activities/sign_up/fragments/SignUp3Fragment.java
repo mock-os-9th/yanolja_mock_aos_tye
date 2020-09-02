@@ -1,9 +1,12 @@
 package com.example.yanolkka.src.activities.sign_up.fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -45,12 +48,43 @@ public class SignUp3Fragment extends Fragment implements View.OnClickListener {
         etPhoneNum = view.findViewById(R.id.et_sign_up_contact);
         etAuthCode = view.findViewById(R.id.et_sign_up_input_auth_code);
 
+        setListener(etPhoneNum);
+
         rlBtnSendAuthCode.setOnClickListener(this);
         rlBtnFinishSignUp.setOnClickListener(this);
 
+        rlBtnFinishSignUp.setEnabled(false);
+
         view.findViewById(R.id.iv_sign_up_3_back).setOnClickListener(this);
 
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
         return view;
+    }
+
+    private void setListener(EditText et) {
+        et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (!etPhoneNum.getText().toString().isEmpty()){
+                    rlBtnFinishSignUp.setBackground(getContext().getResources().getDrawable(R.drawable.button_accent));
+                    rlBtnFinishSignUp.setEnabled(true);
+                }else{
+                    rlBtnFinishSignUp.setBackground(getContext().getResources().getDrawable(R.drawable.button_gray));
+                    rlBtnFinishSignUp.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
     @Override

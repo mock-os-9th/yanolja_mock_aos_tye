@@ -77,11 +77,8 @@ public class HomeFragment extends Fragment {
 
         mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvHomeSimpleAccommodations.setLayoutManager(mLayoutManager);
-
-        mAdapter = new SimpleAccommodationAdapter(accommodations);
-
+        mAdapter = new SimpleAccommodationAdapter(getContext(), accommodations);
         rvHomeSimpleAccommodations.setAdapter(mAdapter);
-
         rvHomeSimpleAccommodations.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
         fab = view.findViewById(R.id.fab_home);

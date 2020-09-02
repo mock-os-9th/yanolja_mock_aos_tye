@@ -15,6 +15,8 @@ import com.example.yanolkka.src.views.GoSignInView;
 
 import java.util.Calendar;
 
+import static com.example.yanolkka.src.ApplicationClass.sSharedPreferences;
+
 public class LikeDomesticFragment extends BaseFragment implements View.OnClickListener {
 
     private boolean signedIn = false;
@@ -37,6 +39,7 @@ public class LikeDomesticFragment extends BaseFragment implements View.OnClickLi
         View view = inflater.inflate(R.layout.fragment_like_domestic, container, false);
 
         GoSignInView goSignInView = view.findViewById(R.id.gsiv_like_domestic);
+        signedIn = !sSharedPreferences.getBoolean("isAnonymous", false);
         if (!signedIn)
             goSignInView.setVisibility(View.VISIBLE);
 
