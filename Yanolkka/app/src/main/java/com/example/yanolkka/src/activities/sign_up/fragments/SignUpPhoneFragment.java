@@ -6,7 +6,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,16 +16,16 @@ import androidx.fragment.app.Fragment;
 import com.example.yanolkka.R;
 import com.example.yanolkka.src.activities.sign_up.SignUpActivity;
 
-public class SignUp3Fragment extends Fragment implements View.OnClickListener {
+public class SignUpPhoneFragment extends Fragment implements View.OnClickListener {
 
     private RelativeLayout rlBtnSendAuthCode, rlBtnFinishSignUp;
     private EditText etPhoneNum, etAuthCode;
 
-    public SignUp3Fragment() {
+    public SignUpPhoneFragment() {
     }
 
-    public static SignUp3Fragment newInstance() {
-        return new SignUp3Fragment();
+    public static SignUpPhoneFragment newInstance() {
+        return new SignUpPhoneFragment();
     }
 
     @Override
@@ -37,7 +36,7 @@ public class SignUp3Fragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign_up_3, container, false);
+        View view = inflater.inflate(R.layout.fragment_sign_up_phone, container, false);
 
         TextView tvTitle = view.findViewById(R.id.tv_sign_up_3);
         tvTitle.setText(getString(R.string.signUp)+" (3/3)");
@@ -48,6 +47,7 @@ public class SignUp3Fragment extends Fragment implements View.OnClickListener {
         etPhoneNum = view.findViewById(R.id.et_sign_up_contact);
         etAuthCode = view.findViewById(R.id.et_sign_up_input_auth_code);
 
+        etPhoneNum.requestFocus();
         setListener(etPhoneNum);
 
         rlBtnSendAuthCode.setOnClickListener(this);
@@ -56,8 +56,6 @@ public class SignUp3Fragment extends Fragment implements View.OnClickListener {
         rlBtnFinishSignUp.setEnabled(false);
 
         view.findViewById(R.id.iv_sign_up_3_back).setOnClickListener(this);
-
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         return view;
     }
@@ -71,7 +69,7 @@ public class SignUp3Fragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (!etPhoneNum.getText().toString().isEmpty()){
+                if (etPhoneNum.getText().toString().length() >= 10){
                     rlBtnFinishSignUp.setBackground(getContext().getResources().getDrawable(R.drawable.button_accent));
                     rlBtnFinishSignUp.setEnabled(true);
                 }else{

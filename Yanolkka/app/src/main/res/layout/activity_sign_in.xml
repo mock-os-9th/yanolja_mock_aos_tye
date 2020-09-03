@@ -6,12 +6,14 @@
     android:weightSum="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".src.activities.sign_in.SignInActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
 
         <ImageView
             android:id="@+id/iv_sign_in_back"

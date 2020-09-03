@@ -10,7 +10,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingBottom="16dp"
+        android:paddingHorizontal="16dp"
         android:weightSum="3">
 
         <TextView
@@ -70,6 +72,11 @@
             android:gravity="center_horizontal"
             android:text="지도검색"/>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightGray"/>
 
     <FrameLayout
         android:id="@+id/fl_location_fragments"

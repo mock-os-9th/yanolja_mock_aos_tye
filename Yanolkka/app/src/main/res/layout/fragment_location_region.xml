@@ -3,23 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:weightSum="3">
+    android:orientation="horizontal">
 
     <ListView
         android:id="@+id/lv_region"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:entries="@array/cities"
+        android:layout_weight="4"
+        android:drawSelectorOnTop="true"
+        android:choiceMode="singleChoice"
         android:scrollbars="none"/>
 
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/lightGray"/>
+
     <ListView
-        android:id="@+id/lv_region_details"
+        android:id="@+id/lv_region_detailed"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:layout_marginStart="16dp"
-        android:entries="@array/regions_서울"
+        android:layout_weight="7"
+        android:drawSelectorOnTop="true"
+        android:paddingStart="32dp"
         android:scrollbars="none"/>
 </LinearLayout>

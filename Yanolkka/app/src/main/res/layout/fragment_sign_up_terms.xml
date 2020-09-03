@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorBackground"
-    tools:context=".src.activities.sign_up.fragments.SignUp1Fragment">
+    tools:context=".src.activities.sign_up.fragments.SignUpTermsFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
 
         <ImageView
             android:id="@+id/iv_sign_up_1_back"
@@ -33,12 +34,49 @@
             android:textStyle="bold"/>
     </RelativeLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:paddingHorizontal="48dp"
         android:layout_weight="1">
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/cb_sign_up_terms_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="12dp"
+                android:textStyle="bold"
+                android:text="@string/agreeAll"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGray"/>
+
+            <LinearLayout
+                android:id="@+id/ll_sign_up_terms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/agreeMore"/>
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,9 +91,9 @@
         <RelativeLayout
             android:id="@+id/rl_btn_sign_up_1_next"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
             android:layout_marginHorizontal="32dp"
             android:gravity="center"
             android:background="@drawable/button_gray">

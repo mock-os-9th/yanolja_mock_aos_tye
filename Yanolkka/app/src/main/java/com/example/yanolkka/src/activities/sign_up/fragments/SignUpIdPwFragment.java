@@ -6,7 +6,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,16 +16,16 @@ import androidx.fragment.app.Fragment;
 import com.example.yanolkka.R;
 import com.example.yanolkka.src.activities.sign_up.SignUpActivity;
 
-public class SignUp2Fragment extends Fragment implements View.OnClickListener {
+public class SignUpIdPwFragment extends Fragment implements View.OnClickListener {
     
     private RelativeLayout rlBtnNext;
     private EditText etEmail, etPw, etPwCheck;
 
-    public SignUp2Fragment() {
+    public SignUpIdPwFragment() {
     }
 
-    public static SignUp2Fragment newInstance() {
-        return new SignUp2Fragment();
+    public static SignUpIdPwFragment newInstance() {
+        return new SignUpIdPwFragment();
     }
 
     @Override
@@ -37,7 +36,7 @@ public class SignUp2Fragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign_up_2, container, false);
+        View view = inflater.inflate(R.layout.fragment_sign_up_id_pw, container, false);
 
         TextView tvTitle = view.findViewById(R.id.tv_sign_up_2);
         tvTitle.setText(getString(R.string.signUp)+" (2/3)");
@@ -55,8 +54,6 @@ public class SignUp2Fragment extends Fragment implements View.OnClickListener {
         rlBtnNext.setOnClickListener(this);
 
         rlBtnNext.setEnabled(false);
-
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         return view;
     }
@@ -106,7 +103,7 @@ public class SignUp2Fragment extends Fragment implements View.OnClickListener {
                     signUpActivity.email = email;
                     signUpActivity.pw = pw;
 
-                    signUpActivity.addFragment(getFragmentManager(), SignUp3Fragment.newInstance(), R.id.fl_sign_up_fragments);
+                    signUpActivity.addFragment(getFragmentManager(), SignUpPhoneFragment.newInstance(), R.id.fl_sign_up_fragments);
                 }else{
                     Toast.makeText(signUpActivity, "입력하신 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
