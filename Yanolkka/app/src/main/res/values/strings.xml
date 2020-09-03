@@ -131,4 +131,35 @@
     <string name="chooseAge">나이 선택</string>
 
     <string name="letApply">적용하기</string>
+    
+    <string name="adSignUp">지금 회원가입 시 웰컴쿠폰 즉시 지급!</string>
+    <string name="goSignInAndSignUp">로그인 및 회원가입 하기 ></string>
+    
+    <string name="myBenefits">MY 혜택</string>
+    <string name="point">포인트</string>
+    <string name="yanoljaCoin">야놀자 코인</string>
+    <string name="couponBox">쿠폰함</string>
+    <string name="myReviews">나의 후기</string>
+    <string name="usageRecords">예약 및 이용 내역</string>
+    <string name="checkMyInfo">내정보 관리</string>
+
+    <string name="travelInsurance">해외 여행자 보험</string>
+
+    <string name="event">이벤트</string>
+    <string name="planning">기획전</string>
+    <string name="research">리서치 참여</string>
+    <string name="winnings">당첨자 발표</string>
+
+    <string name="appeal1">최강 혜택 야놀자!</string>
+    <string name="appeal2">믿고 쓰는 야놀자!</string>
+
+    <string name="ARS">고객센터</string>
+    <string name="ARSWorkingTime">265일 오전 9시 ~ 익일 오전 3시 운영</string>
+    <string name="kakaoARS">카카오톡 1:1 문의</string>
+    <string name="callingService">상담원 연결</string>
+
+    <string name="FAQ">자주 묻는 질문 FAQ</string>
+    <string name="notice">공지사항</string>
+    <string name="yanoljaInfo">야놀자 정보</string>
+    <string name="settings">설정</string>
 </resources>

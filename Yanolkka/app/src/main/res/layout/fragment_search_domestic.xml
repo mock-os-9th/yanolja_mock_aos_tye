@@ -44,8 +44,7 @@
             android:id="@+id/tv_search_domestic_length"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:padding="6dp"
+            android:padding="8dp"
             android:textColor="@color/textNormal"
             android:background="@drawable/board_borders_white"/>
 
@@ -53,8 +52,7 @@
             android:id="@+id/tv_search_domestic_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:padding="6dp"
+            android:padding="8dp"
             android:layout_marginStart="6dp"
             android:textColor="@color/textNormal"
             android:background="@drawable/board_borders_white"/>

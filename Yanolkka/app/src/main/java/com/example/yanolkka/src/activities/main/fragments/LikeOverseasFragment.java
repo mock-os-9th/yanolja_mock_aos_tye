@@ -48,5 +48,7 @@ public class LikeOverseasFragment extends Fragment {
         signedIn = !sSharedPreferences.getBoolean("isAnonymous", false);
         if (!signedIn)
             goSignInView.setVisibility(View.VISIBLE);
+        else
+            goSignInView.setVisibility(View.GONE);
     }
 }

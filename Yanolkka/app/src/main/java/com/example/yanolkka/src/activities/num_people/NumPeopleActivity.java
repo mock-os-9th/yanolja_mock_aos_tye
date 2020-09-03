@@ -135,6 +135,10 @@ public class NumPeopleActivity extends BaseActivity implements View.OnClickListe
                     tvNumKid.setText(numKid+"");
                     llKidViews.removeView(llKidViews.getChildAt(numKid));
                 }
+                if (numKid < 10){
+                    ivBtnPlusKid.setEnabled(true);
+                    ivBtnPlusKid.setImageDrawable(getDrawable(R.drawable.btn_plus));
+                }
                 if (numKid <= 0){
                     ivBtnMinusKid.setEnabled(false);
                     ivBtnMinusKid.setImageDrawable(getDrawable(R.drawable.btn_minus_disabled));
@@ -147,16 +151,17 @@ public class NumPeopleActivity extends BaseActivity implements View.OnClickListe
                     ivBtnMinusKid.setEnabled(true);
                     ivBtnMinusKid.setImageDrawable(getDrawable(R.drawable.btn_minus));
                 }
-                if (numKid < 10){
+                if (numKid < 10) {
                     ivBtnPlusKid.setEnabled(true);
                     ivBtnPlusKid.setImageDrawable(getDrawable(R.drawable.btn_plus));
                     llKid.setVisibility(View.VISIBLE);
                     numKid++;
-                    tvNumKid.setText(numKid+"");
+                    tvNumKid.setText(numKid + "");
                     llKidViews.addView(new KidView(this, numKid));
-                }else{
+                }
+                if (numKid >= 10){
                     ivBtnPlusKid.setEnabled(false);
-                    ivBtnMinusKid.setImageDrawable(getDrawable(R.drawable.btn_plus_disabled));
+                    ivBtnPlusKid.setImageDrawable(getDrawable(R.drawable.btn_plus_disabled));
                 }
                 break;
         }

@@ -31,14 +31,14 @@ public class MyPageFragment extends BaseFragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        boolean signedIn = !sSharedPreferences.getBoolean("isAnonymous", false);
+        boolean signedIn = !sSharedPreferences.getBoolean("isAnonymous", true);
 
         View view;
 
         if (signedIn){
             view = inflater.inflate(R.layout.fragment_my_page, container, false);
 
-            view.findViewById(R.id.rl_btn_temp_sign_out).setOnClickListener(this);
+//            view.findViewById(R.id.rl_btn_temp_sign_out).setOnClickListener(this);
         } else{
             view = inflater.inflate(R.layout.fragment_yet, container, false);
         }
@@ -49,17 +49,17 @@ public class MyPageFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.rl_btn_temp_sign_out:
-                SharedPreferences.Editor editor = sSharedPreferences.edit();
-                editor.remove("userJwt");
-                editor.remove("isAnonymous");
-                editor.apply();
-                Toast.makeText(getContext(), getString(R.string.signOut)+" 성공", Toast.LENGTH_SHORT).show();
-
-                startActivity(new Intent(getContext(), MainActivity.class));
-                getActivity().finish();
-
-                break;
+//            case R.id.rl_btn_temp_sign_out:
+//                SharedPreferences.Editor editor = sSharedPreferences.edit();
+//                editor.remove("userJwt");
+//                editor.remove("isAnonymous");
+//                editor.apply();
+//                Toast.makeText(getContext(), getString(R.string.signOut)+" 성공", Toast.LENGTH_SHORT).show();
+//
+//                startActivity(new Intent(getContext(), MainActivity.class));
+//                getActivity().finish();
+//
+//                break;
         }
     }
 }
