@@ -1,6 +1,7 @@
 package com.example.yanolkka.src.activities.main.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,12 @@ import android.widget.ListView;
 import androidx.fragment.app.Fragment;
 
 import com.example.yanolkka.R;
+import com.example.yanolkka.src.common.adapters.DetailedRegionAdapter;
 import com.example.yanolkka.src.common.adapters.RegionAdapter;
 
 public class RegionFragment extends Fragment {
 
-    private ListView lvRegion, lvRegionDetails;
+    private ListView lvRegion, lvDetailedRegion;
     private String[] regions, detailedRegions;
 
     public RegionFragment() {
@@ -38,26 +40,33 @@ public class RegionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_location_region, container, false);
 
         lvRegion = view.findViewById(R.id.lv_region);
+        lvDetailedRegion = view.findViewById(R.id.lv_region_detailed);
 
-        RegionAdapter mRegionAdapter = new RegionAdapter(regions);
+        setListViews();
+
+        return view;
+    }
+
+    private void setListViews(){
+
+        final RegionAdapter mRegionAdapter = new RegionAdapter(getContext(), regions);
         lvRegion.setAdapter(mRegionAdapter);
+
+        lvRegion.setItemChecked(0, true);
 
         lvRegion.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
-        lvRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        lvRegion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                view.setSelected(true);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                mRegionAdapter.setSelectedPos(i);
+                Log.d("TAGTAG","itemClicked : "+i);
             }
         });
 
-        lvRegionDetails = view.findViewById(R.id.lv_region_details);
+        DetailedRegionAdapter mDetailedRegionAdapter = new DetailedRegionAdapter(getContext(), detailedRegions);
+        lvDetailedRegion.setAdapter(mDetailedRegionAdapter);
+        lvDetailedRegion.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
-        return view;
     }
 }

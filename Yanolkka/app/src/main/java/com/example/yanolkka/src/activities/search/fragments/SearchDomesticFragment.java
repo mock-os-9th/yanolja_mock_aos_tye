@@ -1,27 +1,36 @@
 package com.example.yanolkka.src.activities.search.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.yanolkka.R;
+import com.example.yanolkka.src.activities.num_people.NumPeopleActivity;
 import com.example.yanolkka.src.activities.search_result.SearchResultActivity;
 
 import java.util.Calendar;
 
+import static android.app.Activity.RESULT_OK;
+
 public class SearchDomesticFragment extends Fragment implements View.OnClickListener {
+    static final int REQUEST_NUM_PEOPLE = 1, REQUEST_LENGTH = 0;
 
     private EditText etSearch;
-    private TextView tvLength, tvPerson;
+    private TextView tvLength, tvNumPeople;
     private ImageView ivBtnSearch;
+
+    private int numAdult = 2, numKid = 0;
 
     public SearchDomesticFragment() {
     }
@@ -43,7 +52,7 @@ public class SearchDomesticFragment extends Fragment implements View.OnClickList
 
         etSearch = view.findViewById(R.id.et_search_domestic);
         tvLength = view.findViewById(R.id.tv_search_domestic_length);
-        tvPerson = view.findViewById(R.id.tv_search_domestic_person);
+        tvNumPeople = view.findViewById(R.id.tv_search_domestic_person);
         ivBtnSearch = view.findViewById(R.id.iv_search_domestic_btn_search);
 
         Calendar today = Calendar.getInstance();
@@ -58,11 +67,15 @@ public class SearchDomesticFragment extends Fragment implements View.OnClickList
         String length = monthToday+"."+dateToday+" ~ "+monthTomorrow+"."+dateTomorrow+", 1박";
         tvLength.setText(length);
 
-        tvPerson.setText("성인 1, 아동 0");
+        tvNumPeople.setText(getString(R.string.adult)+" "+numAdult+", "+getString(R.string.kid)+" "+numKid);
+        tvNumPeople.setOnClickListener(this);
 
         tvLength.setOnClickListener(this);
-        tvPerson.setOnClickListener(this);
+        tvNumPeople.setOnClickListener(this);
         ivBtnSearch.setOnClickListener(this);
+
+        InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(etSearch, 0);
 
         etSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -88,10 +101,27 @@ public class SearchDomesticFragment extends Fragment implements View.OnClickList
                 break;
             case R.id.tv_search_domestic_person:
                 //인원수 정하기
+                Intent intent = new Intent(getContext(), NumPeopleActivity.class);
+                intent.putExtra("numAdult", numAdult);
+                intent.putExtra("numKid", numKid);
+                startActivityForResult(intent, REQUEST_NUM_PEOPLE);
                 break;
             case R.id.iv_search_domestic_btn_search:
                 //검색 결과 가져오기
                 break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && data != null){
+            if (requestCode == REQUEST_NUM_PEOPLE){
+                numAdult = data.getIntExtra("numAdult", 2);
+                numKid = data.getIntExtra("numKid", 0);
+
+                tvNumPeople.setText(getString(R.string.adult)+" "+numAdult+", "+getString(R.string.kid)+" "+numKid);
+            }
         }
     }
 }

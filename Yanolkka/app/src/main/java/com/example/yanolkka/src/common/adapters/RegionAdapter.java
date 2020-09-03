@@ -1,11 +1,15 @@
 package com.example.yanolkka.src.common.adapters;
 
 import android.content.Context;
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.yanolkka.R;
 
@@ -17,8 +21,18 @@ public class RegionAdapter extends BaseAdapter {
 
     private List<String> cities;
 
-    public RegionAdapter(String[] arr){
+    private LayoutInflater inflater;
+
+    private int selectedPos = 0;
+
+    public RegionAdapter(Context context, String[] arr){
         this.cities = new ArrayList<>(Arrays.asList(arr));
+        this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    public void setSelectedPos(int selectedPos) {
+        this.selectedPos = selectedPos;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -36,16 +50,20 @@ public class RegionAdapter extends BaseAdapter {
         return i;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null){
-            LayoutInflater inflater = (LayoutInflater)viewGroup.getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.item_region_city, viewGroup, false);
         }
 
         TextView tvRegion = view.findViewById(R.id.tv_item_region_city);
         tvRegion.setText(cities.get(i));
+
+        if (selectedPos == i){
+            Log.d("TAGTAG", "getView : "+i);
+            view.setSelected(true);
+        }
 
         return view;
     }

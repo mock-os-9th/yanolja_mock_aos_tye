@@ -62,8 +62,8 @@
     <string name="signUpInfo">회원 정보</string>
     <string name="signOut">로그아웃</string>
 
-    <string name="mandatory">필수</string>
-    <string name="choice">선택</string>
+    <string name="mandatory">(필수)</string>
+    <string name="choice">(선택)</string>
     <string name="next">다음</string>
 
     <string name="motel">모텔</string>
@@ -119,4 +119,16 @@
     <string name="thu">목</string>
     <string name="fri">금</string>
     <string name="sat">토</string>
+
+    <string name="numPeople">인원수 선택</string>
+    <string name="numPeopleNotice1">정확한 숙소검색 결과를 확인하려면</string>
+    <string name="numPeopleNotice2">인원수를 선택해주세요.</string>
+    <string name="adult">성인</string>
+    <string name="kid">아동</string>
+
+    <string name="alertForKids">아동의 입실여부와 추가요금은 숙소마다 상이하므로\n예약 시 안내사항을 참고해주세요.</string>
+
+    <string name="chooseAge">나이 선택</string>
+
+    <string name="letApply">적용하기</string>
 </resources>

@@ -48,7 +48,7 @@ public class LikeDomesticFragment extends BaseFragment implements View.OnClickLi
     public void onResume() {
         super.onResume();
         signedIn = !sSharedPreferences.getBoolean("isAnonymous", false);
-        if (!signedIn)
+        if (signedIn)
             goSignInView.setVisibility(View.VISIBLE);
     }
 
