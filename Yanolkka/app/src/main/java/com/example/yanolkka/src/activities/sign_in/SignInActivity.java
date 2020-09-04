@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.activities.BaseActivity;
+import com.example.yanolkka.src.common.base.BaseActivity;
 import com.example.yanolkka.src.activities.sign_in.fragments.ComfortableSignInFragment;
 import com.example.yanolkka.src.activities.sign_in.fragments.NativeSignInFragment;
 import com.example.yanolkka.src.activities.sign_in.interfaces.SignInActivityView;

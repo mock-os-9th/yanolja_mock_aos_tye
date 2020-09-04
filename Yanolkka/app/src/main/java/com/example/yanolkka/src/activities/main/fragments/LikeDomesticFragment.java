@@ -7,10 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.fragments.BaseFragment;
+import com.example.yanolkka.src.common.base.BaseFragment;
 import com.example.yanolkka.src.activities.calendar.CalendarActivity;
 import com.example.yanolkka.src.common.views.GoSignInView;
 
+import static com.example.yanolkka.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.example.yanolkka.src.ApplicationClass.sSharedPreferences;
 
 public class LikeDomesticFragment extends BaseFragment implements View.OnClickListener {
@@ -47,7 +48,7 @@ public class LikeDomesticFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onResume() {
         super.onResume();
-        signedIn = !sSharedPreferences.getBoolean("isAnonymous", true);
+        signedIn = sSharedPreferences.getString(X_ACCESS_TOKEN, null) != null;
         if (!signedIn)
             goSignInView.setVisibility(View.VISIBLE);
         else

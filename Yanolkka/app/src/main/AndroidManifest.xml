@@ -15,13 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".src.activities.num_people.NumPeopleActivity"></activity>
+        <activity android:name=".src.activities.profile.ProfileActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".src.activities.settings.SettingsActivity" />
+        <activity android:name=".src.activities.num_people.NumPeopleActivity" />
         <activity android:name=".src.activities.motel.SearchMotelActivity" />
         <activity android:name=".src.activities.calendar.CalendarActivity" />
-        <activity android:name=".src.common.activities.YetActivity" />
+        <activity android:name=".src.common.yet.YetActivity" />
         <activity
             android:name=".src.activities.sign_up.SignUpActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".src.activities.reservation.ReservationActivity" />
         <activity android:name=".src.activities.room_info.RoomInfoActivity" />
         <activity android:name=".src.activities.search_result.SearchResultActivity" />

@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.fragments.BaseFragment;
+import com.example.yanolkka.src.common.base.BaseFragment;
 import com.example.yanolkka.src.activities.search.SearchActivity;
 
 public class LocationFragment extends BaseFragment implements View.OnClickListener {

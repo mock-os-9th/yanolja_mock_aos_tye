@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.yanolkka.config.XAccessTokenInterceptor;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -33,7 +35,7 @@ public class ApplicationClass extends Application {
     public static String X_ACCESS_TOKEN = "X-ACCESS-TOKEN";
 
     //날짜 형식
-    public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+    public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd", Locale.KOREA);
 
     // Retrofit 인스턴스
     public static Retrofit retrofit;
@@ -55,10 +57,12 @@ public class ApplicationClass extends Application {
                     .addNetworkInterceptor(new XAccessTokenInterceptor()) // JWT 자동 헤더 전송
                     .build();
 
+            Gson gson = new GsonBuilder().setLenient().create();
+
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .client(client)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }
 

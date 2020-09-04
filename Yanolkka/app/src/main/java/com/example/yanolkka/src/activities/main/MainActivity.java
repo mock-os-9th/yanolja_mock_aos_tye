@@ -1,35 +1,26 @@
 package com.example.yanolkka.src.activities.main;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.activities.BaseActivity;
-import com.example.yanolkka.src.common.fragments.YetFragment;
+import com.example.yanolkka.src.activities.main.interfaces.MainActivityView;
+import com.example.yanolkka.src.common.base.BaseActivity;
+import com.example.yanolkka.src.common.yet.YetFragment;
 import com.example.yanolkka.src.activities.main.fragments.HomeFragment;
 import com.example.yanolkka.src.activities.main.fragments.LikeFragment;
 import com.example.yanolkka.src.activities.main.fragments.LocationFragment;
 import com.example.yanolkka.src.activities.main.fragments.MyPageFragment;
 import com.example.yanolkka.src.activities.main.fragments.NearbyFragment;
-import com.example.yanolkka.src.activities.sign_in.interfaces.SignInRetrofitInterface;
 import com.example.yanolkka.src.activities.sign_in.models.SignIn;
-import com.example.yanolkka.src.activities.sign_in.models.SignInResult;
 import com.example.yanolkka.src.common.views.CustomBottomNavView;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-
-import static com.example.yanolkka.src.ApplicationClass.getRetrofit;
 import static com.example.yanolkka.src.ApplicationClass.sSharedPreferences;
 
-public class MainActivity extends BaseActivity implements CustomBottomNavView.EventListener {
+public class MainActivity extends BaseActivity implements CustomBottomNavView.EventListener, MainActivityView {
 
     private CustomBottomNavView customBottomNavView;
 
@@ -40,10 +31,9 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
     private LikeFragment likeFragment;
     private MyPageFragment myPageFragment;
 
-    private int currentPage;
+    public MainService mainService = new MainService(this);
 
-    private Retrofit retrofit = getRetrofit();
-    private SignInRetrofitInterface userClient = retrofit.create(SignInRetrofitInterface.class);
+    private int currentPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,50 +51,6 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
     @Override
     protected void onResume() {
         super.onResume();
-
-        //비회원 토큰 발급
-        if(sSharedPreferences.getString("userJwt", null) == null){
-            getAnonymousUser();
-        }
-    }
-
-    private void getAnonymousUser() {
-        SignIn signIn = new SignIn(null, null);
-        Log.d("TAGTAG", "\nsignIn : \nid : "+signIn.getId()
-                +"\npw : "+signIn.getPw()
-                +"\nadult : " +signIn.getAdult()
-                +"\nchild : "+signIn.getChild()
-                +"\nstartDate : "+signIn.getStartDate()
-                +"\nendDate : "+signIn.getEndDate());
-
-        Call<SignInResult> call = userClient.signIn(signIn);
-
-        call.enqueue(new Callback<SignInResult>() {
-            @Override
-            public void onResponse(Call<SignInResult> call, Response<SignInResult> response) {
-                if (response.isSuccessful()){
-                    SignInResult signInResult = response.body();
-                    Log.d("TAGTAG", "response : " +
-                            "\nuser jwt : "+ signInResult.getJwt()
-                            +"\nisSuccess : "+ signInResult.isSuccess()
-                            +"\ncode : "+ signInResult.getCode()
-                            +"\nmessage : "+ signInResult.getMessage());
-
-                    SharedPreferences.Editor editor = sSharedPreferences.edit();
-                    editor.putString("userJwt", signInResult.getJwt());
-                    editor.putBoolean("isAnonymous", true);
-                    editor.apply();
-
-                }else{
-                    Toast.makeText(MainActivity.this, "sign in failure", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SignInResult> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "sign in error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
@@ -150,5 +96,19 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
         }else{
             finish();
         }
+    }
+
+    //    로그인 성공
+    @Override
+    public void validateSuccess(String text) {
+        hideProgressDialog();
+        showCustomToast(text);
+    }
+
+    //    로그인 실패
+    @Override
+    public void validateFailure(String message) {
+        hideProgressDialog();
+        showCustomToast(message == null || message.isEmpty() ? getString(R.string.networkError) : message);
     }
 }

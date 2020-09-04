@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.fragments.BaseFragment;
+import com.example.yanolkka.src.common.base.BaseFragment;
 
 public class ComfortableSignInFragment extends BaseFragment implements View.OnClickListener {
 

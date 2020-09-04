@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.activities.BaseActivity;
-import com.example.yanolkka.src.common.fragments.YetFragment;
+import com.example.yanolkka.src.common.base.BaseActivity;
+import com.example.yanolkka.src.common.yet.YetFragment;
 import com.example.yanolkka.src.activities.search.fragments.SearchDomesticFragment;
 import com.google.android.material.tabs.TabLayout;
 

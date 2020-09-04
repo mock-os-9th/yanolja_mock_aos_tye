@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.activities.BaseActivity;
+import com.example.yanolkka.src.common.base.BaseActivity;
 import com.example.yanolkka.src.activities.sign_up.fragments.SignUpTermsFragment;
 import com.example.yanolkka.src.activities.sign_up.interfaces.SignUpActivityView;
 import com.example.yanolkka.src.activities.sign_up.models.SignUp;

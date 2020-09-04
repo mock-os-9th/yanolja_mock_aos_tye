@@ -3,7 +3,7 @@ package com.example.yanolkka.src.activities.hotel;
 import android.os.Bundle;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.activities.BaseActivity;
+import com.example.yanolkka.src.common.base.BaseActivity;
 
 public class SearchHotelActivity extends BaseActivity {
 

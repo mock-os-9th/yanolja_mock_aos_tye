@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.fragments.BaseFragment;
+import com.example.yanolkka.src.common.base.BaseFragment;
 import com.example.yanolkka.src.common.objects.Accommodation;
 import com.example.yanolkka.src.activities.search.SearchActivity;
 import com.example.yanolkka.src.common.adapters.SimpleAccommodationAdapter;

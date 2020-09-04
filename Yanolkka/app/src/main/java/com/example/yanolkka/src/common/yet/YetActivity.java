@@ -1,4 +1,4 @@
-package com.example.yanolkka.src.common.activities;
+package com.example.yanolkka.src.common.yet;
 
 import androidx.appcompat.app.AppCompatActivity;
 

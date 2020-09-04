@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.activities.BaseActivity;
+import com.example.yanolkka.src.common.base.BaseActivity;
 import com.example.yanolkka.src.activities.main.MainActivity;
 import com.example.yanolkka.src.common.adapters.ContentsPagerAdapter;
 import com.google.android.material.appbar.AppBarLayout;

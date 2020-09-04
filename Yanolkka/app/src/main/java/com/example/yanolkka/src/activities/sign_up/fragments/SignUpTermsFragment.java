@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.fragments.BaseFragment;
+import com.example.yanolkka.src.common.base.BaseFragment;
 import com.example.yanolkka.src.activities.sign_up.SignUpActivity;
 import com.example.yanolkka.src.common.views.TermView;
 

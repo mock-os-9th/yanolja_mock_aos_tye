@@ -1,4 +1,4 @@
-package com.example.yanolkka.src.common.activities;
+package com.example.yanolkka.src.common.base;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yanolkka.R;
+import com.example.yanolkka.src.common.yet.YetActivity;
 
 @SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {

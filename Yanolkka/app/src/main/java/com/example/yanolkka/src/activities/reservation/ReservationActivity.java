@@ -3,7 +3,7 @@ package com.example.yanolkka.src.activities.reservation;
 import android.os.Bundle;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.activities.BaseActivity;
+import com.example.yanolkka.src.common.base.BaseActivity;
 
 public class ReservationActivity extends BaseActivity {
 

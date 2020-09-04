@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.activities.BaseActivity;
+import com.example.yanolkka.src.common.base.BaseActivity;
 import com.example.yanolkka.src.common.views.KidView;
 
 public class NumPeopleActivity extends BaseActivity implements View.OnClickListener {

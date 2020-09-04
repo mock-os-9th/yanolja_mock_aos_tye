@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.yanolkka.src.common.fragments.YetFragment;
+import com.example.yanolkka.src.common.yet.YetFragment;
 import com.example.yanolkka.src.activities.search_result.fragments.ResultHotelFragment;
 import com.example.yanolkka.src.activities.search_result.fragments.ResultMotelFragment;
 

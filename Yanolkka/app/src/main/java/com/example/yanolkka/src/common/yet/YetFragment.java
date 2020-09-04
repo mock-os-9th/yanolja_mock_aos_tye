@@ -1,4 +1,4 @@
-package com.example.yanolkka.src.common.fragments;
+package com.example.yanolkka.src.common.yet;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

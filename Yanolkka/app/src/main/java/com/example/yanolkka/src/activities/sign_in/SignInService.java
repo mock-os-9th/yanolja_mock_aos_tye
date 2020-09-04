@@ -12,6 +12,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.yanolkka.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.example.yanolkka.src.ApplicationClass.getRetrofit;
 import static com.example.yanolkka.src.ApplicationClass.sSharedPreferences;
 
@@ -42,8 +43,7 @@ class SignInService {
 
                     if (signInResult.getCode() == 100){
                         SharedPreferences.Editor editor = sSharedPreferences.edit();
-                        editor.putString("userJwt", signInResult.getJwt());
-                        editor.putBoolean("isAnonymous", false);
+                        editor.putString(X_ACCESS_TOKEN, signInResult.getJwt());
                         editor.apply();
 
                         mSignInActivityView.validateSuccess(signInResult.getMessage());

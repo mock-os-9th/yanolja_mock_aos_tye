@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.fragments.BaseFragment;
+import com.example.yanolkka.src.common.base.BaseFragment;
 import com.example.yanolkka.src.activities.sign_in.SignInActivity;
 import com.example.yanolkka.src.activities.sign_in.models.SignIn;
 import com.example.yanolkka.src.activities.sign_up.SignUpActivity;
@@ -99,11 +99,7 @@ public class NativeSignInFragment extends BaseFragment implements View.OnClickLi
 
         SignIn signIn = new SignIn(userEmail, pw);
         Log.d("TAGTAG", "\nsignIn : \nid : "+signIn.getId()
-                +"\npw : "+signIn.getPw()
-                +"\nadult : " +signIn.getAdult()
-                +"\nchild : "+signIn.getChild()
-                +"\nstartDate : "+signIn.getStartDate()
-                +"\nendDate : "+signIn.getEndDate());
+                +"\npw : "+signIn.getPw());
 
         ((SignInActivity)getActivity()).signIn(signIn);
     }
