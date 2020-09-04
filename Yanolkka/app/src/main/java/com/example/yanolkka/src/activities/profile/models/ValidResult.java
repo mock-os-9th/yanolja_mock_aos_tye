@@ -1,15 +1,10 @@
-package com.example.yanolkka.src.activities.main.models;
+package com.example.yanolkka.src.activities.profile.models;
 
-public class MyPageResult {
-    private Result Result;
+public class ValidResult {
 
     private boolean isSuccess;
     private int code;
     private String message;
-
-    public Result getResult() {
-        return Result;
-    }
 
     public boolean isSuccess() {
         return isSuccess;
@@ -23,4 +18,3 @@ public class MyPageResult {
         return message;
     }
 }
-

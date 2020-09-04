@@ -1,10 +1,15 @@
-package com.example.yanolkka.src.activities.main.models;
+package com.example.yanolkka.src.activities.profile.models;
 
-public class ValidResult {
+public class UserInfoResult {
+    private Result Result;
 
     private boolean isSuccess;
     private int code;
     private String message;
+
+    public com.example.yanolkka.src.activities.profile.models.Result getResult() {
+        return Result;
+    }
 
     public boolean isSuccess() {
         return isSuccess;

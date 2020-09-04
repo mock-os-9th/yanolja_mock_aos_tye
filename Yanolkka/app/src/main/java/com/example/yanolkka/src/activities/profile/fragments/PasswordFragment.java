@@ -67,9 +67,7 @@ public class PasswordFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 //비밀번호 확인
-
-                ((ProfileActivity)getActivity()).replaceFragment(getFragmentManager(),
-                        PrivacyFragment.newInstance(), R.id.fl_profile_fragments);
+                ((ProfileActivity)getActivity()).checkValid(etPw.getText().toString());
             }
         });
 

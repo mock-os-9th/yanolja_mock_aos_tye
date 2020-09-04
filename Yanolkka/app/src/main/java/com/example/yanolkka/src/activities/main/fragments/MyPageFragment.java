@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.activities.main.MainActivity;
 import com.example.yanolkka.src.activities.main.interfaces.MyPageRetrofitInterface;
 import com.example.yanolkka.src.activities.main.models.MyPageResult;
 import com.example.yanolkka.src.activities.main.models.Result;
@@ -101,11 +100,13 @@ public class MyPageFragment extends BaseFragment implements View.OnClickListener
         }else{
             llUser.setVisibility(View.GONE);
             llAnonymous.setVisibility(View.VISIBLE);
+
+            for (TextView tv : tvPoints)
+                tv.setVisibility(View.GONE);
         }
     }
 
     private void getUserInfo() {
-        showProgressDialog();
 
         MyPageRetrofitInterface myPageRetrofitInterface = getRetrofit().create(MyPageRetrofitInterface.class);
         myPageRetrofitInterface.getMyPageInfo().enqueue(new Callback<MyPageResult>() {
@@ -117,26 +118,32 @@ public class MyPageFragment extends BaseFragment implements View.OnClickListener
                     if (myPageResult != null){
                         if (myPageResult.isSuccess()){
                             Result result = myPageResult.getResult();
-                            User user = result.getUser().get(0);
-                            UserReseration reseration = result.getUserReseration().get(0);
-                            tvUserNickname.setText(user.getUserName()+user.getUserIdx());
 
-                            for (TextView tv : tvPoints){
-                                switch (tv.getId()){
-                                    case R.id.tv_my_page_user_point:
-                                        tv.setText(user.getUserPoint()+"");
-                                        break;
+                            if (result != null){
+                                if (!result.getUser().isEmpty() && !result.getUserReseration().isEmpty()){
+                                    User user = result.getUser().get(0);
+                                    UserReseration reseration = result.getUserReseration().get(0);
+                                    tvUserNickname.setText(user.getUserName()+user.getUserIdx());
 
-                                    case R.id.tv_my_page_coupon_point:
-                                        tv.setText(user.getCouponCount()+"");
-                                        break;
+                                    for (TextView tv : tvPoints){
+                                        tv.setVisibility(View.VISIBLE);
+                                        switch (tv.getId()){
+                                            case R.id.tv_my_page_user_point:
+                                                tv.setText(user.getUserPoint()+"");
+                                                break;
 
-                                    case R.id.tv_my_page_domestic_point:
-                                        tv.setText(reseration.getDomesticAccommodation()+"");
-                                        break;
+                                            case R.id.tv_my_page_coupon_point:
+                                                tv.setText(user.getCouponCount()+"");
+                                                break;
 
-                                    default:
-                                        tv.setText("0");
+                                            case R.id.tv_my_page_domestic_point:
+                                                tv.setText(reseration.getDomesticAccommodation()+"");
+                                                break;
+
+                                            default:
+                                                tv.setText("0");
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -144,13 +151,11 @@ public class MyPageFragment extends BaseFragment implements View.OnClickListener
                 }else{
                     showCustomToast(getString(R.string.networkError) + response.message());
                 }
-                hideProgressDialog();
             }
 
             @Override
             public void onFailure(Call<MyPageResult> call, Throwable t) {
                 showCustomToast(t.getMessage());
-                hideProgressDialog();
             }
         });
     }
