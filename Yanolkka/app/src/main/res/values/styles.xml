@@ -17,4 +17,9 @@
         <item name="colorControlNormal">@color/colorStars</item>
         <item name="colorControlActivated">@color/colorStars</item>
     </style>
+
+    <style name="TranslucentStatusBar" parent="AppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+    </style>
 </resources>

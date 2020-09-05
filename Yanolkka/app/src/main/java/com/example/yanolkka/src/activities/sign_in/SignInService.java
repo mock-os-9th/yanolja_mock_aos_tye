@@ -47,6 +47,8 @@ class SignInService {
                         editor.apply();
 
                         mSignInActivityView.validateSuccess(signInResult.getMessage());
+                    }else{
+                        mSignInActivityView.validateFailure(signInResult.getMessage());
                     }
                 }else{
                     mSignInActivityView.validateFailure(null);

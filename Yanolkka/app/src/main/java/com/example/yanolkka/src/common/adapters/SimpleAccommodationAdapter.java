@@ -1,6 +1,7 @@
 package com.example.yanolkka.src.common.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.common.base.BaseActivity;
+import com.example.yanolkka.src.activities.room_info.RoomInfoActivity;
 import com.example.yanolkka.src.common.objects.Accommodation;
 
 import java.text.DecimalFormat;
@@ -38,8 +39,14 @@ public class SimpleAccommodationAdapter extends RecyclerView.Adapter<SimpleAccom
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //미개발(숙소 상세 페이지 이동 추가 예정)
-                    ((BaseActivity)context).goYetActivity();
+//                    ((BaseActivity)context).goYetActivity();
+
+                    Intent intent = new Intent(new Intent(context, RoomInfoActivity.class));
+                    intent.putExtra("accName", tvName.getText().toString());
+                    intent.putExtra("rating", tvRating.getText().toString());
+                    intent.putExtra("reviews", tvReviews.getText().toString());
+
+                    context.startActivity(intent);
                 }
             });
         }

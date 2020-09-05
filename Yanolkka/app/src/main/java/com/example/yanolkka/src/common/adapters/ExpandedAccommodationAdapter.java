@@ -1,6 +1,7 @@
 package com.example.yanolkka.src.common.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yanolkka.R;
+import com.example.yanolkka.src.activities.room_info.RoomInfoActivity;
 import com.example.yanolkka.src.common.base.BaseActivity;
 import com.example.yanolkka.src.common.objects.Accommodation;
 import com.example.yanolkka.src.common.objects.Motel;
@@ -56,7 +58,16 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((BaseActivity)context).goYetActivity();
+//                    ((BaseActivity)context).goYetActivity();
+
+                    Intent intent = new Intent(new Intent(context, RoomInfoActivity.class));
+                    intent.putExtra("accName", tvName.getText().toString());
+                    intent.putExtra("rating", String.valueOf(rbRating.getRating()));
+                    String strReviews = tvReviews.getText().toString();
+                    strReviews = strReviews.substring(1, strReviews.length()-1);
+                    intent.putExtra("reviews", strReviews);
+
+                    context.startActivity(intent);
                 }
             });
         }

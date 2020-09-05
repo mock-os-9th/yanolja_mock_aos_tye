@@ -39,6 +39,7 @@
         android:layout_weight="1">
 
         <LinearLayout
+            android:id="@+id/ll_sign_up_id_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="48dp"
@@ -53,33 +54,6 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/signUpInfo"/>
-
-            <EditText
-                android:id="@+id/et_sign_up_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="12dp"
-                android:textSize="14sp"
-                android:inputType="textEmailAddress"
-                android:hint="@string/email"/>
-
-            <EditText
-                android:id="@+id/et_sign_up_pw"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="12dp"
-                android:textSize="14sp"
-                android:inputType="textPassword"
-                android:hint="@string/pwConcrete"/>
-
-            <EditText
-                android:id="@+id/et_sign_up_pw_check"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="12dp"
-                android:hint="@string/pwCheck"
-                android:inputType="textPassword"
-                android:textSize="14sp" />
         </LinearLayout>
     </ScrollView>
 
