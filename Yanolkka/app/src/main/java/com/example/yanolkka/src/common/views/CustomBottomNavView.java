@@ -98,6 +98,9 @@ public class CustomBottomNavView extends LinearLayout implements View.OnClickLis
             }
             invalidate();
             itemId = chosenId;
+        }else{
+            if(chosenId == R.id.ll_nav_home)
+                listener.turnPage(0);
         }
     }
 

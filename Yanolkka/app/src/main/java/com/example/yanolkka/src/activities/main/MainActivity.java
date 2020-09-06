@@ -45,7 +45,8 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fl_fragments, HomeFragment.newInstance()).commit();
+        homeFragment = HomeFragment.newInstance();
+        fragmentTransaction.add(R.id.fl_fragments, homeFragment).commit();
     }
 
     @Override
@@ -58,9 +59,14 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
         int layoutId = R.id.fl_fragments;
         switch (i){
             case 0:
-                if (homeFragment == null)
+                if (homeFragment == null){
                     homeFragment = HomeFragment.newInstance();
-                replaceFragment(fragmentManager, homeFragment, layoutId);
+                }
+                if(currentPage == 0){
+                    homeFragment.sv.smoothScrollTo(0,0);
+                }else{
+                    replaceFragment(fragmentManager, homeFragment, layoutId);
+                }
                 break;
             case 1:
                 if (locationFragment == null)

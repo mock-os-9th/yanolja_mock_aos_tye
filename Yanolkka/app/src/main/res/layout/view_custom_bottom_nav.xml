@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingVertical="4dp"
+    android:paddingVertical="6dp"
     android:background="@color/colorBackground"
     android:weightSum="5">
 
@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/iv_nav_home"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:src="@drawable/tab_home_accent"/>
         <TextView
             android:id="@+id/tv_nav_home"
@@ -41,8 +41,8 @@
 
         <ImageView
             android:id="@+id/iv_nav_location"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:src="@drawable/tab_location"/>
         <TextView
             android:id="@+id/tv_nav_location"
@@ -64,8 +64,8 @@
 
         <ImageView
             android:id="@+id/iv_nav_nearby"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:src="@drawable/tab_nearby"/>
         <TextView
             android:id="@+id/tv_nav_nearby"
@@ -87,8 +87,8 @@
 
         <ImageView
             android:id="@+id/iv_nav_like"
-            android:layout_width="38dp"
-            android:layout_height="24dp"
+            android:layout_width="36dp"
+            android:layout_height="22dp"
             android:src="@drawable/tab_like"/>
         <TextView
             android:id="@+id/tv_nav_like"
@@ -110,8 +110,8 @@
 
         <ImageView
             android:id="@+id/iv_nav_my_page"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:src="@drawable/tab_my_page"/>
         <TextView
             android:id="@+id/tv_nav_my_page"
