@@ -3,6 +3,7 @@ package com.example.yanolkka.src.activities.sign_up.fragments;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,12 +46,19 @@ public class SignUpIdPwFragment extends Fragment implements View.OnClickListener
         tvTitle.setText(getString(R.string.signUp)+" (2/3)");
 
         llIdPw = view.findViewById(R.id.ll_sign_up_id_pw);
+
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        int paddingSize = Math.round(8 * dm.density);
+
         vetEmail = new ValidatingEditText(getContext(),
                 ValidatingEditText.STYLE_EMAIL, getString(R.string.email));
+        vetEmail.setPadding(0,paddingSize,0,paddingSize);
         vetPw = new ValidatingEditText(getContext(),
                 ValidatingEditText.STYLE_PASSWORD, getString(R.string.password));
+        vetPw.setPadding(0,paddingSize,0,paddingSize);
         vetPwCheck = new ValidatingEditText(getContext(),
                 ValidatingEditText.STYLE_PASSWORD, getString(R.string.pwCheck));
+        vetPwCheck.setPadding(0,paddingSize,0,paddingSize);
         vetEmail.setEventListener(this);
         vetPw.setEventListener(this);
         vetPwCheck.setEventListener(this);
@@ -82,13 +90,13 @@ public class SignUpIdPwFragment extends Fragment implements View.OnClickListener
                 String pw = vetPw.getText();
                 String pwCheck = vetPwCheck.getText();
 
-                if (pw.equals(pwCheck)){
+                if (pw.equals(pwCheck) && vetEmail.isValid() && vetPw.isValid()){
                     signUpActivity.email = email;
                     signUpActivity.pw = pw;
 
                     signUpActivity.addFragment(getFragmentManager(), SignUpPhoneFragment.newInstance(), R.id.fl_sign_up_fragments);
                 }else{
-                    Toast.makeText(signUpActivity, "입력하신 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signUpActivity, "입력하신 정보가 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

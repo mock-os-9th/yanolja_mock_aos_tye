@@ -18,6 +18,7 @@ import com.example.yanolkka.src.activities.profile.models.PasswordToChange;
 import com.example.yanolkka.src.activities.profile.models.User;
 import com.example.yanolkka.src.activities.profile.models.UserInfoResult;
 import com.example.yanolkka.src.common.base.BaseFragment;
+import com.example.yanolkka.src.common.views.ValidatingEditText;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,12 +26,12 @@ import retrofit2.Response;
 
 import static com.example.yanolkka.src.ApplicationClass.getRetrofit;
 
-public class PrivacyFragment extends BaseFragment implements View.OnClickListener {
+public class PrivacyFragment extends BaseFragment implements View.OnClickListener, ValidatingEditText.EventListener {
 
-    private LinearLayout llBtnWithdrawal, llNickname, llEditNickname, llPw, llEditPw;
+    private LinearLayout llBtnWithdrawal, llNickname, llEditNickname, llEditNicknameText, llPw, llEditPw;
     private ImageView ivProfile;
     private TextView tvNickname, tvEmail, tvId, tvCurrentEmail, tvPw, tvPhoneNum;
-    private EditText etNickname, etCurrentPw, etNewPw, etNewPwCheck;
+    private ValidatingEditText vetNickname, vetCurrentPw, vetNewPw, vetNewPwCheck;
 
     private ProfileRetrofitInterface profileRetrofitInterface =
             getRetrofit().create(ProfileRetrofitInterface.class);
@@ -55,6 +56,7 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
         llBtnWithdrawal = view.findViewById(R.id.ll_btn_privacy_withdrawal);
         llNickname = view.findViewById(R.id.ll_privacy_nickname_email);
         llEditNickname = view.findViewById(R.id.ll_privacy_nickname_edit);
+        llEditNicknameText = view.findViewById(R.id.ll_privacy_nickname_edit_text);
         llPw = view.findViewById(R.id.ll_privacy_password);
         llEditPw = view.findViewById(R.id.ll_privacy_password_edit);
         ivProfile = view.findViewById(R.id.iv_privacy_profile);
@@ -64,16 +66,24 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
         tvCurrentEmail = view.findViewById(R.id.tv_privacy_current_email);
         tvPw = view.findViewById(R.id.tv_privacy_pw);
         tvPhoneNum = view.findViewById(R.id.tv_privacy_phone_number);
-        etNickname = view.findViewById(R.id.et_edit_nickname);
-        etCurrentPw = view.findViewById(R.id.et_privacy_current_pw);
-        etNewPw = view.findViewById(R.id.et_privacy_new_pw);
-        etNewPwCheck = view.findViewById(R.id.et_privacy_new_pw_check);
+
+        vetNickname = new ValidatingEditText(getContext(), ValidatingEditText.STYLE_NORMAL,getString(R.string.nickname));
+        vetNickname.setEventListener(this);
+        llEditNicknameText.addView(vetNickname);
+
+        vetCurrentPw = new ValidatingEditText(getContext(), ValidatingEditText.STYLE_PASSWORD,getString(R.string.inputCurrentPw));
+        vetCurrentPw.setEventListener(this);
+        vetNewPw = new ValidatingEditText(getContext(), ValidatingEditText.STYLE_NORMAL,getString(R.string.inputNewPw));
+        vetNewPw.setEventListener(this);
+        vetNewPwCheck = new ValidatingEditText(getContext(), ValidatingEditText.STYLE_NORMAL,getString(R.string.checkNewPw));
+        vetNewPwCheck.setEventListener(this);
+        llEditPw.addView(vetCurrentPw, 0);
+        llEditPw.addView(vetNewPw, 1);
+        llEditPw.addView(vetNewPwCheck, 2);
 
         view.findViewById(R.id.iv_btn_privacy_edit_nickname).setOnClickListener(this);
         view.findViewById(R.id.tv_btn_privacy_edit_pw).setOnClickListener(this);
         view.findViewById(R.id.tv_btn_privacy_edit_phone_number).setOnClickListener(this);
-
-        view.findViewById(R.id.iv_btn_privacy_et_nickname_clear).setOnClickListener(this);
 
         view.findViewById(R.id.tv_btn_privacy_nickname_confirm).setOnClickListener(this);
         view.findViewById(R.id.tv_btn_privacy_nickname_cancel).setOnClickListener(this);
@@ -92,11 +102,7 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
             case R.id.iv_btn_privacy_edit_nickname:
                 llNickname.setVisibility(View.GONE);
                 llEditNickname.setVisibility(View.VISIBLE);
-                etNickname.setText(tvNickname.getText().toString());
-                break;
-
-            case R.id.iv_btn_privacy_et_nickname_clear:
-                etNickname.setText("");
+                vetNickname.setText(tvNickname.getText().toString());
                 break;
 
             case R.id.tv_btn_privacy_nickname_cancel:
@@ -117,9 +123,9 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
             case R.id.tv_btn_pw_cancel:
                 llPw.setVisibility(View.VISIBLE);
                 llEditPw.setVisibility(View.GONE);
-                etCurrentPw.setText("");
-                etNewPw.setText("");
-                etNewPwCheck.setText("");
+                vetCurrentPw.clearText();
+                vetNewPw.clearText();
+                vetNewPwCheck.clearText();
                 break;
 
             case R.id.tv_btn_pw_confirm:
@@ -170,7 +176,7 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
     private void editNickname(){
         showProgressDialog();
 
-        final String newNickname = etNickname.getText().toString();
+        final String newNickname = vetNickname.getText();
         NicknameToChange nicknameToChange = new NicknameToChange(newNickname);
 
         profileRetrofitInterface.editUserNickname(nicknameToChange).enqueue(new Callback<EditInfoResult>() {
@@ -203,9 +209,9 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
     private void editPassword() {
         showProgressDialog();
 
-        String currentPw = etCurrentPw.getText().toString();
-        final String newPw = etNewPw.getText().toString();
-        String newPwCheck = etNewPwCheck.getText().toString();
+        String currentPw = vetCurrentPw.getText();
+        final String newPw = vetNewPw.getText();
+        String newPwCheck = vetNewPwCheck.getText();
 
         PasswordToChange passwordToValidate = new PasswordToChange(currentPw, newPw, newPwCheck);
 
@@ -220,9 +226,9 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
                             showCustomToast(result.getMessage());
                             llPw.setVisibility(View.VISIBLE);
                             llEditPw.setVisibility(View.GONE);
-                            etCurrentPw.setText("");
-                            etNewPw.setText("");
-                            etNewPwCheck.setText("");
+                            vetCurrentPw.clearText();
+                            vetNewPw.clearText();
+                            vetNewPwCheck.clearText();
                             tvPw.setText(newPw);
                         }else{
                             showCustomToast(result.getMessage());
@@ -238,5 +244,10 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
                 hideProgressDialog();
             }
         });
+    }
+
+    @Override
+    public void onTextChanged() {
+
     }
 }

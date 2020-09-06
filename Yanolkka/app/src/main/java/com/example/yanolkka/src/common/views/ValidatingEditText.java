@@ -197,9 +197,13 @@ public class ValidatingEditText extends RelativeLayout {
         return editText.getText().toString();
     }
 
-    private void clearText(){
+    public void clearText(){
         editText.setText("");
         ivBtn.setVisibility(GONE);
+    }
+
+    public void setText(String str){
+        editText.setText(str);
     }
 
     private void setWarning(String warning){

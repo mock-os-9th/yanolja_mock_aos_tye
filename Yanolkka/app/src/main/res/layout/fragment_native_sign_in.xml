@@ -20,6 +20,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/iv_btn_sign_in_clear_email"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_baseline_cancel_24"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/et_sign_in_native_id_email"
+        app:layout_constraintEnd_toEndOf="@+id/et_sign_in_native_id_email"
+        app:layout_constraintTop_toTopOf="@+id/et_sign_in_native_id_email"
+        app:layout_constraintVertical_bias="0.35" />
+
     <EditText
         android:id="@+id/et_sign_in_native_password"
         android:layout_width="match_parent"
@@ -32,6 +43,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_sign_in_native_id_email"/>
+
+    <ImageView
+        android:id="@+id/iv_btn_sign_in_show_pw"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/btn_invisible"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/et_sign_in_native_password"
+        app:layout_constraintEnd_toEndOf="@+id/et_sign_in_native_password"
+        app:layout_constraintTop_toTopOf="@+id/et_sign_in_native_password"
+        app:layout_constraintVertical_bias="0.35" />
 
     <RelativeLayout
         android:id="@+id/rl_btn_native_sign_in"

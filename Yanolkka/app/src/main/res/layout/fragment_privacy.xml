@@ -84,6 +84,7 @@
                     android:paddingBottom="32dp">
 
                     <LinearLayout
+                        android:id="@+id/ll_privacy_nickname_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingVertical="16dp"
@@ -94,25 +95,6 @@
                             android:layout_height="wrap_content"
                             android:text="@string/nickname"/>
 
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
-
-                            <EditText
-                                android:id="@+id/et_edit_nickname"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/textNormal" />
-                            <ImageView
-                                android:id="@+id/iv_btn_privacy_et_nickname_clear"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginEnd="8dp"
-                                android:src="@drawable/ic_baseline_cancel_24"
-                                android:layout_centerVertical="true"/>
-                        </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -249,31 +231,6 @@
                             android:layout_height="wrap_content"
                             android:visibility="gone"
                             android:orientation="vertical">
-
-                            <EditText
-                                android:id="@+id/et_privacy_current_pw"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/inputCurrentPw"
-                                android:inputType="textPassword"
-                                android:layout_marginBottom="12dp"
-                                android:textSize="12sp"/>
-                            <EditText
-                                android:id="@+id/et_privacy_new_pw"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/inputNewPw"
-                                android:inputType="textPassword"
-                                android:layout_marginBottom="12dp"
-                                android:textSize="12sp"/>
-                            <EditText
-                                android:id="@+id/et_privacy_new_pw_check"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/checkNewPw"
-                                android:inputType="textPassword"
-                                android:layout_marginBottom="12dp"
-                                android:textSize="12sp"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
