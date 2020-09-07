@@ -31,6 +31,7 @@ public class SearchDomesticFragment extends Fragment implements View.OnClickList
     private ImageView ivBtnSearch;
 
     private int numAdult = 2, numKid = 0;
+    private int checkInMonth, checkInDate, checkOutMonth, checkOutDate;
 
     public SearchDomesticFragment() {
     }
@@ -56,15 +57,30 @@ public class SearchDomesticFragment extends Fragment implements View.OnClickList
         ivBtnSearch = view.findViewById(R.id.iv_search_domestic_btn_search);
 
         Calendar today = Calendar.getInstance();
-        int monthToday = today.get(Calendar.MONTH)+1;
-        int dateToday = today.get(Calendar.DATE);
-
         Calendar tomorrow = Calendar.getInstance();
-        tomorrow.add(Calendar.DATE, 1);
-        int monthTomorrow = tomorrow.get(Calendar.MONTH)+1;
-        int dateTomorrow = tomorrow.get(Calendar.DATE);
 
-        String length = monthToday+"."+dateToday+" ~ "+monthTomorrow+"."+dateTomorrow+", 1박";
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            numAdult = bundle.getInt("numAdult", 2);
+            numKid = bundle.getInt("numKid", 0);
+            checkInMonth = bundle.getInt("checkInMonth",today.get(Calendar.MONTH)+1);
+            checkInDate = bundle.getInt("checkInDate", today.get(Calendar.DATE));
+            tomorrow.add(Calendar.DATE, 1);
+            checkOutMonth = bundle.getInt("checkOutMonth", tomorrow.get(Calendar.MONTH)+1);
+            checkOutDate = bundle.getInt("checkOutDate", tomorrow.get(Calendar.DATE));
+        }
+
+        Calendar checkIn = Calendar.getInstance();
+        checkIn.set(Calendar.MONTH, checkInMonth);
+        checkIn.set(Calendar.DATE, checkInDate);
+        Calendar checkOut = Calendar.getInstance();
+        checkOut.set(Calendar.MONTH, checkOutMonth);
+        checkOut.set(Calendar.DATE, checkOutDate);
+
+        long diff = checkOut.getTimeInMillis() - checkIn.getTimeInMillis();
+        long nights = diff / (1000*60*60*24);
+
+        String length = checkInMonth+"."+checkInDate+" ~ "+checkOutMonth+"."+checkOutDate+", "+nights+"박";
         tvLength.setText(length);
 
         tvNumPeople.setText(getString(R.string.adult)+" "+numAdult+", "+getString(R.string.kid)+" "+numKid);

@@ -123,7 +123,10 @@ public class MyPageFragment extends BaseFragment implements View.OnClickListener
                                 if (!result.getUser().isEmpty() && !result.getUserReseration().isEmpty()){
                                     User user = result.getUser().get(0);
                                     UserReseration reseration = result.getUserReseration().get(0);
-                                    tvUserNickname.setText(user.getUserName()+user.getUserIdx());
+                                    if (!user.getUserName().isEmpty())
+                                        tvUserNickname.setText(user.getUserName());
+                                    else
+                                        tvUserNickname.setText("");
 
                                     for (TextView tv : tvPoints){
                                         tv.setVisibility(View.VISIBLE);

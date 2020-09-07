@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -24,7 +25,10 @@ public class ApplicationClass extends Application {
     // 테스트 서버 주소
     public static String BASE_URL = "http://13.125.205.231/";
     // 실서버 주소
-//    public static String BASE_URL = "https://template.softsquared.com/";
+//    public static String BASE_URL = "https://www.brandnew-server.ga/";
+
+    public static double BASE_LATITUDE = 37.486776;
+    public static double BASE_LONGITUDE = 127.046816;
 
     public static SharedPreferences sSharedPreferences = null;
 

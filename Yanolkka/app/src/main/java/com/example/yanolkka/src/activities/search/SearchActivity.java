@@ -1,8 +1,11 @@
 package com.example.yanolkka.src.activities.search;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -12,10 +15,15 @@ import com.example.yanolkka.src.common.yet.YetFragment;
 import com.example.yanolkka.src.activities.search.fragments.SearchDomesticFragment;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.Calendar;
+
 public class SearchActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
 
     private TabLayout tlSearch;
     private FragmentManager fragmentManager;
+
+    private Intent fromIntent;
+    private Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +32,26 @@ public class SearchActivity extends BaseActivity implements TabLayout.OnTabSelec
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fl_search_fragments, SearchDomesticFragment.newInstance()).commit();
+        fragment = SearchDomesticFragment.newInstance();
+        fromIntent = getIntent();
+
+        if (fromIntent != null){
+            Bundle bundle = new Bundle();
+            Calendar today = Calendar.getInstance();
+            Calendar tomorrow = Calendar.getInstance();
+            tomorrow.add(Calendar.DATE, 1);
+
+            bundle.putInt("numAdult",fromIntent.getIntExtra("numAdult", 2));
+            bundle.putInt("numKid",fromIntent.getIntExtra("numKid", 0));
+            bundle.putInt("checkInMonth",fromIntent.getIntExtra("checkInMonth", today.get(Calendar.MONTH)+1));
+            bundle.putInt("checkInDate",fromIntent.getIntExtra("checkInDate", today.get(Calendar.DATE)));
+            bundle.putInt("checkOutMonth",fromIntent.getIntExtra("checkOutMonth", tomorrow.get(Calendar.MONTH)+1));
+            bundle.putInt("checkOutDate",fromIntent.getIntExtra("checkOutDate", tomorrow.get(Calendar.DATE)));
+
+            fragment.setArguments(bundle);
+        }
+
+        fragmentTransaction.add(R.id.fl_search_fragments, fragment).commit();
 
         tlSearch = findViewById(R.id.tab_search);
         tlSearch.addTab(tlSearch.newTab().setText(getString(R.string.domestic)));
@@ -45,7 +72,8 @@ public class SearchActivity extends BaseActivity implements TabLayout.OnTabSelec
         int layoutId = R.id.fl_search_fragments;
         switch (tab.getPosition()){
             case 0:
-                replaceFragment(fragmentManager, SearchDomesticFragment.newInstance(), layoutId);
+                fragment = SearchDomesticFragment.newInstance();
+                replaceFragment(fragmentManager, fragment, layoutId);
                 break;
             case 1:
             case 2:

@@ -73,9 +73,9 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
 
         vetCurrentPw = new ValidatingEditText(getContext(), ValidatingEditText.STYLE_PASSWORD,getString(R.string.inputCurrentPw));
         vetCurrentPw.setEventListener(this);
-        vetNewPw = new ValidatingEditText(getContext(), ValidatingEditText.STYLE_NORMAL,getString(R.string.inputNewPw));
+        vetNewPw = new ValidatingEditText(getContext(), ValidatingEditText.STYLE_PASSWORD,getString(R.string.inputNewPw));
         vetNewPw.setEventListener(this);
-        vetNewPwCheck = new ValidatingEditText(getContext(), ValidatingEditText.STYLE_NORMAL,getString(R.string.checkNewPw));
+        vetNewPwCheck = new ValidatingEditText(getContext(), ValidatingEditText.STYLE_PASSWORD,getString(R.string.checkNewPw));
         vetNewPwCheck.setEventListener(this);
         llEditPw.addView(vetCurrentPw, 0);
         llEditPw.addView(vetNewPw, 1);

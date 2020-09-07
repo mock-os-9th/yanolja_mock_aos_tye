@@ -35,7 +35,7 @@ public class ValidatingEditText extends RelativeLayout {
     private boolean valid = false;
 
     private String pwPattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$";
-    private String emailPattern = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+//    private String emailPattern = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 
     public EventListener checkListener;
 
@@ -128,7 +128,8 @@ public class ValidatingEditText extends RelativeLayout {
                 checkListener.onTextChanged();
                 hide();
 
-                valid = (style == STYLE_EMAIL && Pattern.matches(emailPattern, getText()))
+                valid = (style == STYLE_EMAIL && !getText().contains("@")||
+                        !(getText().endsWith(".com")||getText().endsWith(".net")||getText().endsWith(".kr")))
                         || (style == STYLE_PASSWORD && Pattern.matches(pwPattern, getText()))
                         || (style == STYLE_NORMAL && !getText().isEmpty());
             }
@@ -159,7 +160,8 @@ public class ValidatingEditText extends RelativeLayout {
                             if (str.isEmpty()){
                                 setWarning("이메일을 입력해주세요.");
                                 valid = false;
-                            }else if (!Pattern.matches(emailPattern, str)){
+                            }else if (!str.contains("@")||
+                                    !(str.endsWith(".com")||str.endsWith(".net")||str.endsWith(".kr"))){
                                 setWarning("올바르지 않는 이메일 형식입니다.");
                                 valid = false;
                             }else{

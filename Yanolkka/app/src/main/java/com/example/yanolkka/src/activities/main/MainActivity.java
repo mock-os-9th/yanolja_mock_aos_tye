@@ -2,7 +2,9 @@ package com.example.yanolkka.src.activities.main;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -74,10 +76,8 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
                 replaceFragment(fragmentManager, locationFragment, layoutId);
                 break;
             case 2:
-//                if (nearbyFragment == null)
-//                    nearbyFragment = NearbyFragment.newInstance();
-//                replaceFragment(fragmentManager, nearbyFragment, layoutId);
-                replaceFragment(fragmentManager, YetFragment.newInstance(), layoutId);
+                replaceFragment(fragmentManager, NearbyFragment.newInstance(), layoutId);
+//                replaceFragment(fragmentManager, YetFragment.newInstance(), layoutId);
                 break;
             case 3:
                 if (likeFragment == null)
@@ -97,6 +97,14 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
 //    HomeFragment가 안보일 때 누르면 HomeFragment로 이동
     @Override
     public void onBackPressed() {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fl_fragments);
+        if (currentFragment instanceof NearbyFragment){
+            if (((NearbyFragment) currentFragment).llEditOptions.getVisibility() == View.VISIBLE){
+                ((NearbyFragment) currentFragment).hideEdit();
+                return;
+            }
+        }
+
         if (currentPage != 0){
             customBottomNavView.onBackKey();
         }else{
