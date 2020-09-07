@@ -608,10 +608,12 @@
 
         <TextView
             android:id="@+id/tv_room_info_ab_title"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="NAME"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/textNormal"
             android:layout_toEndOf="@+id/iv_room_info_back"
             android:textSize="20sp"

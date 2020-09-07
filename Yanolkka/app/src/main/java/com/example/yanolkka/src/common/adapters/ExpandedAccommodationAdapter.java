@@ -142,11 +142,16 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
                     mvHolder.ivAccommodation.setImageDrawable(mContext.getDrawable(R.drawable.motel_sample));
                 }
 
-                if (accommodation.getDiscount() != 0)
+                if (accommodation.getDiscount() != 0){
                     mvHolder.tvRentalDiscount.setText((Math.round(motel.getDiscountRental()*100))+"%~");
-                mvHolder.tvRentalOriginalPrice.setText(format.format(motel.getOriginalRentalPrice())+"원");
-                mvHolder.tvRentalOriginalPrice.setPaintFlags(mvHolder.tvRentalOriginalPrice.getPaintFlags()
-                        | Paint.STRIKE_THRU_TEXT_FLAG);
+                    mvHolder.tvRentalOriginalPrice.setText(format.format(motel.getOriginalRentalPrice())+"원");
+                    mvHolder.tvRentalOriginalPrice.setPaintFlags(mvHolder.tvRentalOriginalPrice.getPaintFlags()
+                            | Paint.STRIKE_THRU_TEXT_FLAG);
+                }else{
+                    mvHolder.tvRentalDiscount.setVisibility(View.INVISIBLE);
+                    mvHolder.tvRentalOriginalPrice.setVisibility(View.INVISIBLE);
+                }
+
                 mvHolder.tvRentalLength.setText(motel.getRentalLength()+"시간");
                 mvHolder.tvRentalPrice.setText(format.format(Math.round(motel.getOriginalRentalPrice()
                         * (1-motel.getDiscountRental()))));
@@ -154,11 +159,16 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
                 mvHolder.llRental.setVisibility(View.GONE);
             }
 
-            if (accommodation.getDiscount() != 0)
+            if (accommodation.getDiscount() != 0){
                 mvHolder.tvDiscount.setText((Math.round(accommodation.getDiscount()*100))+"%~");
-            mvHolder.tvOriginalPrice.setText(format.format(accommodation.getOriginalPrice())+"원");
-            mvHolder.tvOriginalPrice.setPaintFlags(mvHolder.tvRentalOriginalPrice.getPaintFlags()
-                    | Paint.STRIKE_THRU_TEXT_FLAG);
+                mvHolder.tvOriginalPrice.setText(format.format(accommodation.getOriginalPrice())+"원");
+                mvHolder.tvOriginalPrice.setPaintFlags(mvHolder.tvRentalOriginalPrice.getPaintFlags()
+                        | Paint.STRIKE_THRU_TEXT_FLAG);
+            }else{
+                mvHolder.tvDiscount.setVisibility(View.INVISIBLE);
+                mvHolder.tvOriginalPrice.setVisibility(View.INVISIBLE);
+            }
+
             mvHolder.tvCheckIn.setText(String.format("%02d:%02d부터", accommodation.getHourCheckIn(), accommodation.getMinuteCheckIn()));
             mvHolder.tvPrice.setText(format.format(Math.round(accommodation.getOriginalPrice() * (1-accommodation.getDiscount()))));
         }

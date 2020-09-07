@@ -5,6 +5,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -62,6 +65,23 @@ public class BaseActivity extends AppCompatActivity {
     //미개발 기능/페이지
     public void goYetActivity(){
         startActivity(new Intent(this, YetActivity.class));
+    }
+
+    //해당 View로 자동 스크롤
+    public static void scrollToView(View view, final ScrollView scrollView, int count) {
+        if (view != null && view != scrollView) {
+            count += view.getTop();
+            scrollToView((View) view.getParent(), scrollView, count);
+        } else if (scrollView != null) {
+            final int finalCount = count;
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    scrollView.smoothScrollTo(0, finalCount);
+                }
+            }, 200);
+        }
     }
 
     @Override

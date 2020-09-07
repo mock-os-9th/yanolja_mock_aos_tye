@@ -19,6 +19,8 @@ import com.example.yanolkka.R;
 import com.example.yanolkka.src.activities.room_info.interfaces.RoomInfoActivityView;
 import com.example.yanolkka.src.common.adapters.ImagePagerAdapter;
 import com.example.yanolkka.src.common.base.BaseActivity;
+import com.example.yanolkka.src.common.objects.Room;
+import com.example.yanolkka.src.common.views.RoomView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ import java.util.ArrayList;
 public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityView, View.OnClickListener {
 
     private RelativeLayout rlActionBarTransparent, rlActionBar, rlBtnGoReservation;
-    private LinearLayout llBtnGoCalendar, llFacilitiesHor, llFacilitiesVer, llNotices;
+    private LinearLayout llBtnGoCalendar, llRooms, llFacilitiesHor, llFacilitiesVer, llNotices;
     private ImageView ivBtnBackWhite, ivBtnBack, ivBtnLikeWhite, ivBtnLike
             , ivBtnShareWhite, ivBtnShare;
     private TextView tvTitle, tvRating, tvReviews, tvLocation, tvCheckIn, tvCheckOut
@@ -35,6 +37,8 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
     private ViewPager vpImages;
 
     private ArrayList<Integer> imageList;
+
+    private ArrayList<Room> rooms;
 
     private int screenHeight;
 
@@ -63,6 +67,17 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
 
         imageList.add(R.drawable.motel_sample);
         imageList.add(R.drawable.sample_accommodation);
+
+        rooms = new ArrayList<>();
+        for (int i = 1; i <= 4; i++) {
+            Room room = new Room('m', "객실"+i, 2, 4);
+            room.setCheckIn("15:00");
+            room.setRentalTime(4);
+            room.setRentalPrice(35000);
+            room.setStayingPrice(50000);
+
+            rooms.add(room);
+        }
     }
 
     private void setViews(){
@@ -70,6 +85,7 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
         rlActionBar = findViewById(R.id.rl_room_info_action_bar);
         rlBtnGoReservation = findViewById(R.id.rl_btn_room_info_go_reservation);
         llBtnGoCalendar = findViewById(R.id.ll_btn_room_info_length);
+        llRooms = findViewById(R.id.ll_room_info_rooms);
         llFacilitiesHor = findViewById(R.id.ll_room_info_facilities_hor);
         llFacilitiesVer = findViewById(R.id.ll_room_info_facilities_ver);
         llNotices = findViewById(R.id.ll_room_info_notice);
@@ -99,6 +115,11 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
 
         ImagePagerAdapter adapter = new ImagePagerAdapter(this, imageList);
         vpImages.setAdapter(adapter);
+
+        for (Room room : rooms)
+            llRooms.addView(new RoomView(this, room));
+
+        rlBtnGoReservation.setOnClickListener(this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -161,6 +182,7 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
 
             case R.id.rl_btn_room_info_go_reservation:
                 //예약하기
+                scrollToView(findViewById(R.id.rl_btn_room_info_coupon), scrollView, 0);
                 break;
         }
     }

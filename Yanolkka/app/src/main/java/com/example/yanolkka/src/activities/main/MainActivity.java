@@ -1,7 +1,6 @@
 package com.example.yanolkka.src.activities.main;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;
@@ -11,16 +10,13 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.yanolkka.R;
 import com.example.yanolkka.src.activities.main.interfaces.MainActivityView;
 import com.example.yanolkka.src.common.base.BaseActivity;
-import com.example.yanolkka.src.common.yet.YetFragment;
 import com.example.yanolkka.src.activities.main.fragments.HomeFragment;
 import com.example.yanolkka.src.activities.main.fragments.LikeFragment;
 import com.example.yanolkka.src.activities.main.fragments.LocationFragment;
 import com.example.yanolkka.src.activities.main.fragments.MyPageFragment;
 import com.example.yanolkka.src.activities.main.fragments.NearbyFragment;
-import com.example.yanolkka.src.activities.sign_in.models.SignIn;
 import com.example.yanolkka.src.common.views.CustomBottomNavView;
 
-import static com.example.yanolkka.src.ApplicationClass.sSharedPreferences;
 
 public class MainActivity extends BaseActivity implements CustomBottomNavView.EventListener, MainActivityView {
 
@@ -29,11 +25,8 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
     private FragmentManager fragmentManager;
     private HomeFragment homeFragment;
     private LocationFragment locationFragment;
-    private NearbyFragment nearbyFragment;
     private LikeFragment likeFragment;
     private MyPageFragment myPageFragment;
-
-    public MainService mainService = new MainService(this);
 
     private int currentPage;
 
@@ -77,7 +70,6 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
                 break;
             case 2:
                 replaceFragment(fragmentManager, NearbyFragment.newInstance(), layoutId);
-//                replaceFragment(fragmentManager, YetFragment.newInstance(), layoutId);
                 break;
             case 3:
                 if (likeFragment == null)

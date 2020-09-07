@@ -15,10 +15,10 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="120dp"
-            android:layout_height="160dp"
+            android:layout_height="140dp"
             android:layout_gravity="top"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="5dp">
+            app:cardCornerRadius="7dp">
 
             <ImageView
                 android:id="@+id/iv_item_room"
@@ -91,6 +91,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:textColor="@color/textNormal"
+                        android:textSize="10dp"
                         android:text="판매가"/>
 
                     <LinearLayout
@@ -151,6 +152,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:textColor="@color/textNormal"
+                        android:textSize="10dp"
                         android:text="판매가"/>
 
                     <LinearLayout
