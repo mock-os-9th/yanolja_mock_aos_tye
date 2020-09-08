@@ -34,7 +34,7 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
         public ImageView ivAccommodation;
         public RatingBar rbRating;
         public TextView tvName, tvRating, tvReviews, tvDiscount, tvOriginalPrice, tvPrice, tvStars
-                , tvRentalDiscount, tvRentalOriginalPrice, tvRentalPrice, tvCheckIn, tvRentalLength;
+                , tvRentalDiscount, tvRentalOriginalPrice, tvRentalPrice, tvCheckIn, tvRentalLength, tvIdx;
 
         public MyViewHolder(final Context context, @NonNull View itemView) {
             super(itemView);
@@ -54,6 +54,7 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
             tvCheckIn = itemView.findViewById(R.id.tv_item_expanded_accommodation_check_in);
             tvRentalLength = itemView.findViewById(R.id.tv_item_expanded_accommodation_rental_length);
             tvStars = itemView.findViewById(R.id.tv_item_expanded_hotel_stars);
+            tvIdx = itemView.findViewById(R.id.tv_item_expanded_accommodation_idx);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -66,6 +67,7 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
                     String strReviews = tvReviews.getText().toString();
                     strReviews = strReviews.substring(1, strReviews.length()-1);
                     intent.putExtra("reviews", strReviews);
+                    intent.putExtra("idx", Integer.parseInt(tvIdx.getText().toString()));
 
                     context.startActivity(intent);
                 }
@@ -124,6 +126,8 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
             if (accommodation.getImageUri() != null){
                 mvHolder.ivAccommodation.setImageURI(Uri.parse(accommodation.getImageUri()));
             }
+
+            mvHolder.tvIdx.setText(accommodation.getIdx()+"");
 
             mvHolder.tvName.setText(accommodation.getName());
             mvHolder.rbRating.setRating(accommodation.getRating());

@@ -1,6 +1,8 @@
 package com.example.yanolkka.src.activities.room_info;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -21,24 +23,43 @@ import com.example.yanolkka.src.common.adapters.ImagePagerAdapter;
 import com.example.yanolkka.src.common.base.BaseActivity;
 import com.example.yanolkka.src.common.objects.Room;
 import com.example.yanolkka.src.common.views.RoomView;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 
-public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityView, View.OnClickListener {
+import static com.example.yanolkka.src.ApplicationClass.BASE_LATITUDE;
+import static com.example.yanolkka.src.ApplicationClass.BASE_LONGITUDE;
+
+public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityView,
+        View.OnClickListener, OnMapReadyCallback {
 
     private RelativeLayout rlActionBarTransparent, rlActionBar, rlBtnGoReservation;
     private LinearLayout llBtnGoCalendar, llRooms, llFacilitiesHor, llFacilitiesVer, llNotices;
     private ImageView ivBtnBackWhite, ivBtnBack, ivBtnLikeWhite, ivBtnLike
             , ivBtnShareWhite, ivBtnShare;
     private TextView tvTitle, tvRating, tvReviews, tvLocation, tvCheckIn, tvCheckOut
-            , tvAddress, tvBtnCopyAddress, tvActionTitle;
+            , tvAddress, tvBtnCopyAddress, tvActionTitle, tvPager;
     private ScrollView scrollView;
     private ViewPager vpImages;
+
+    private MapView mapView;
 
     private ArrayList<Integer> imageList;
 
     private ArrayList<Room> rooms;
+
+    private String[] daysOfWeek;
+
+    private int accommodationIdx;
 
     private int screenHeight;
 
@@ -58,6 +79,9 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         screenHeight = metrics.heightPixels;
+
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
 
         setListeners();
     }
@@ -106,15 +130,44 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
         tvActionTitle = findViewById(R.id.tv_room_info_ab_title);
         vpImages = findViewById(R.id.vp_room_info_photo);
         scrollView = findViewById(R.id.sv_room_info);
+        tvPager = findViewById(R.id.tv_room_info_photo_pager);
+        mapView = findViewById(R.id.mv_room_info_map);
 
         Intent intent = getIntent();
         tvTitle.setText(intent.getStringExtra("accName"));
         tvActionTitle.setText(intent.getStringExtra("accName"));
         tvRating.setText(intent.getStringExtra("rating"));
         tvReviews.setText(intent.getStringExtra("reviews"));
+        accommodationIdx = intent.getIntExtra("idx", 0);
 
-        ImagePagerAdapter adapter = new ImagePagerAdapter(this, imageList);
+        daysOfWeek = getResources().getStringArray(R.array.daysOfWeek);
+        Calendar today = Calendar.getInstance();
+        tvCheckIn.setText(today.get(Calendar.MONTH)+1+"월 "+
+                today.get(Calendar.DATE)+"일 ("+daysOfWeek[today.get(Calendar.DAY_OF_WEEK)-1]+")");
+        Calendar tomorrow = Calendar.getInstance();
+        tomorrow.add(Calendar.DATE, 1);
+        tvCheckOut.setText(tomorrow.get(Calendar.MONTH)+1+"월 "+
+                tomorrow.get(Calendar.DATE)+"일 ("+daysOfWeek[tomorrow.get(Calendar.DAY_OF_WEEK)-1]+")");
+
+        final ImagePagerAdapter adapter = new ImagePagerAdapter(this, imageList);
         vpImages.setAdapter(adapter);
+
+        vpImages.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                tvPager.setText((position+1)+"/"+adapter.getCount());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         for (Room room : rooms)
             llRooms.addView(new RoomView(this, room));
@@ -195,5 +248,46 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
     @Override
     public void validateFailure(String message) {
 
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        LatLng latLng = new LatLng(BASE_LATITUDE, BASE_LONGITUDE);
+        Bitmap locationBitmap = ((BitmapDrawable)getResources().getDrawable(R.drawable.accom_indicator)).getBitmap();
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f));
+        googleMap.addMarker(new MarkerOptions()
+                .position(latLng)
+                .icon(BitmapDescriptorFactory.fromBitmap(locationBitmap)));
+    }
+
+    @Override
+    protected void onResume() {
+        mapView.onResume();
+        super.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        mapView.onStart();
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        mapView.onStop();
+        super.onStop();
+    }
+
+    @Override
+    protected void onPause() {
+        mapView.onPause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mapView.onDestroy();
+        super.onDestroy();
     }
 }

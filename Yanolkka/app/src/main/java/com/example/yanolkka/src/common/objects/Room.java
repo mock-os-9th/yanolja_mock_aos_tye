@@ -1,6 +1,7 @@
 package com.example.yanolkka.src.common.objects;
 
 public class Room {
+    private int idx;
     private String name;
     private String imageUri;
     private int numStandard;
@@ -17,6 +18,14 @@ public class Room {
         this.name = name;
         this.numStandard = numStandard;
         this.numMaximum = numMaximum;
+    }
+
+    public int getIdx() {
+        return idx;
+    }
+
+    public void setIdx(int idx) {
+        this.idx = idx;
     }
 
     public String getImageUri() {

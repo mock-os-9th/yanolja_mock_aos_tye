@@ -62,6 +62,12 @@
             android:textStyle="bold"
             android:textColor="@color/textNormal"/>
 
+        <TextView
+            android:id="@+id/tv_item_expanded_accommodation_idx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

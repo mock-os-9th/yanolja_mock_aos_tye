@@ -120,6 +120,7 @@ public class ResultHotelFragment extends BaseFragment implements SearchResultAct
             Accommodation hotel = new Accommodation(hotelInfo.getAccomName()
                     ,null, hotelInfo.getAllDayPrice(), 0.0f);
 
+            hotel.setIdx(hotelInfo.getAccomIdx());
             hotel.setRating((float)hotelInfo.getOverallRating());
             hotel.setReviews(hotelInfo.getReviewCount());
 

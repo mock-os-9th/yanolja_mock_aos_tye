@@ -23,12 +23,12 @@ public class ApplicationClass extends Application {
     public static MediaType MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg");
 
     // 테스트 서버 주소
-    public static String BASE_URL = "http://13.125.205.231/";
+//    public static String BASE_URL = "http://13.125.205.231/";
     // 실서버 주소
-//    public static String BASE_URL = "https://www.brandnew-server.ga/";
+    public static String BASE_URL = "https://www.brandnew-server.ga/";
 
-    public static double BASE_LATITUDE = 37.486776;
-    public static double BASE_LONGITUDE = 127.046816;
+    public static double BASE_LATITUDE = 37.486274;
+    public static double BASE_LONGITUDE = 127.046512;
 
     public static SharedPreferences sSharedPreferences = null;
 

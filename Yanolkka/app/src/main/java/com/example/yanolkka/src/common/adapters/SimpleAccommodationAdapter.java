@@ -25,7 +25,7 @@ public class SimpleAccommodationAdapter extends RecyclerView.Adapter<SimpleAccom
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         public ImageView ivAccommodation;
-        public TextView tvName, tvRating, tvReviews, tvDiscount, tvPrice;
+        public TextView tvName, tvRating, tvReviews, tvDiscount, tvPrice, tvIdx;
 
         public MyViewHolder(final Context context, @NonNull View itemView) {
             super(itemView);
@@ -35,6 +35,7 @@ public class SimpleAccommodationAdapter extends RecyclerView.Adapter<SimpleAccom
             tvReviews = itemView.findViewById(R.id.tv_item_simple_accommodation_reviews);
             tvDiscount = itemView.findViewById(R.id.tv_item_simple_accommodation_discount);
             tvPrice = itemView.findViewById(R.id.tv_item_simple_accommodation_price);
+            tvIdx = itemView.findViewById(R.id.tv_item_simple_accommodation_idx);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -45,6 +46,7 @@ public class SimpleAccommodationAdapter extends RecyclerView.Adapter<SimpleAccom
                     intent.putExtra("accName", tvName.getText().toString());
                     intent.putExtra("rating", tvRating.getText().toString());
                     intent.putExtra("reviews", tvReviews.getText().toString());
+                    intent.putExtra("idx", Integer.parseInt(tvIdx.getText().toString()));
 
                     context.startActivity(intent);
                 }
@@ -76,6 +78,7 @@ public class SimpleAccommodationAdapter extends RecyclerView.Adapter<SimpleAccom
             holder.ivAccommodation.setImageURI(Uri.parse(accommodation.getImageUri()));
         }
 
+        holder.tvIdx.setText(accommodation.getIdx()+"");
         holder.tvName.setText(accommodation.getName());
         holder.tvRating.setText(accommodation.getRating()+"");
         holder.tvReviews.setText(accommodation.getReviews()+"");

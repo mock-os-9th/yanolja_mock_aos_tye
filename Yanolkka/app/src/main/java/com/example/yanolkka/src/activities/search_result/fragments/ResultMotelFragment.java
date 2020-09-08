@@ -94,10 +94,10 @@ public class ResultMotelFragment extends BaseFragment implements SearchResultAct
         rvResult.setLayoutManager(mLayoutManager);
 
         mAdapter = new ExpandedAccommodationAdapter(getContext(), accommodations);
-
         rvResult.setAdapter(mAdapter);
 
         rvResult.setOverScrollMode(View.OVER_SCROLL_NEVER);
+
         return view;
     }
 
@@ -119,6 +119,7 @@ public class ResultMotelFragment extends BaseFragment implements SearchResultAct
             Motel motel = new Motel(motelInfo.getAccomName()
                     ,null, motelInfo.getAllDayPrice(), 0.0f);
 
+            motel.setIdx(motelInfo.getAccomIdx());
             motel.setDiscountRental(0.0f);
             motel.setOriginalRentalPrice(motelInfo.getPartTimePrice());
             motel.setRating((float)motelInfo.getOverallRating());

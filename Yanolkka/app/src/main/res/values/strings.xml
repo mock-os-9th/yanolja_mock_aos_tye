@@ -183,4 +183,6 @@
     <string name="inputCurrentPw">현재 비밀번호를 입력</string>
     <string name="inputNewPw">새 비밀번호 - 영문+숫자+특문 8~20자</string>
     <string name="checkNewPw">새 비밀번호 확인</string>
+    <string name="map">지도</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

@@ -12,10 +12,4 @@ public interface MyPageRetrofitInterface {
 
     @GET("/myYanolja")
     Call<MyPageResult> getMyPageInfo();
-
-    @GET("/isValidPwd")
-    Call<ValidResult> getValidResult(@Body String password);
-
-    @GET("/users")
-    Call<UserInfoResult> getUserInfo();
 }

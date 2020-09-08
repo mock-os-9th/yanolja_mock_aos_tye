@@ -2,6 +2,7 @@ package com.example.yanolkka.src.common.objects;
 
 public class Accommodation {
     static char type = 'h';
+    private int idx;
     private String name;
     private String imageUri;
     private float rating;
@@ -17,6 +18,14 @@ public class Accommodation {
         this.imageUri = imageUri;
         this.originalPrice = originalPrice;
         this.discount = discount;
+    }
+
+    public int getIdx() {
+        return idx;
+    }
+
+    public void setIdx(int idx) {
+        this.idx = idx;
     }
 
     public static char getType() {

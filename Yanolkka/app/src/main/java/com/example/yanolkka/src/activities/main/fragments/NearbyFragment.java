@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.yanolkka.R;
+import com.example.yanolkka.src.activities.maps.MapsActivity;
 import com.example.yanolkka.src.activities.num_people.NumPeopleActivity;
 import com.example.yanolkka.src.activities.search.SearchActivity;
 import com.example.yanolkka.src.common.adapters.ContentsPagerAdapter;
@@ -42,7 +43,7 @@ public class NearbyFragment extends BaseFragment implements View.OnClickListener
     private TabLayout tlNearby;
     private ViewPager vpNearby;
     private AppBarLayout abl;
-    private ImageView ivBtnSearchOrMap, ivBtnEditSearchOrMap;
+    private ImageView ivBtnSearchOrMap, ivBtnEditSearchOrMap, ivBtnMap;
 
     private View vEntire;
 
@@ -53,7 +54,7 @@ public class NearbyFragment extends BaseFragment implements View.OnClickListener
     private List<String> titles = new ArrayList<>();
 
     public double latitude, longitude;
-    public int numAdult, numKid;
+    public int numAdult, numKid, tempNumAdult, tempNumKid;
     public Calendar checkIn, checkOut;
 
     public NearbyFragment() {
@@ -103,6 +104,7 @@ public class NearbyFragment extends BaseFragment implements View.OnClickListener
         tvEditOptionsPerson = view.findViewById(R.id.tv_nearby_person);
         ivBtnEditSearchOrMap = view.findViewById(R.id.iv_btn_nearby_search_dark);
         rlBtnEditOptions = view.findViewById(R.id.rl_btn_nearby_edit_options_apply);
+        ivBtnMap = view.findViewById(R.id.iv_nearby_map);
 
         vEntire = view.findViewById(R.id.v_nearby_edit_options_entire);
 
@@ -120,6 +122,8 @@ public class NearbyFragment extends BaseFragment implements View.OnClickListener
         checkOut.add(Calendar.DATE, 1);
         numAdult = 2;
         numKid = 0;
+        tempNumAdult = numAdult;
+        tempNumKid = numKid;
 
         tvSchedule.setText(String.format("%02d.%02d~%02d.%02d, %d명",
                 checkIn.get(Calendar.MONTH)+1, checkIn.get(Calendar.DATE),
@@ -153,6 +157,7 @@ public class NearbyFragment extends BaseFragment implements View.OnClickListener
         llEditOptionsLength.setOnClickListener(this);
         rlBtnEditOptions.setOnClickListener(this);
         vEntire.setOnClickListener(this);
+        ivBtnMap.setOnClickListener(this);
     }
 
     @Override
@@ -170,7 +175,13 @@ public class NearbyFragment extends BaseFragment implements View.OnClickListener
                     intent.putExtra("checkOutDate", checkOut.get(Calendar.DATE));
 
                     startActivity(intent);
+                }else{
+                    goMapsActivity();
                 }
+                break;
+
+            case R.id.iv_nearby_map:
+                goMapsActivity();
                 break;
 
             case R.id.ll_nearby_schedule:
@@ -189,6 +200,8 @@ public class NearbyFragment extends BaseFragment implements View.OnClickListener
                 break;
 
             case R.id.rl_btn_nearby_edit_options_apply:
+                numAdult = tempNumAdult;
+                numKid = tempNumKid;
                 tvSchedule.setText(String.format("%02d.%02d~%02d.%02d, %d명",
                         checkIn.get(Calendar.MONTH)+1, checkIn.get(Calendar.DATE),
                         checkOut.get(Calendar.MONTH)+1, checkOut.get(Calendar.DATE),
@@ -205,8 +218,8 @@ public class NearbyFragment extends BaseFragment implements View.OnClickListener
 
         long diff = checkOut.getTimeInMillis() - checkIn.getTimeInMillis();
         long nights = diff / (1000*60*60*24);
-        String length = checkIn.get(Calendar.MONTH)+1+"."+checkIn.get(Calendar.DATE)+" ~ "
-                +checkOut.get(Calendar.MONTH)+1+"."+checkOut.get(Calendar.DATE)+", "+nights+"박";
+        String length = (checkIn.get(Calendar.MONTH)+1)+"."+checkIn.get(Calendar.DATE)+" ~ "
+                +(checkOut.get(Calendar.MONTH)+1)+"."+checkOut.get(Calendar.DATE)+", "+nights+"박";
         tvEditOptionsLength.setText(length);
         tvEditOptionsPerson.setText(getString(R.string.adult)+" "+numAdult+", "+getString(R.string.kid)+" "+numKid);
     }
@@ -217,15 +230,28 @@ public class NearbyFragment extends BaseFragment implements View.OnClickListener
         llEditOptions.setVisibility(View.GONE);
     }
 
+    private void goMapsActivity(){
+        Intent intent = new Intent(getContext(), MapsActivity.class);
+        intent.putExtra("latitude", latitude);
+        intent.putExtra("longitude", longitude);
+        intent.putExtra("numAdult", numAdult);
+        intent.putExtra("numKid", numKid);
+        intent.putExtra("checkInMonth", checkIn.get(Calendar.MONTH));
+        intent.putExtra("checkOutMonth", checkOut.get(Calendar.MONTH));
+        intent.putExtra("checkInDate", checkIn.get(Calendar.DATE));
+        intent.putExtra("checkOutDate", checkOut.get(Calendar.DATE));
+        startActivity(intent);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && data != null){
             if (requestCode == REQUEST_NUM_PEOPLE){
-                numAdult = data.getIntExtra("numAdult", 2);
-                numKid = data.getIntExtra("numKid", 0);
+                tempNumAdult = data.getIntExtra("numAdult", 2);
+                tempNumKid = data.getIntExtra("numKid", 0);
 
-                tvEditOptionsPerson.setText(getString(R.string.adult)+" "+numAdult+", "+getString(R.string.kid)+" "+numKid);
+                tvEditOptionsPerson.setText(getString(R.string.adult)+" "+tempNumAdult+", "+getString(R.string.kid)+" "+tempNumKid);
             }
         }
     }
