@@ -25,8 +25,8 @@ public class RegionAdapter extends BaseAdapter {
 
     private int selectedPos = 0;
 
-    public RegionAdapter(Context context, String[] arr){
-        this.cities = new ArrayList<>(Arrays.asList(arr));
+    public RegionAdapter(Context context, List<String> cities){
+        this.cities = cities;
         this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 

@@ -78,6 +78,13 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Ma
         checkOut.set(Calendar.DATE, checkOutDate);
         strCheckOut = DATE_FORMAT.format(checkOut.getTime());
 
+        findViewById(R.id.iv_maps_finish).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         mapFragment.getMapAsync(this);
     }
 

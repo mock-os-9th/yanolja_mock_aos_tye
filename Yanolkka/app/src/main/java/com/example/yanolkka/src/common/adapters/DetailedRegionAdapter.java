@@ -19,8 +19,8 @@ public class DetailedRegionAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
 
-    public DetailedRegionAdapter(Context context, String[] arr){
-        this.regions = new ArrayList<>(Arrays.asList(arr));
+    public DetailedRegionAdapter(Context context, List<String> regions){
+        this.regions = regions;
         this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 

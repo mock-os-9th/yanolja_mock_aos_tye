@@ -15,14 +15,14 @@ import static com.example.yanolkka.src.ApplicationClass.getRetrofit;
 
 public class SearchResultService {
     private final SearchResultActivityView searchResultActivityView;
+    final SearchResultRetrofitInterface searchResultRetrofitInterface =
+            getRetrofit().create(SearchResultRetrofitInterface.class);
 
     public SearchResultService(final SearchResultActivityView searchResultActivityView){
         this.searchResultActivityView = searchResultActivityView;
     }
 
     public void searchNearByMotels(LocationInfo locationInfo){
-        final SearchResultRetrofitInterface searchResultRetrofitInterface =
-                getRetrofit().create(SearchResultRetrofitInterface.class);
 
         searchResultRetrofitInterface.getNearbyMotels(locationInfo.Latitude, locationInfo.Longitude,
                 locationInfo.CheckInDate, locationInfo.CheckOutDate, locationInfo.AdultNum, locationInfo.ChildNum)
@@ -52,8 +52,6 @@ public class SearchResultService {
     }
 
     public void searchNearByHotels(LocationInfo locationInfo){
-        final SearchResultRetrofitInterface searchResultRetrofitInterface =
-                getRetrofit().create(SearchResultRetrofitInterface.class);
 
         searchResultRetrofitInterface.getNearbyHotels(locationInfo.Latitude, locationInfo.Longitude,
                 locationInfo.CheckInDate, locationInfo.CheckOutDate, locationInfo.AdultNum, locationInfo.ChildNum)
@@ -81,4 +79,8 @@ public class SearchResultService {
                     }
                 });
     }
+
+//    public void getMotels(){
+//        searchResultRetrofitInterface.getMotelResult()
+//    }
 }

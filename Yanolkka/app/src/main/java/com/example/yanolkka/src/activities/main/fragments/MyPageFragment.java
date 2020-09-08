@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.yanolkka.R;
-import com.example.yanolkka.src.activities.main.interfaces.MyPageRetrofitInterface;
+import com.example.yanolkka.src.activities.main.interfaces.MainRetrofitInterface;
 import com.example.yanolkka.src.activities.main.models.MyPageResult;
 import com.example.yanolkka.src.activities.main.models.Result;
 import com.example.yanolkka.src.activities.main.models.User;
@@ -108,7 +108,7 @@ public class MyPageFragment extends BaseFragment implements View.OnClickListener
 
     private void getUserInfo() {
 
-        MyPageRetrofitInterface myPageRetrofitInterface = getRetrofit().create(MyPageRetrofitInterface.class);
+        MainRetrofitInterface myPageRetrofitInterface = getRetrofit().create(MainRetrofitInterface.class);
         myPageRetrofitInterface.getMyPageInfo().enqueue(new Callback<MyPageResult>() {
             @Override
             public void onResponse(Call<MyPageResult> call, Response<MyPageResult> response) {

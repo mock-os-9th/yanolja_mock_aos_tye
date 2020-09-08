@@ -158,7 +158,11 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
                         tvEmail.setText(user.getUserId());
                         tvId.setText(user.getUserId());
                         tvCurrentEmail.setText(user.getUserId());
-                        tvPhoneNum.setText(user.getUserContact());
+                        String userContact = user.getUserContact().startsWith("P") ?
+                                user.getUserContact().substring(1) : user.getUserContact();
+                        if (userContact.startsWith("1"))
+                            userContact = "0"+userContact;
+                        tvPhoneNum.setText(userContact);
                         tvPw.setText(user.getUserPwd());
                     }
                 }

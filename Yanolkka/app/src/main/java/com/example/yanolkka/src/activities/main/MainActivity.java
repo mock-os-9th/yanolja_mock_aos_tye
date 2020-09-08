@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yanolkka.R;
 import com.example.yanolkka.src.activities.main.interfaces.MainActivityView;
+import com.example.yanolkka.src.activities.main.models.Group;
 import com.example.yanolkka.src.common.base.BaseActivity;
 import com.example.yanolkka.src.activities.main.fragments.HomeFragment;
 import com.example.yanolkka.src.activities.main.fragments.LikeFragment;
@@ -16,6 +17,8 @@ import com.example.yanolkka.src.activities.main.fragments.LocationFragment;
 import com.example.yanolkka.src.activities.main.fragments.MyPageFragment;
 import com.example.yanolkka.src.activities.main.fragments.NearbyFragment;
 import com.example.yanolkka.src.common.views.CustomBottomNavView;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends BaseActivity implements CustomBottomNavView.EventListener, MainActivityView {
@@ -116,5 +119,10 @@ public class MainActivity extends BaseActivity implements CustomBottomNavView.Ev
     public void validateFailure(String message) {
         hideProgressDialog();
         showCustomToast(message == null || message.isEmpty() ? getString(R.string.networkError) : message);
+    }
+
+    @Override
+    public void getGroups(ArrayList<Group> gList) {
+
     }
 }

@@ -8,7 +8,7 @@ public class SignUp {
         this.UserPwd = pw;
         this.UserName = "아무개";
         this.UserBirth = "1900-01-01";
-        this.UserContact = phoneNum;
+        this.UserContact = "P"+phoneNum;
         this.UserGender = "F";
     }
 

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,14 +21,9 @@ import com.example.yanolkka.src.common.base.BaseFragment;
 import com.example.yanolkka.src.common.objects.Accommodation;
 import com.example.yanolkka.src.common.objects.Motel;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import static com.example.yanolkka.src.ApplicationClass.BASE_LATITUDE;
-import static com.example.yanolkka.src.ApplicationClass.BASE_LONGITUDE;
 import static com.example.yanolkka.src.ApplicationClass.DATE_FORMAT;
 
 public class ResultMotelFragment extends BaseFragment implements SearchResultActivityView {

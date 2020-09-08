@@ -185,4 +185,6 @@
     <string name="checkNewPw">새 비밀번호 확인</string>
     <string name="map">지도</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="ctrRegion">지역별</string>
 </resources>
