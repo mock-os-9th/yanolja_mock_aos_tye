@@ -187,4 +187,51 @@
     <string name="title_activity_maps">Map</string>
 
     <string name="ctrRegion">지역별</string>
+
+    <string name="roomDetails">객실상세</string>
+    <string name="callAccom">전화하기</string>
+
+    <string name="rentalTime">이용시간</string>
+    <string name="rentalOpenTime">운영시간</string>
+    <string name="price">판매가</string>
+    <string name="checkIn">체크인</string>
+    <string name="checkOut">체크아웃</string>
+    <string name="noticeReservation">예약공지</string>
+    <string name="rulesCancel">취소규정</string>
+    <string name="reserve">예약하기</string>
+    <string name="reserveRental">대실 예약하기</string>
+    <string name="reserveNight">숙박 예약하기</string>
+    <string name="reserveFull">예약마감</string>
+
+    <string name="accommodationReservation">숙소 예약</string>
+    <string name="reservationInfo">예약정보</string>
+    <string name="usingSafeNumber">안심번호 적용중</string>
+    <string name="reservationName">예약자 이름</string>
+    <string name="reservationContact">예약자 번호</string>
+    <string name="visitorName">방문자 이름</string>
+    <string name="visitorContact">방문자 번호</string>
+    <string name="anotherPersonWillVisit">다른 사람이 방문할 거에요</string>
+    <string name="necessaryWhenCheckIn">체크인 시 필요합니다</string>
+    <string name="necessaryWhenGetMessage">예약문자 발송 시 필요합니다</string>
+    <string name="infoVisitor">◎ 체크인 시 방문자의 정보로 본인 여부를 확인합니다.</string>
+    <string name="onFoot">도보</string>
+    <string name="byVehicle">차량</string>
+
+    <string name="discountInfo">가격 및 할인 정보</string>
+    <string name="reservationPrice">예약금액</string>
+    <string name="discountPrice">할인금액</string>
+    <string name="coupon">쿠폰</string>
+    <string name="available">적용 가능</string>
+    <string name="affiliateDiscount">제휴사 할인</string>
+    <string name="noPoints">포인트 없음</string>
+    <string name="finalPrice">최종 결재금액</string>
+    <string name="choosePayOption">결재수단 선택</string>
+
+    <string name="termsReservation">규정 및 약관 동의</string>
+    <string name="limitationForTeens">※ 미성년자는 법정대리인 동행없이 투숙 불가</string>
+
+    <string name="kakaopay"> 카카오페이</string>
+    <string name="chai"> 차이</string>
+    <string name="creditCard"> 신용카드</string>
+    <string name="phonePay"> 휴대폰</string>
 </resources>

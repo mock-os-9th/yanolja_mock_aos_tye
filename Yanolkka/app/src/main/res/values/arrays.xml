@@ -76,4 +76,24 @@
         <item>남양주</item>
         <item>포천</item>
     </string-array>
+
+    <string-array name="paymentOptions">
+        <item>은행 점검시간인 23:30~00:30 까지 이용 불가한 계좌이체 결제수단이 포함되어 있습니다.</item>
+        <item>은행 점검시간인 23:30~00:30 까지 이용 불가한 결제수단입니다.</item>
+        <item>할부는 5만원 이상 결제 시 가능합니다.</item>
+        <item>다음은 결제 취소가 불가능한 결재수단입니다.</item>
+    </string-array>
+
+    <string-array name="reservationAgreementTerms">
+        <item>[필수] 이용규칙 동의</item>
+        <item>[필수] 취소 및 환불 규칙 동의</item>
+        <item>[필수] 개인정보 수집 및 이용 동의</item>
+        <item>[필수] 개인정보 제3자 제공 동의</item>
+    </string-array>
+
+    <string-array name="cancelRules">
+        <item>취소 및 환불 불가</item>
+        <item>모텔의 경우 예약 완료시각으로부터 1시간 이내인 경우 야놀자 앱/웹을 통해 전액 취소가 가능합니다. 단, 1시간 이내라도 입실시간 경과 시 취소 불가합니다.</item>
+        <item>상세한 취소 규정은 "'"자세히 보기"'"에서 확인하실 수 있습니다.</item>
+    </string-array>
 </resources>

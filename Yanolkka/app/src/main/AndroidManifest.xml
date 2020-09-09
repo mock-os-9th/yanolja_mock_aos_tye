@@ -48,7 +48,13 @@
         <activity
             android:name=".src.activities.sign_up.SignUpActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".src.activities.reservation.ReservationActivity" />
+        <activity android:name=".src.activities.reservation.ReservationActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".src.activities.room_info.RoomInfoActivity"
             android:theme="@style/TranslucentStatusBar" />
@@ -56,11 +62,11 @@
         <activity android:name=".src.activities.search.SearchActivity" />
         <activity android:name=".src.activities.sign_in.SignInActivity" />
         <activity android:name=".src.activities.main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 

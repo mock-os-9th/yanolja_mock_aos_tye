@@ -37,6 +37,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/ctrRegion"
                     android:textColor="@color/textNormal"
+                    android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/iv_region_result_back"
                     android:textSize="20sp"
                     android:textStyle="bold"/>
