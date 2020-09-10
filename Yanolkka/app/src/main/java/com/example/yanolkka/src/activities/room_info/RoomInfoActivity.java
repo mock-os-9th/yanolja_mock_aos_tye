@@ -6,6 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -19,9 +20,19 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.yanolkka.R;
 import com.example.yanolkka.src.activities.room_info.interfaces.RoomInfoActivityView;
+import com.example.yanolkka.src.activities.room_info.models.MotelInfo;
+import com.example.yanolkka.src.activities.room_info.models.MotelInfoResult;
+import com.example.yanolkka.src.activities.room_info.models.OverallRatingResult;
+import com.example.yanolkka.src.activities.room_info.models.Review;
+import com.example.yanolkka.src.activities.room_info.models.ReviewsInfo;
+import com.example.yanolkka.src.activities.room_info.models.ReviewsResult;
 import com.example.yanolkka.src.common.adapters.ImagePagerAdapter;
 import com.example.yanolkka.src.common.base.BaseActivity;
 import com.example.yanolkka.src.common.objects.Room;
+import com.example.yanolkka.src.common.views.FacilityView;
+import com.example.yanolkka.src.common.views.NoticeView;
+import com.example.yanolkka.src.common.views.OverallReviewView;
+import com.example.yanolkka.src.common.views.ReviewView;
 import com.example.yanolkka.src.common.views.RoomView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -33,6 +44,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.lang.reflect.Array;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -43,11 +55,12 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
         View.OnClickListener, OnMapReadyCallback {
 
     private RelativeLayout rlActionBarTransparent, rlActionBar, rlBtnGoReservation;
-    private LinearLayout llBtnGoCalendar, llRooms, llFacilitiesHor, llFacilitiesVer, llNotices;
+    private LinearLayout llBtnGoCalendar, llRooms, llFacilitiesHor, llFacilitiesVer,
+            llNotices, llIntroduction, llReviews;
     private ImageView ivBtnBackWhite, ivBtnBack, ivBtnLikeWhite, ivBtnLike
             , ivBtnShareWhite, ivBtnShare;
     private TextView tvTitle, tvRating, tvReviews, tvLocation, tvCheckIn, tvCheckOut
-            , tvAddress, tvBtnCopyAddress, tvActionTitle, tvPager;
+            , tvAddress, tvBtnCopyAddress, tvActionTitle, tvPager, tvIntroduction, tvWay;
     private ScrollView scrollView;
     private ViewPager vpImages;
 
@@ -56,12 +69,19 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
     private ArrayList<Integer> imageList;
 
     private ArrayList<Room> rooms;
+    private ArrayList<Review> reviews = new ArrayList<>();
 
     private String[] daysOfWeek;
+    private String[] notices;
 
     private int accommodationIdx;
+    private char accomType;
+    private double latitude = BASE_LATITUDE, longitude = BASE_LONGITUDE;
+    private GoogleMap mMap;
 
     private int screenHeight;
+
+    private RoomInfoService roomInfoService;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -92,15 +112,25 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
         imageList.add(R.drawable.motel_sample);
         imageList.add(R.drawable.sample_accommodation);
 
-        rooms = new ArrayList<>();
-        for (int i = 1; i <= 4; i++) {
-            Room room = new Room('m', "객실"+i, 2, 4);
-            room.setCheckIn("15:00");
-            room.setRentalTime(4);
-            room.setRentalPrice(35000);
-            room.setStayingPrice(50000);
+        Intent fromIntent = getIntent();
+        accommodationIdx = fromIntent.getIntExtra("idx", 1);
+        accomType = fromIntent.getCharExtra("type", 'm');
 
-            rooms.add(room);
+        rooms = new ArrayList<>();
+
+        if (accomType == 'm'){
+            roomInfoService = new RoomInfoService(this);
+            roomInfoService.getMotelInfo(accommodationIdx, "20200910", "20200911", 2, 0);
+        }else{
+            for (int i = 1; i <= 4; i++) {
+                Room room = new Room('m', "객실"+i, 2, 4);
+                room.setCheckIn("15:00");
+                room.setRentalTime(4);
+                room.setRentalPrice(35000);
+                room.setStayingPrice(50000);
+
+                rooms.add(room);
+            }
         }
     }
 
@@ -113,6 +143,8 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
         llFacilitiesHor = findViewById(R.id.ll_room_info_facilities_hor);
         llFacilitiesVer = findViewById(R.id.ll_room_info_facilities_ver);
         llNotices = findViewById(R.id.ll_room_info_notice);
+        llIntroduction = findViewById(R.id.ll_room_info_introduction);
+        llReviews = findViewById(R.id.ll_room_info_reviews);
         ivBtnBackWhite = findViewById(R.id.iv_room_info_back_white);
         ivBtnBack = findViewById(R.id.iv_room_info_back);
         ivBtnLikeWhite = findViewById(R.id.iv_btn_room_info_like_white);
@@ -125,7 +157,9 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
         tvLocation = findViewById(R.id.tv_room_info_location);
         tvCheckIn = findViewById(R.id.tv_room_info_check_in);
         tvCheckOut = findViewById(R.id.tv_room_info_check_out);
+        tvIntroduction = findViewById(R.id.tv_room_info_introduction);
         tvAddress = findViewById(R.id.tv_room_info_address);
+        tvWay = findViewById(R.id.tv_room_info_way);
         tvBtnCopyAddress = findViewById(R.id.tv_btn_room_info_copy_address);
         tvActionTitle = findViewById(R.id.tv_room_info_ab_title);
         vpImages = findViewById(R.id.vp_room_info_photo);
@@ -148,6 +182,12 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
         tomorrow.add(Calendar.DATE, 1);
         tvCheckOut.setText(tomorrow.get(Calendar.MONTH)+1+"월 "+
                 tomorrow.get(Calendar.DATE)+"일 ("+daysOfWeek[tomorrow.get(Calendar.DAY_OF_WEEK)-1]+")");
+
+        notices = getResources().getStringArray(R.array.noticesSample);
+        for (String notice : notices){
+            NoticeView noticeView = new NoticeView(this, notice);
+            llNotices.addView(noticeView);
+        }
 
         final ImagePagerAdapter adapter = new ImagePagerAdapter(this, imageList);
         vpImages.setAdapter(adapter);
@@ -247,12 +287,99 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
 
     @Override
     public void validateFailure(String message) {
+        Log.e("TAGTAG", message == null ? "null" : message);
+    }
 
+    @Override
+    public void getMotelInfo(MotelInfoResult motelInfo) {
+        MotelInfo info = motelInfo.getInfo();
+        tvTitle.setText(info.getAccomName());
+        tvActionTitle.setText(info.getAccomName());
+        tvRating.setText(String.format("%1.1f",info.getAvgRating()));
+        tvLocation.setText(info.getGuideFromStation() == null ? info.getAccomAddress() : info.getGuideFromStation());
+        if (info.getGuideFromStation() != null)
+            tvWay.setText(info.getGuideFromStation());
+        tvReviews.setText(info.getNumOfReview()+"");
+        tvAddress.setText(info.getAccomAddress());
+
+        latitude = info.getAccomLatitude();
+        longitude = info.getAccomLongitude();
+
+        if(motelInfo.getResult().isEmpty()){
+            for (int i = 1; i <= 4; i++) {
+                Room room = new Room('m', "객실"+i, 2, 4);
+                room.setCheckIn("15:00");
+                room.setRentalTime(4);
+                room.setRentalPrice(35000);
+                room.setStayingPrice(50000);
+
+                rooms.add(room);
+            }
+
+            llRooms.removeAllViews();
+            for (Room room : rooms)
+                llRooms.addView(new RoomView(this, room));
+            llRooms.invalidate();
+        }
+
+        mapView.getMapAsync(this);
+
+        if (motelInfo.getFacility() != null){
+            for(String facility : motelInfo.getFacility()){
+                FacilityView facilityView = new FacilityView(this, facility);
+                llFacilitiesHor.addView(facilityView);
+            }
+        }
+
+        if (info.getAccomIntroduction() != null){
+            llIntroduction.setVisibility(View.VISIBLE);
+            tvIntroduction.setText(info.getAccomIntroduction());
+        }else{
+            llIntroduction.setVisibility(View.GONE);
+        }
+
+        reviews.addAll(motelInfo.getReviewPreview());
+
+        roomInfoService.getReviewsInfo(accommodationIdx, 2);
+    }
+
+    @Override
+    public void getReviews(ReviewsInfo reviewsInfo) {
+        OverallRatingResult overallRating = reviewsInfo.getOverallRating().get(0);
+
+        OverallReviewView overallReviewView = new OverallReviewView(this,
+                overallRating.getReviewCount(), (float)overallRating.getOverallRating(),
+                (float)overallRating.getKindnessRating(), (float)overallRating.getCleanlinessRating(),
+                (float)overallRating.getConvenienceRating(), (float)overallRating.getLocationRating());
+
+        llReviews.addView(overallReviewView);
+
+        for (Review review : reviews) {
+            String userName = review.getUserName();
+            String roomName = review.getRoomName();
+            String reserveOption = review.getReserveType();
+            String content = review.getReviewContent();
+            String reply = review.getReviewReply();
+            String created = review.getWrittenTime();
+            String replyCreated = review.getReplyWrittenTime();
+            float rating = review.getOverallRating();
+
+            ReviewView reviewView = null;
+            try {
+                reviewView = new ReviewView(this, userName, roomName, reserveOption,
+                        content, reply, created, replyCreated, rating);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            llReviews.addView(reviewView);
+        }
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng latLng = new LatLng(BASE_LATITUDE, BASE_LONGITUDE);
+        mMap = googleMap;
+        LatLng latLng = new LatLng(latitude, longitude);
         Bitmap locationBitmap = ((BitmapDrawable)getResources().getDrawable(R.drawable.accom_indicator)).getBitmap();
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f));

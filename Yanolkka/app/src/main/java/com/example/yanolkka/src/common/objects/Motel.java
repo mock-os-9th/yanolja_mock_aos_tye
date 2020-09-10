@@ -6,6 +6,7 @@ public class Motel extends Accommodation {
     private int hourRentalStartAt;
     private int minuteRentalStartAt;
     private int rentalLength;
+    private boolean partTimeAvailable = true;
 
     public Motel(String name, String imageUri, int originalPrice, float discount) {
         super(name, imageUri, originalPrice, discount);
@@ -50,5 +51,13 @@ public class Motel extends Accommodation {
 
     public void setMinuteRentalStartAt(int minuteRentalStartAt) {
         this.minuteRentalStartAt = minuteRentalStartAt;
+    }
+
+    public boolean isPartTimeAvailable() {
+        return partTimeAvailable;
+    }
+
+    public void setPartTimeAvailable(boolean partTimeAvailable) {
+        this.partTimeAvailable = partTimeAvailable;
     }
 }

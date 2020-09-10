@@ -27,6 +27,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static com.example.yanolkka.src.ApplicationClass.BASE_LATITUDE;
+import static com.example.yanolkka.src.ApplicationClass.BASE_LONGITUDE;
+
 public class SearchRegionResultActivity extends BaseActivity implements View.OnClickListener {
 
     static final int REQUEST_NUM_PEOPLE = 1, REQUEST_LENGTH = 0;
@@ -49,7 +52,7 @@ public class SearchRegionResultActivity extends BaseActivity implements View.OnC
 
     private List<String> titles = new ArrayList<>();
 
-    public double latitude, longitude;
+    public double latitude = BASE_LATITUDE, longitude = BASE_LONGITUDE;
     public int numAdult, numKid, tempNumAdult, tempNumKid;
     public Calendar checkIn, checkOut;
 

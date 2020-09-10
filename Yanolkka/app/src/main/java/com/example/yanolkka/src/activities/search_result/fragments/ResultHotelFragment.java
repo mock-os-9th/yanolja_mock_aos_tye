@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +14,7 @@ import com.example.yanolkka.src.activities.main.fragments.NearbyFragment;
 import com.example.yanolkka.src.activities.search_result.SearchResultService;
 import com.example.yanolkka.src.activities.search_result.interfaces.SearchResultActivityView;
 import com.example.yanolkka.src.activities.search_result.models.LocationInfo;
+import com.example.yanolkka.src.activities.search_result.models.MotelResult;
 import com.example.yanolkka.src.activities.search_result.models.NearByHotel;
 import com.example.yanolkka.src.activities.search_result.models.NearByMotel;
 import com.example.yanolkka.src.common.adapters.ExpandedAccommodationAdapter;
@@ -46,18 +46,18 @@ public class ResultHotelFragment extends BaseFragment implements SearchResultAct
         //Test
         accommodations.add(null);
         if (!(getActivity() instanceof MainActivity)){
-            for (int i = 0; i < 30; i++) {
-                Accommodation hotel = new Accommodation(getString(R.string.sampleAccommodationName),
-                        null, 170000, 0.65f);
-
-                hotel.setRating(4.5f);
-                hotel.setReviews(916);
-                hotel.setHourCheckIn(15);
-                hotel.setMinuteCheckIn(0);
-                hotel.setStars(3);
-
-                accommodations.add(hotel);
-            }
+//            for (int i = 0; i < 30; i++) {
+//                Accommodation hotel = new Accommodation(getString(R.string.sampleAccommodationName),
+//                        null, 170000, 0.65f);
+//
+//                hotel.setRating(4.5f);
+//                hotel.setReviews(916);
+//                hotel.setHourCheckIn(15);
+//                hotel.setMinuteCheckIn(0);
+//                hotel.setStars(3);
+//
+//                accommodations.add(hotel);
+//            }
         }else{
             NearbyFragment parentFragment = (NearbyFragment) getParentFragment();
             if (parentFragment != null){
@@ -136,5 +136,10 @@ public class ResultHotelFragment extends BaseFragment implements SearchResultAct
 
         mAdapter.notifyDataSetChanged();
         hideProgressDialog();
+    }
+
+    @Override
+    public void getRegionMotels(ArrayList<MotelResult> motels) {
+
     }
 }

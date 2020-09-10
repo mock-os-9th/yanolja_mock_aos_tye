@@ -12,6 +12,8 @@ public class Accommodation {
     private int hourCheckIn;
     private int minuteCheckIn;
     private int stars;
+    private boolean allDayAvailable = true;
+    private String guide;
 
     public Accommodation(String name, String imageUri, int originalPrice, float discount) {
         this.name = name;
@@ -102,5 +104,21 @@ public class Accommodation {
 
     public void setDiscount(float discount) {
         this.discount = discount;
+    }
+
+    public boolean isAllDayAvailable() {
+        return allDayAvailable;
+    }
+
+    public void setAllDayAvailable(boolean allDayAvailable) {
+        this.allDayAvailable = allDayAvailable;
+    }
+
+    public String getGuide() {
+        return guide;
+    }
+
+    public void setGuide(String guide) {
+        this.guide = guide;
     }
 }

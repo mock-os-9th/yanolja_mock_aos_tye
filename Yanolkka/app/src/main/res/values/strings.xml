@@ -188,6 +188,7 @@
 
     <string name="ctrRegion">지역별</string>
 
+    <string name="accomIntroduction">숙소 소게</string>
     <string name="roomDetails">객실상세</string>
     <string name="callAccom">전화하기</string>
 
@@ -234,4 +235,13 @@
     <string name="chai"> 차이</string>
     <string name="creditCard"> 신용카드</string>
     <string name="phonePay"> 휴대폰</string>
+
+    <string name="full">예약 마감</string>
+    <string name="ratingsLast6Months">최근 6개월 누적 평점</string>
+
+    <string name="kindness">친절도</string>
+    <string name="clean">청결도</string>
+    <string name="convenience">편의성</string>
+    <string name="satisfactionWithFixtures">비품만족도</string>
+
 </resources>

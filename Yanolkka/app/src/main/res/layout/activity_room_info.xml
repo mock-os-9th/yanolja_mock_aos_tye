@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorSearchBox"
         android:orientation="vertical">
 
         <ScrollView
@@ -393,6 +394,34 @@
                         android:background="@color/lightGray"
                         android:layout_marginVertical="12dp"/>
 
+                    <LinearLayout
+                        android:id="@+id/ll_room_info_introduction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textNormal"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:text="@string/accomIntroduction"/>
+
+                        <TextView
+                            android:id="@+id/tv_room_info_introduction"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:textColor="@color/textNormal" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightGray"
+                        android:layout_marginVertical="12dp"/>
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -406,6 +435,7 @@
                         android:layout_height="wrap_content"
                         android:fillViewport="true"
                         android:scrollbars="none"
+                        android:clipToPadding="false"
                         android:overScrollMode="never">
 
 <!--                        편의시설, 서비스-->
@@ -517,10 +547,11 @@
                             android:layout_height="18dp"
                             android:src="@drawable/dot"/>
                         <TextView
+                            android:id="@+id/tv_room_info_way"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/textNormal"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:text="알아서 찾아오세요"/>
                     </LinearLayout>
 
@@ -554,7 +585,14 @@
                     </LinearLayout>
                 </LinearLayout>
 
-<!--                주변 놀거리, 후기-->
+                <LinearLayout
+                    android:id="@+id/ll_room_info_reviews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginVertical="12dp"
+                    android:paddingHorizontal="16dp"
+                    android:background="@color/colorBackground"/>
             </LinearLayout>
         </ScrollView>
 

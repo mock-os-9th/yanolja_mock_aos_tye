@@ -68,6 +68,12 @@
             android:layout_height="wrap_content"
             android:visibility="gone"/>
 
+        <TextView
+            android:id="@+id/tv_item_expanded_accommodation_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,10 +116,10 @@
                 android:textColor="@color/textNormal"/>
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="20dp"
-            android:src="@drawable/notice_early_bird"/>
+<!--        <ImageView-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:src="@drawable/notice_early_bird"/>-->
 
         <LinearLayout
             android:id="@+id/ll_item_expanded_motel"
@@ -137,6 +143,7 @@
                     android:textColor="@color/colorButton"
                     android:textSize="12sp"
                     android:textStyle="bold"
+                    android:visibility="invisible"
                     android:text="65%~"/>
                 <TextView
                     android:id="@+id/tv_item_expanded_accommodation_rental_original_price"
@@ -144,6 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:textSize="12sp"
+                    android:visibility="invisible"
                     android:text="58,900원"/>
             </LinearLayout>
 
@@ -182,10 +190,11 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/textNormal"
                     android:layout_marginStart="4dp"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:text="23,000"/>
                 <TextView
+                    android:id="@+id/tv_item_expanded_accommodation_rental_price_currency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textNormal"
@@ -216,6 +225,7 @@
                     android:textColor="@color/colorButton"
                     android:textSize="12sp"
                     android:textStyle="bold"
+                    android:visibility="invisible"
                     android:text="65%~"/>
                 <TextView
                     android:id="@+id/tv_item_expanded_accommodation_night_original_price"
@@ -223,6 +233,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:textSize="12sp"
+                    android:visibility="invisible"
                     android:text="58,900원"/>
             </LinearLayout>
 
@@ -261,10 +272,11 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/textNormal"
                     android:layout_marginStart="4dp"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:text="40,000"/>
                 <TextView
+                    android:id="@+id/tv_item_expanded_accommodation_night_price_currency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textNormal"

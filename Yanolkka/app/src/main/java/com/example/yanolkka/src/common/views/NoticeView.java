@@ -20,7 +20,7 @@ public class NoticeView extends LinearLayout{
     }
 
     private void init(){
-        LayoutInflater.from(mContext).inflate(R.layout.view_kid, this, true);
+        LayoutInflater.from(mContext).inflate(R.layout.view_notice, this, true);
 
         tvNotice = findViewById(R.id.tv_view_notice);
         tvNotice.setText(notice);

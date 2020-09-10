@@ -3,7 +3,9 @@ package com.example.yanolkka.src.activities.search_result;
 
 import com.example.yanolkka.src.activities.search_result.interfaces.SearchResultActivityView;
 import com.example.yanolkka.src.activities.search_result.interfaces.SearchResultRetrofitInterface;
+import com.example.yanolkka.src.activities.search_result.models.GetMotelResult;
 import com.example.yanolkka.src.activities.search_result.models.LocationInfo;
+import com.example.yanolkka.src.activities.search_result.models.MotelResult;
 import com.example.yanolkka.src.activities.search_result.models.NearByHotelsResult;
 import com.example.yanolkka.src.activities.search_result.models.NearByMotelsResult;
 
@@ -80,7 +82,33 @@ public class SearchResultService {
                 });
     }
 
-//    public void getMotels(){
-//        searchResultRetrofitInterface.getMotelResult()
-//    }
+    public void getMotels(String startAt, String endAt, int groupIdx, int numAdult, int numKid){
+        startAt = "'"+startAt+"'";
+        endAt = "'"+endAt+"'";
+        searchResultRetrofitInterface.getMotelResult(startAt, endAt, groupIdx, numAdult, numKid)
+                .enqueue(new Callback<GetMotelResult>() {
+                    @Override
+                    public void onResponse(Call<GetMotelResult> call, Response<GetMotelResult> response) {
+                        if (response.isSuccessful()){
+                            GetMotelResult motelResult = response.body();
+                            if (motelResult != null){
+                                if (motelResult.isSuccess() && (motelResult.getCode() == 200 || motelResult.getCode() == 201)){
+                                    searchResultActivityView.getRegionMotels(motelResult.getResult());
+                                }else{
+                                    searchResultActivityView.validateFailure(motelResult.getMessage());
+                                }
+                            }else{
+                                searchResultActivityView.validateFailure(response.message());
+                            }
+                        }else{
+                            searchResultActivityView.validateFailure(response.message());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<GetMotelResult> call, Throwable t) {
+                        searchResultActivityView.validateFailure(null);
+                    }
+                });
+    }
 }

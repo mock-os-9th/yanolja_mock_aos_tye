@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textNormal"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@string/review"/>
+
+        <TextView
+            android:id="@+id/tv_overall_review_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textSize="18sp"
+            android:textColor="@color/textNormal"
+            android:text="(n개)"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="1"
+                    android:rating="1"
+                    style="@style/Widget.AppCompat.RatingBar.Indicator"
+                    android:theme="@style/CustomRatingBar"/>
+
+                <TextView
+                    android:id="@+id/tv_overall_review_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textNormal"
+                    android:textStyle="bold"
+                    android:textSize="32sp"
+                    android:text="4.5"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="/5"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="최근 6개월 누적 평점"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical|end">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textNormal"
+                    android:textSize="12sp"
+                    android:text="@string/kindness"/>
+                <FrameLayout
+                    android:layout_width="80dp"
+                    android:layout_height="6dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_gravity="center_vertical">
+
+                    <View
+                        android:id="@+id/view_overall_review_default"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_round_light_gray"/>
+
+                    <View
+                        android:id="@+id/view_overall_review_kindness"
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_round_yellow"/>
+                </FrameLayout>
+                <TextView
+                    android:id="@+id/tv_overall_review_kindness"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textNormal"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:text="4.0"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical|end">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textNormal"
+                    android:textSize="12sp"
+                    android:text="@string/clean"/>
+                <FrameLayout
+                    android:layout_width="80dp"
+                    android:layout_height="6dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_gravity="center_vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_round_light_gray"/>
+
+                    <View
+                        android:id="@+id/view_overall_review_clean"
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_round_yellow"/>
+                </FrameLayout>
+                <TextView
+                    android:id="@+id/tv_overall_review_clean"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textNormal"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:text="4.0"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical|end">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textNormal"
+                    android:textSize="12sp"
+                    android:text="@string/convenience"/>
+                <FrameLayout
+                    android:layout_width="80dp"
+                    android:layout_height="6dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_gravity="center_vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_round_light_gray"/>
+
+                    <View
+                        android:id="@+id/view_overall_review_convenience"
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_round_yellow"/>
+                </FrameLayout>
+                <TextView
+                    android:id="@+id/tv_overall_review_convenience"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textNormal"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:text="4.0"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical|end">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textNormal"
+                    android:textSize="12sp"
+                    android:text="@string/satisfactionWithFixtures"/>
+                <FrameLayout
+                    android:layout_width="80dp"
+                    android:layout_height="6dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_gravity="center_vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_round_light_gray"/>
+
+                    <View
+                        android:id="@+id/view_overall_review_fixtures"
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_round_yellow"/>
+                </FrameLayout>
+                <TextView
+                    android:id="@+id/tv_overall_review_fixtures"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textNormal"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:text="4.0"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightGray"
+        android:layout_marginVertical="16dp"/>
+</LinearLayout>

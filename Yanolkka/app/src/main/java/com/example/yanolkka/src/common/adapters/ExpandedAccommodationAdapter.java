@@ -33,8 +33,9 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
         public LinearLayout llRental, llNight;
         public ImageView ivAccommodation;
         public RatingBar rbRating;
-        public TextView tvName, tvRating, tvReviews, tvDiscount, tvOriginalPrice, tvPrice, tvStars
-                , tvRentalDiscount, tvRentalOriginalPrice, tvRentalPrice, tvCheckIn, tvRentalLength, tvIdx;
+        public TextView tvName, tvRating, tvReviews, tvDiscount, tvOriginalPrice, tvPrice, tvStars, tvLocation
+                , tvRentalDiscount, tvRentalOriginalPrice, tvRentalPrice, tvCheckIn, tvRentalLength, tvIdx, tvType,
+                tvRentalCurrency, tvNightCurrency;
 
         public MyViewHolder(final Context context, @NonNull View itemView) {
             super(itemView);
@@ -55,6 +56,10 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
             tvRentalLength = itemView.findViewById(R.id.tv_item_expanded_accommodation_rental_length);
             tvStars = itemView.findViewById(R.id.tv_item_expanded_hotel_stars);
             tvIdx = itemView.findViewById(R.id.tv_item_expanded_accommodation_idx);
+            tvType = itemView.findViewById(R.id.tv_item_expanded_accommodation_type);
+            tvLocation = itemView.findViewById(R.id.tv_item_expanded_accommodation_location);
+            tvRentalCurrency = itemView.findViewById(R.id.tv_item_expanded_accommodation_rental_price_currency);
+            tvNightCurrency = itemView.findViewById(R.id.tv_item_expanded_accommodation_night_price_currency);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -68,6 +73,7 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
                     strReviews = strReviews.substring(1, strReviews.length()-1);
                     intent.putExtra("reviews", strReviews);
                     intent.putExtra("idx", Integer.parseInt(tvIdx.getText().toString()));
+                    intent.putExtra("type", tvType.getText());
 
                     context.startActivity(intent);
                 }
@@ -128,10 +134,11 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
             }
 
             mvHolder.tvIdx.setText(accommodation.getIdx()+"");
+            mvHolder.tvType.setText(accommodation.getType()+"");
 
             mvHolder.tvName.setText(accommodation.getName());
             mvHolder.rbRating.setRating(accommodation.getRating());
-            mvHolder.tvRating.setText(accommodation.getRating()+"");
+            mvHolder.tvRating.setText(String.format("%1.1f", accommodation.getRating()));
             mvHolder.tvReviews.setText("("+format.format(accommodation.getReviews())+")");
 
             if (accommodation.getType() == 'h')
@@ -146,35 +153,54 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
                     mvHolder.ivAccommodation.setImageDrawable(mContext.getDrawable(R.drawable.motel_sample));
                 }
 
-                if (accommodation.getDiscount() != 0){
-                    mvHolder.tvRentalDiscount.setText((Math.round(motel.getDiscountRental()*100))+"%~");
-                    mvHolder.tvRentalOriginalPrice.setText(format.format(motel.getOriginalRentalPrice())+"원");
-                    mvHolder.tvRentalOriginalPrice.setPaintFlags(mvHolder.tvRentalOriginalPrice.getPaintFlags()
-                            | Paint.STRIKE_THRU_TEXT_FLAG);
+                if (!motel.isPartTimeAvailable()){
+                    mvHolder.tvRentalPrice.setText(mContext.getString(R.string.reserveFull));
+                    mvHolder.tvRentalLength.setVisibility(View.GONE);
+                    mvHolder.tvRentalCurrency.setVisibility(View.GONE);
                 }else{
-                    mvHolder.tvRentalDiscount.setVisibility(View.INVISIBLE);
-                    mvHolder.tvRentalOriginalPrice.setVisibility(View.INVISIBLE);
+                    if (accommodation.getDiscount() != 0.0f){
+                        mvHolder.tvRentalDiscount.setText((Math.round(motel.getDiscountRental()*100))+"%~");
+                        mvHolder.tvRentalOriginalPrice.setText(format.format(motel.getOriginalRentalPrice())+"원");
+                        mvHolder.tvRentalOriginalPrice.setPaintFlags(mvHolder.tvRentalOriginalPrice.getPaintFlags()
+                                | Paint.STRIKE_THRU_TEXT_FLAG);
+                        mvHolder.tvRentalDiscount.setVisibility(View.VISIBLE);
+                        mvHolder.tvRentalOriginalPrice.setVisibility(View.VISIBLE);
+                    }else{
+                        mvHolder.tvRentalDiscount.setVisibility(View.INVISIBLE);
+                        mvHolder.tvRentalOriginalPrice.setVisibility(View.INVISIBLE);
+                    }
+                    mvHolder.tvRentalLength.setText(motel.getRentalLength()+"시간");
+                    mvHolder.tvRentalPrice.setText(format.format(Math.round(motel.getOriginalRentalPrice()
+                            * (1-motel.getDiscountRental()))));
                 }
 
-                mvHolder.tvRentalLength.setText(motel.getRentalLength()+"시간");
-                mvHolder.tvRentalPrice.setText(format.format(Math.round(motel.getOriginalRentalPrice()
-                        * (1-motel.getDiscountRental()))));
             }else{
                 mvHolder.llRental.setVisibility(View.GONE);
             }
 
-            if (accommodation.getDiscount() != 0){
-                mvHolder.tvDiscount.setText((Math.round(accommodation.getDiscount()*100))+"%~");
-                mvHolder.tvOriginalPrice.setText(format.format(accommodation.getOriginalPrice())+"원");
-                mvHolder.tvOriginalPrice.setPaintFlags(mvHolder.tvRentalOriginalPrice.getPaintFlags()
-                        | Paint.STRIKE_THRU_TEXT_FLAG);
-            }else{
-                mvHolder.tvDiscount.setVisibility(View.INVISIBLE);
-                mvHolder.tvOriginalPrice.setVisibility(View.INVISIBLE);
+            if (accommodation.getGuide() != null){
+                mvHolder.tvLocation.setText(accommodation.getGuide());
             }
 
-            mvHolder.tvCheckIn.setText(String.format("%02d:%02d부터", accommodation.getHourCheckIn(), accommodation.getMinuteCheckIn()));
-            mvHolder.tvPrice.setText(format.format(Math.round(accommodation.getOriginalPrice() * (1-accommodation.getDiscount()))));
+            if (!accommodation.isAllDayAvailable()){
+                mvHolder.tvPrice.setText(R.string.reserveFull);
+                mvHolder.tvCheckIn.setVisibility(View.GONE);
+                mvHolder.tvNightCurrency.setVisibility(View.GONE);
+            }else{
+                if (accommodation.getDiscount() != 0.0f){
+                    mvHolder.tvDiscount.setText((Math.round(accommodation.getDiscount()*100))+"%~");
+                    mvHolder.tvOriginalPrice.setText(format.format(accommodation.getOriginalPrice())+"원");
+                    mvHolder.tvOriginalPrice.setPaintFlags(mvHolder.tvRentalOriginalPrice.getPaintFlags()
+                            | Paint.STRIKE_THRU_TEXT_FLAG);
+                    mvHolder.tvDiscount.setVisibility(View.VISIBLE);
+                    mvHolder.tvOriginalPrice.setVisibility(View.VISIBLE);
+                }else{
+                    mvHolder.tvDiscount.setVisibility(View.INVISIBLE);
+                    mvHolder.tvOriginalPrice.setVisibility(View.INVISIBLE);
+                }
+                mvHolder.tvCheckIn.setText(String.format("%02d:%02d부터", accommodation.getHourCheckIn(), accommodation.getMinuteCheckIn()));
+                mvHolder.tvPrice.setText(format.format(Math.round(accommodation.getOriginalPrice() * (1-accommodation.getDiscount()))));
+            }
         }
     }
 
