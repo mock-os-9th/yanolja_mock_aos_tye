@@ -14,6 +14,7 @@ public class MotelInfo {
     private String AccomGuide;
     private String Contact;
     private int numOfReviewReply;
+    private boolean IsFullParking;
     private ArrayList<AccomTagResult> AccomTag;
 
     public String getAccomName() {
@@ -58,6 +59,10 @@ public class MotelInfo {
 
     public String getContact() {
         return Contact;
+    }
+
+    public boolean isFullParking() {
+        return IsFullParking;
     }
 
     public int getNumOfReviewReply() {

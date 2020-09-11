@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -29,7 +30,17 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
 
     private Context mContext;
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public interface ItemClickListener{
+        void onItemClick(View v, int pos);
+    }
+
+    private ItemClickListener mListener = null;
+
+    public void setItemClickListener(ItemClickListener listener){
+        this.mListener = listener;
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder{
         public LinearLayout llRental, llNight;
         public ImageView ivAccommodation;
         public RatingBar rbRating;
@@ -64,18 +75,10 @@ public class ExpandedAccommodationAdapter extends RecyclerView.Adapter<RecyclerV
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    ((BaseActivity)context).goYetActivity();
-
-                    Intent intent = new Intent(new Intent(context, RoomInfoActivity.class));
-                    intent.putExtra("accName", tvName.getText().toString());
-                    intent.putExtra("rating", String.valueOf(rbRating.getRating()));
-                    String strReviews = tvReviews.getText().toString();
-                    strReviews = strReviews.substring(1, strReviews.length()-1);
-                    intent.putExtra("reviews", strReviews);
-                    intent.putExtra("idx", Integer.parseInt(tvIdx.getText().toString()));
-                    intent.putExtra("type", tvType.getText());
-
-                    context.startActivity(intent);
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION){
+                        mListener.onItemClick(view, pos);
+                    }
                 }
             });
         }

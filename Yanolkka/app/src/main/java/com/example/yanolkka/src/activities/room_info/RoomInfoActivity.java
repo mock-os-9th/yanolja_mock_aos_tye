@@ -19,9 +19,12 @@ import androidx.annotation.RequiresApi;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.yanolkka.R;
+import com.example.yanolkka.src.activities.reservation.ReservationActivity;
+import com.example.yanolkka.src.activities.room_details.RoomDetailsActivity;
 import com.example.yanolkka.src.activities.room_info.interfaces.RoomInfoActivityView;
 import com.example.yanolkka.src.activities.room_info.models.MotelInfo;
 import com.example.yanolkka.src.activities.room_info.models.MotelInfoResult;
+import com.example.yanolkka.src.activities.room_info.models.MotelRoomInfo;
 import com.example.yanolkka.src.activities.room_info.models.OverallRatingResult;
 import com.example.yanolkka.src.activities.room_info.models.Review;
 import com.example.yanolkka.src.activities.room_info.models.ReviewsInfo;
@@ -45,6 +48,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.lang.reflect.Array;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -71,11 +75,14 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
     private ArrayList<Room> rooms;
     private ArrayList<Review> reviews = new ArrayList<>();
 
+    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     private String[] daysOfWeek;
     private String[] notices;
 
-    private int accommodationIdx;
+    private String startAt, endAt;
+    private int accommodationIdx, groupIdx, numAdult, numKid;
     private char accomType;
+
     private double latitude = BASE_LATITUDE, longitude = BASE_LONGITUDE;
     private GoogleMap mMap;
 
@@ -95,7 +102,11 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
 
         getData();
 
-        setViews();
+        try {
+            setViews();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         screenHeight = metrics.heightPixels;
@@ -118,9 +129,17 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
 
         rooms = new ArrayList<>();
 
+        Intent intent = getIntent();
+        startAt = intent.getStringExtra("startAt");
+        endAt = intent.getStringExtra("endAt");
+        accommodationIdx = intent.getIntExtra("accomIdx", 1);
+        groupIdx = intent.getIntExtra("groupIdx", 1);
+        numAdult = intent.getIntExtra("numAdult", 2);
+        numKid = intent.getIntExtra("numKid", 0);
+
         if (accomType == 'm'){
             roomInfoService = new RoomInfoService(this);
-            roomInfoService.getMotelInfo(accommodationIdx, "20200910", "20200911", 2, 0);
+            roomInfoService.getMotelInfo(accommodationIdx, startAt, endAt, groupIdx, numAdult, numKid);
         }else{
             for (int i = 1; i <= 4; i++) {
                 Room room = new Room('m', "객실"+i, 2, 4);
@@ -134,7 +153,7 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
         }
     }
 
-    private void setViews(){
+    private void setViews() throws ParseException {
         rlActionBarTransparent = findViewById(R.id.rl_room_info_action_bar_first);
         rlActionBar = findViewById(R.id.rl_room_info_action_bar);
         rlBtnGoReservation = findViewById(R.id.rl_btn_room_info_go_reservation);
@@ -167,21 +186,16 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
         tvPager = findViewById(R.id.tv_room_info_photo_pager);
         mapView = findViewById(R.id.mv_room_info_map);
 
-        Intent intent = getIntent();
-        tvTitle.setText(intent.getStringExtra("accName"));
-        tvActionTitle.setText(intent.getStringExtra("accName"));
-        tvRating.setText(intent.getStringExtra("rating"));
-        tvReviews.setText(intent.getStringExtra("reviews"));
-        accommodationIdx = intent.getIntExtra("idx", 0);
-
         daysOfWeek = getResources().getStringArray(R.array.daysOfWeek);
-        Calendar today = Calendar.getInstance();
-        tvCheckIn.setText(today.get(Calendar.MONTH)+1+"월 "+
-                today.get(Calendar.DATE)+"일 ("+daysOfWeek[today.get(Calendar.DAY_OF_WEEK)-1]+")");
-        Calendar tomorrow = Calendar.getInstance();
-        tomorrow.add(Calendar.DATE, 1);
-        tvCheckOut.setText(tomorrow.get(Calendar.MONTH)+1+"월 "+
-                tomorrow.get(Calendar.DATE)+"일 ("+daysOfWeek[tomorrow.get(Calendar.DAY_OF_WEEK)-1]+")");
+        Calendar start = Calendar.getInstance();
+        start.setTime(format.parse(startAt));
+        tvCheckIn.setText(start.get(Calendar.MONTH)+1+"월 "+
+                start.get(Calendar.DATE)+"일 ("+daysOfWeek[start.get(Calendar.DAY_OF_WEEK)-1]+")");
+
+        Calendar end = Calendar.getInstance();
+        end.setTime(format.parse(endAt));
+        tvCheckOut.setText(end.get(Calendar.MONTH)+1+"월 "+
+                end.get(Calendar.DATE)+"일 ("+daysOfWeek[end.get(Calendar.DAY_OF_WEEK)-1]+")");
 
         notices = getResources().getStringArray(R.array.noticesSample);
         for (String notice : notices){
@@ -274,7 +288,6 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
                 break;
 
             case R.id.rl_btn_room_info_go_reservation:
-                //예약하기
                 scrollToView(findViewById(R.id.rl_btn_room_info_coupon), scrollView, 0);
                 break;
         }
@@ -291,8 +304,8 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
     }
 
     @Override
-    public void getMotelInfo(MotelInfoResult motelInfo) {
-        MotelInfo info = motelInfo.getInfo();
+    public void getMotelInfo(final MotelInfoResult motelInfo) {
+        final MotelInfo info = motelInfo.getInfo();
         tvTitle.setText(info.getAccomName());
         tvActionTitle.setText(info.getAccomName());
         tvRating.setText(String.format("%1.1f",info.getAvgRating()));
@@ -315,12 +328,47 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
 
                 rooms.add(room);
             }
+        }else{
+            ArrayList<MotelRoomInfo> motelRoomInfos = motelInfo.getResult();
+            for (MotelRoomInfo motelRoomInfo : motelRoomInfos){
+                Room room = new Room('m', motelRoomInfo.getRoomName(), 2 ,4);
+                room.setRentalPrice(motelRoomInfo.getPartTimePrice());
+                room.setStayingPrice(motelRoomInfo.getAllDayPrice());
+                room.setCheckIn(motelRoomInfo.getAvailableAllDayCheckIn());
+                if (motelRoomInfo.getPartTimeHour() != null){
+                    String[] timeArr = motelRoomInfo.getPartTimeHour().split(":");
+                    room.setRentalTime(Integer.parseInt(timeArr[0]));
+                }
+                room.setIdx(motelRoomInfo.getRoomIdx());
 
-            llRooms.removeAllViews();
-            for (Room room : rooms)
-                llRooms.addView(new RoomView(this, room));
-            llRooms.invalidate();
+                rooms.add(room);
+            }
         }
+
+        llRooms.removeAllViews();
+        for (final Room room : rooms){
+            RoomView roomView = new RoomView(this, room);
+            roomView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(RoomInfoActivity.this, RoomDetailsActivity.class);
+                    intent.putExtra("type", accomType);
+                    intent.putExtra("accomName", info.getAccomName());
+                    intent.putExtra("accomIdx", accommodationIdx);
+                    intent.putExtra("roomIdx", room.getIdx());
+                    intent.putExtra("roomName", room.getName());
+                    intent.putExtra("rentalPrice", room.getRentalPrice());
+                    intent.putExtra("stayingPrice", room.getStayingPrice());
+                    intent.putExtra("rentalTime", room.getRentalTime());
+                    intent.putExtra("checkIn",room.getCheckIn());
+                    intent.putExtra("startAt", startAt);
+                    intent.putExtra("endAt", endAt);
+                    startActivity(intent);
+                }
+            });
+            llRooms.addView(roomView);
+        }
+        llRooms.invalidate();
 
         mapView.getMapAsync(this);
 

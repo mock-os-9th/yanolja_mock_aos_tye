@@ -20,7 +20,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".src.activities.room_details.RoomDetailsActivity"></activity>
+        <activity android:name=".src.activities.SplashActivity"
+            android:theme="@style/TranslucentStatusBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".src.activities.room_details.RoomDetailsActivity" />
         <activity android:name=".src.activities.search_region_result.SearchRegionResultActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -48,26 +56,14 @@
         <activity
             android:name=".src.activities.sign_up.SignUpActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".src.activities.reservation.ReservationActivity" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
+        <activity android:name=".src.activities.reservation.ReservationActivity"/>
         <activity
             android:name=".src.activities.room_info.RoomInfoActivity"
             android:theme="@style/TranslucentStatusBar" />
         <activity android:name=".src.activities.search_result.SearchResultActivity" />
         <activity android:name=".src.activities.search.SearchActivity" />
         <activity android:name=".src.activities.sign_in.SignInActivity" />
-        <activity android:name=".src.activities.main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".src.activities.main.MainActivity"/>
     </application>
 
 </manifest>

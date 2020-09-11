@@ -1,5 +1,6 @@
 package com.example.yanolkka.src.activities.search_result.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.yanolkka.R;
 import com.example.yanolkka.src.activities.main.MainActivity;
 import com.example.yanolkka.src.activities.main.fragments.NearbyFragment;
+import com.example.yanolkka.src.activities.room_info.RoomInfoActivity;
 import com.example.yanolkka.src.activities.search_region_result.SearchRegionResultActivity;
 import com.example.yanolkka.src.activities.search_result.SearchResultService;
 import com.example.yanolkka.src.activities.search_result.interfaces.SearchResultActivityView;
@@ -36,6 +38,9 @@ public class ResultMotelFragment extends BaseFragment implements SearchResultAct
 
     private SearchResultService searchResultService = new SearchResultService(this);
 
+    private int groupIdx, numAdult, numKid;
+    private String startAt, endAt;
+
     public ResultMotelFragment() {
     }
 
@@ -54,11 +59,11 @@ public class ResultMotelFragment extends BaseFragment implements SearchResultAct
             if (getActivity() instanceof SearchRegionResultActivity){
                 SearchRegionResultActivity activity = (SearchRegionResultActivity) getActivity();
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                String startAt = format.format(activity.checkIn.getTime());
-                String endAt = format.format(activity.checkOut.getTime());
-                int groupIdx = activity.groupIdx;
-                int numAdult = activity.numAdult;
-                int numKid = activity.numKid;
+                startAt = format.format(activity.checkIn.getTime());
+                endAt = format.format(activity.checkOut.getTime());
+                groupIdx = activity.groupIdx;
+                numAdult = activity.numAdult;
+                numKid = activity.numKid;
                 showProgressDialog();
                 searchResultService.getMotels(startAt, endAt, groupIdx, numAdult, numKid);
             }else{
@@ -104,6 +109,19 @@ public class ResultMotelFragment extends BaseFragment implements SearchResultAct
         rvResult.setLayoutManager(mLayoutManager);
 
         mAdapter = new ExpandedAccommodationAdapter(getContext(), accommodations);
+        mAdapter.setItemClickListener(new ExpandedAccommodationAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View v, int pos) {
+                Intent intent = new Intent(getContext(), RoomInfoActivity.class);
+                intent.putExtra("groupIdx", groupIdx);
+                intent.putExtra("numAdult", numAdult);
+                intent.putExtra("numKid", numKid);
+                intent.putExtra("startAt", startAt);
+                intent.putExtra("endAt", endAt);
+                intent.putExtra("accomIdx", accommodations.get(pos).getIdx());
+                startActivity(intent);
+            }
+        });
         rvResult.setAdapter(mAdapter);
 
         rvResult.setOverScrollMode(View.OVER_SCROLL_NEVER);

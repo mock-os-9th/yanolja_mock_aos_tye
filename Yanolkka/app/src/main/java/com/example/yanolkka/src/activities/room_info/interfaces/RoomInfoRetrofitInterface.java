@@ -13,12 +13,13 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface RoomInfoRetrofitInterface {
-    @GET("/motels/{AccomIdx}")
-    Call<MotelInfoResult> getMotelInfo(@Path("AccomIdx") int accomIdx,
-                                       @Query("CheckInDate") String checkIn,
-                                       @Query("CheckOutDate") String checkOut,
-                                       @Query("AdultNum") int numAdult,
-                                       @Query("ChildNum") int numKid);
+    @GET("/motels/{accomIdx}")
+    Call<MotelInfoResult> getMotelInfo(@Path("accomIdx") int accomIdx,
+                                       @Query("startAt") String checkIn,
+                                       @Query("endAt") String checkOut,
+                                       @Query("motelGroupIdx") int groupIdx,
+                                       @Query("adult") int numAdult,
+                                       @Query("child") int numKid);
 
     @GET("/reviews/{AccomIdx}")
     Call<ReviewsResult> getReviewsInfo(@Path("AccomIdx") int accomIdx,

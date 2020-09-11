@@ -22,8 +22,8 @@ public class RoomInfoService {
         this.roomInfoActivityView = roomInfoActivityView;
     }
 
-    public void getMotelInfo(final int motelIdx, String checkIn, String checkOut, int numAdult, int numKid){
-        roomInfoRetrofitInterface.getMotelInfo(motelIdx, checkIn, checkOut, numAdult, numKid)
+    public void getMotelInfo(final int motelIdx, String checkIn, String checkOut,int groupIdx,  int numAdult, int numKid){
+        roomInfoRetrofitInterface.getMotelInfo(motelIdx, checkIn, checkOut, groupIdx, numAdult, numKid)
                 .enqueue(new Callback<MotelInfoResult>() {
                     @Override
                     public void onResponse(Call<MotelInfoResult> call, Response<MotelInfoResult> response) {

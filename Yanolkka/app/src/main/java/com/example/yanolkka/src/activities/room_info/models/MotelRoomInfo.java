@@ -3,13 +3,12 @@ package com.example.yanolkka.src.activities.room_info.models;
 public class MotelRoomInfo {
     private int AccomIdx;
     private int RoomIdx;
+    private String RoomName;
     private boolean IsPartTimeAvailable;
-    private String ReservedCheckIn;
-    private String ReservedCheckOut;
     private String AvailablePartTimeCheckIn;
     private String AvailablePartTimeDeadline;
     private int PartTimePrice;
-    private int PartTimeHour;
+    private String PartTimeHour;
     private boolean IsAllDayAvailable;
     private String AvailableAllDayCheckIn;
     private int AllDayPrice;
@@ -22,16 +21,12 @@ public class MotelRoomInfo {
         return RoomIdx;
     }
 
+    public String getRoomName() {
+        return RoomName;
+    }
+
     public boolean isPartTimeAvailable() {
         return IsPartTimeAvailable;
-    }
-
-    public String getReservedCheckIn() {
-        return ReservedCheckIn;
-    }
-
-    public String getReservedCheckOut() {
-        return ReservedCheckOut;
     }
 
     public String getAvailablePartTimeCheckIn() {
@@ -46,7 +41,7 @@ public class MotelRoomInfo {
         return PartTimePrice;
     }
 
-    public int getPartTimeHour() {
+    public String getPartTimeHour() {
         return PartTimeHour;
     }
 

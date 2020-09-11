@@ -4,6 +4,7 @@ public class PhotoInfo {
     private String PhotoType;
     private int RoomIdx;
     private String RoomName;
+    private String PhotoInfo;
     private String PhotoUrl;
 
     public String getPhotoType() {

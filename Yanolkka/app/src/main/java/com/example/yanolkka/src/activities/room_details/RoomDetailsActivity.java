@@ -1,5 +1,6 @@
 package com.example.yanolkka.src.activities.room_details;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,8 +11,18 @@ import android.widget.TextView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.yanolkka.R;
+import com.example.yanolkka.src.activities.reservation.ReservationActivity;
+import com.example.yanolkka.src.common.adapters.ContentsPagerAdapter;
+import com.example.yanolkka.src.common.adapters.ImagePagerAdapter;
 import com.example.yanolkka.src.common.base.BaseActivity;
 import com.example.yanolkka.src.common.views.NoticeView;
+
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class RoomDetailsActivity extends BaseActivity implements View.OnClickListener {
 
@@ -26,12 +37,23 @@ public class RoomDetailsActivity extends BaseActivity implements View.OnClickLis
     private ImageView ivBtnBack;
     private ViewPager vpImages;
 
+    private String accomName, roomName, checkIn, startAt, endAt;
+    private int accomIdx, roomIdx, rentalPrice, stayingPrice, rentalTime;
+    private char type;
+
+    private ArrayList<Integer> images = new ArrayList<>();
+
+    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_details);
 
         setViews();
+
+        images.add(R.drawable.room_sample);
+        images.add(R.drawable.motel_room_sample);
 
         setListeners();
     }
@@ -82,6 +104,66 @@ public class RoomDetailsActivity extends BaseActivity implements View.OnClickLis
             NoticeView noticeView = new NoticeView(this, rule);
             llRulesCancel.addView(noticeView);
         }
+
+        Intent intent = getIntent();
+        type = intent.getCharExtra("type", 'm');
+        accomName = intent.getStringExtra("accomName");
+        roomName = intent.getStringExtra("roomName");
+        accomIdx = intent.getIntExtra("accomIdx", 1);
+        if (type == 'm'){
+            rentalPrice = intent.getIntExtra("rentalPrice", 30000);
+            rentalTime = intent.getIntExtra("rentalTime", 4);
+            llBtnRental.setVisibility(View.VISIBLE);
+            tvRentalPrice.setText(new DecimalFormat("###,###").format(rentalPrice));
+            tvRentalTime.setText("최대 "+rentalTime+"시간");
+            rlBtnReserveRental.setVisibility(View.VISIBLE);
+            tvReserveNight.setText(getString(R.string.stayNight)+" "+getString(R.string.reserve));
+        }
+        stayingPrice = intent.getIntExtra("stayingPrice", 50000);
+        checkIn = intent.getStringExtra("checkIn");
+
+        startAt = intent.getStringExtra("startAt");
+        Calendar start = Calendar.getInstance();
+        endAt = intent.getStringExtra("endAt");
+        Calendar end = Calendar.getInstance();
+        try {
+            start.setTime(format.parse(startAt));
+            end.setTime(format.parse(endAt));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String[] daysOfWeek = getResources().getStringArray(R.array.daysOfWeek);
+
+        tvLengthCheckIn.setText(start.get(Calendar.MONTH)+1+"월 "+
+                start.get(Calendar.DATE)+"일 ("+daysOfWeek[start.get(Calendar.DAY_OF_WEEK)-1]+")");
+
+        tvLengthCheckOut.setText(end.get(Calendar.MONTH)+1+"월 "+
+                end.get(Calendar.DATE)+"일 ("+daysOfWeek[end.get(Calendar.DAY_OF_WEEK)-1]+")");
+
+        tvAccomName.setText(accomName);
+        tvRoomName.setText(roomName);
+        tvNightCheckIn.setText(checkIn+"부터");
+        tvNightPrice.setText(new DecimalFormat("###,###").format(stayingPrice));
+
+        final ImagePagerAdapter mAdapter = new ImagePagerAdapter(this, images);
+        vpImages.setAdapter(mAdapter);
+
+        vpImages.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                tvImagePager.setText((position+1)+"/"+mAdapter.getCount());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
@@ -98,11 +180,31 @@ public class RoomDetailsActivity extends BaseActivity implements View.OnClickLis
             case R.id.ll_btn_room_details_night:
             case R.id.rl_btn_room_details_reserve_night:
                 //숙박예약
+                Intent nightIntent = new Intent(this, ReservationActivity.class);
+                nightIntent.putExtra("isRental", false);
+                nightIntent.putExtra("accomIdx", accomIdx);
+                nightIntent.putExtra("roomIdx", roomIdx);
+                nightIntent.putExtra("accomName", accomName);
+                nightIntent.putExtra("roomName", roomName);
+                nightIntent.putExtra("startAt", startAt);
+                nightIntent.putExtra("endAt", endAt);
+                nightIntent.putExtra("price", stayingPrice);
+                startActivity(nightIntent);
                 break;
 
             case R.id.ll_btn_room_details_rental:
             case R.id.rl_btn_room_details_reserve_rental:
                 //대실예약
+                Intent rentalIntent = new Intent(this, ReservationActivity.class);
+                rentalIntent.putExtra("isRental", true);
+                rentalIntent.putExtra("accomIdx", accomIdx);
+                rentalIntent.putExtra("roomIdx", roomIdx);
+                rentalIntent.putExtra("accomName", accomName);
+                rentalIntent.putExtra("roomName", roomName);
+                rentalIntent.putExtra("startAt", startAt);
+                rentalIntent.putExtra("endAt", startAt);
+                rentalIntent.putExtra("price", rentalPrice);
+                startActivity(rentalIntent);
                 break;
         }
     }
