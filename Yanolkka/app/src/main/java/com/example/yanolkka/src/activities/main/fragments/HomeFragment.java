@@ -21,6 +21,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.yanolkka.R;
+import com.example.yanolkka.src.activities.main.MainActivity;
 import com.example.yanolkka.src.common.adapters.AdMdAdapter;
 import com.example.yanolkka.src.common.adapters.AutoScrollViewPagerAdapter;
 import com.example.yanolkka.src.common.base.BaseFragment;

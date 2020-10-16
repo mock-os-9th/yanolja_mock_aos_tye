@@ -41,6 +41,8 @@ public class ResultMotelFragment extends BaseFragment implements SearchResultAct
     private int groupIdx, numAdult, numKid;
     private String startAt, endAt;
 
+    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
     public ResultMotelFragment() {
     }
 
@@ -58,7 +60,6 @@ public class ResultMotelFragment extends BaseFragment implements SearchResultAct
         if (!(getActivity() instanceof MainActivity)){
             if (getActivity() instanceof SearchRegionResultActivity){
                 SearchRegionResultActivity activity = (SearchRegionResultActivity) getActivity();
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 startAt = format.format(activity.checkIn.getTime());
                 endAt = format.format(activity.checkOut.getTime());
                 groupIdx = activity.groupIdx;
@@ -90,6 +91,9 @@ public class ResultMotelFragment extends BaseFragment implements SearchResultAct
 
                 String checkIn = DATE_FORMAT.format(parentFragment.checkIn.getTime());
                 String checkOut = DATE_FORMAT.format(parentFragment.checkOut.getTime());
+
+                startAt = format.format(parentFragment.checkIn.getTime());
+                endAt = format.format(parentFragment.checkOut.getTime());
 
                 LocationInfo info = new LocationInfo(lat, lon, checkIn, checkOut, numAdult, numKid);
                 showProgressDialog();

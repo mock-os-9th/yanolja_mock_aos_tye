@@ -204,6 +204,7 @@ public class RoomDetailsActivity extends BaseActivity implements View.OnClickLis
                 rentalIntent.putExtra("startAt", startAt);
                 rentalIntent.putExtra("endAt", startAt);
                 rentalIntent.putExtra("price", rentalPrice);
+                rentalIntent.putExtra("rentalTime", rentalTime);
                 startActivity(rentalIntent);
                 break;
         }

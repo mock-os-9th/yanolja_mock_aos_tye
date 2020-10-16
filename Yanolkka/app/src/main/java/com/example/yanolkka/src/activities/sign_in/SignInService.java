@@ -16,14 +16,14 @@ import static com.example.yanolkka.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.example.yanolkka.src.ApplicationClass.getRetrofit;
 import static com.example.yanolkka.src.ApplicationClass.sSharedPreferences;
 
-class SignInService {
+public class SignInService {
     private final SignInActivityView mSignInActivityView;
 
-    SignInService(final SignInActivityView signInActivityView){
+    public SignInService(final SignInActivityView signInActivityView){
         this.mSignInActivityView = signInActivityView;
     }
 
-    void signIn(SignIn signIn){
+    public void signIn(SignIn signIn){
         final SignInRetrofitInterface signInRetrofitInterface = getRetrofit().create(SignInRetrofitInterface.class);
         signInRetrofitInterface.signIn(signIn).enqueue(new Callback<SignInResult>() {
             @Override

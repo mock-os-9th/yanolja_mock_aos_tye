@@ -187,13 +187,20 @@ public class RoomInfoActivity extends BaseActivity implements RoomInfoActivityVi
         mapView = findViewById(R.id.mv_room_info_map);
 
         daysOfWeek = getResources().getStringArray(R.array.daysOfWeek);
+
         Calendar start = Calendar.getInstance();
-        start.setTime(format.parse(startAt));
+        if (startAt != null){
+            start.setTime(format.parse(startAt));
+        }
         tvCheckIn.setText(start.get(Calendar.MONTH)+1+"월 "+
                 start.get(Calendar.DATE)+"일 ("+daysOfWeek[start.get(Calendar.DAY_OF_WEEK)-1]+")");
 
         Calendar end = Calendar.getInstance();
-        end.setTime(format.parse(endAt));
+        if (endAt != null){
+            end.setTime(format.parse(endAt));
+        }else{
+            end.add(Calendar.DATE, 1);
+        }
         tvCheckOut.setText(end.get(Calendar.MONTH)+1+"월 "+
                 end.get(Calendar.DATE)+"일 ("+daysOfWeek[end.get(Calendar.DAY_OF_WEEK)-1]+")");
 

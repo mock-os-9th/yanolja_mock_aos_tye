@@ -12,6 +12,7 @@ import com.example.yanolkka.R;
 import com.example.yanolkka.src.common.objects.Room;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 
 public class RoomView extends LinearLayout {
     private Room room;
@@ -59,8 +60,9 @@ public class RoomView extends LinearLayout {
         }
         else
             llMotel.setVisibility(GONE);
+        room.setCheckIn(room.getCheckIn().length() > 5 ? room.getCheckIn().substring(0, 5) : room.getCheckIn());
 
-        tvCheckIn.setText(String.format(room.getCheckIn()+"부터"));
+        tvCheckIn.setText(room.getCheckIn()+"부터");
         tvPrice.setText(format.format(room.getStayingPrice()));;
 
         this.setOnClickListener(new OnClickListener() {

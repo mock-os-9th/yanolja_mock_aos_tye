@@ -17,6 +17,9 @@ import com.example.yanolkka.src.activities.profile.models.NicknameToChange;
 import com.example.yanolkka.src.activities.profile.models.PasswordToChange;
 import com.example.yanolkka.src.activities.profile.models.User;
 import com.example.yanolkka.src.activities.profile.models.UserInfoResult;
+import com.example.yanolkka.src.activities.sign_in.SignInService;
+import com.example.yanolkka.src.activities.sign_in.interfaces.SignInActivityView;
+import com.example.yanolkka.src.activities.sign_in.models.SignIn;
 import com.example.yanolkka.src.common.base.BaseFragment;
 import com.example.yanolkka.src.common.views.ValidatingEditText;
 
@@ -234,6 +237,20 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
                             vetNewPw.clearText();
                             vetNewPwCheck.clearText();
                             tvPw.setText(newPw);
+
+                            SignIn newSignIn = new SignIn(tvEmail.getText().toString(), newPw);
+                            SignInService signInService = new SignInService(new SignInActivityView() {
+                                @Override
+                                public void validateSuccess(String text) {
+                                    showCustomToast(text);
+                                }
+
+                                @Override
+                                public void validateFailure(String message) {
+                                    showCustomToast(message == null ? getString(R.string.networkError) : message);
+                                }
+                            });
+                            signInService.signIn(newSignIn);
                         }else{
                             showCustomToast(result.getMessage());
                         }

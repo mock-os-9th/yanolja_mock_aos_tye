@@ -81,7 +81,7 @@ public class ReservationActivity extends BaseActivity implements ValidateListene
 
     private List<CheckBox> terms = new ArrayList<>();
     private List<RentalTimeView> timeViews = new ArrayList<>();
-    private int rentalStart = 10, rentalEnd = 23, rentalTime = 4;
+    private int rentalStart = 10, rentalEnd = 23, rentalTime;
 
     private InputMethodManager imm;
 
@@ -131,6 +131,7 @@ public class ReservationActivity extends BaseActivity implements ValidateListene
         roomName = fromIntent.getStringExtra("roomName");
         isRental = fromIntent.getBooleanExtra("isRental", false);
         price = fromIntent.getIntExtra("price", 30000);
+        rentalTime = fromIntent.getIntExtra("rentalTime", 4);
 
         signedIn = sSharedPreferences.getString(X_ACCESS_TOKEN, null) != null;
 
@@ -263,6 +264,7 @@ public class ReservationActivity extends BaseActivity implements ValidateListene
                     for (CheckBox cb : terms){
                         if (!cb.isChecked()){
                             cbAllAgree.setChecked(false);
+                            validateListener.validCheck();
                             return;
                         }
                     }
@@ -294,7 +296,7 @@ public class ReservationActivity extends BaseActivity implements ValidateListene
                 int hourNow = timeView.getHourNow();
                 if (!timeView.isEnabled()){
                     scrollX += dpToPx(58);
-                    svRentalTime.scrollTo(scrollX, 0);
+                    svRentalTime.scrollBy(scrollX, 0);
                 }
                 if (i > hourNow && i <= hourNow+1 + rentalTime)
                     timeView.setSelected(true);
@@ -303,6 +305,8 @@ public class ReservationActivity extends BaseActivity implements ValidateListene
                     tvTimeCheckIn.setText(timeView.getHour()+":00");
                 if (i == hourNow+1+rentalTime)
                     tvTimeCheckOut.setText(timeView.getHour()+":00");
+                if (hourNow+1+rentalTime > rentalEnd)
+                    tvTimeCheckOut.setText(rentalEnd+":00");
             }
 
             for (final RentalTimeView timeView : timeViews){
@@ -397,6 +401,7 @@ public class ReservationActivity extends BaseActivity implements ValidateListene
                         tvBtnByVehicle.setTextColor(getColor(R.color.colorButton));
                     }
                     comingBy = ON_FOOT;
+                    validateListener.validCheck();
                 }
                 break;
 
@@ -409,6 +414,7 @@ public class ReservationActivity extends BaseActivity implements ValidateListene
                         tvBtnOnFoot.setTextColor(getColor(R.color.colorButton));
                     }
                     comingBy = BY_VEHICLE;
+                    validateListener.validCheck();
                 }
                 break;
 
